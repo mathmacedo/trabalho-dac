@@ -1,0 +1,39 @@
+<ui:composition template="template/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets" >
+    
+    <ui:define name="body">
+        <center>
+            <div>
+                <h:outputText style="titulo" value="Consultar Compras"/>
+                <br/><br/>
+                <h:panelGrid styleClass="panel_voos" columns="3">
+                    <h:outputText value="Voo para Unicorniolândia"/>
+                    <h:outputText value="Data: dd/mm/YYYY"/>
+                    <h:outputText value="Número do Voucher: 12366678900-1"/>
+                    
+                    <h:outputText value="Assento A1"/>
+                    <h:outputText value="Hora: hh:mm"/>
+                    <h:outputLink value="#{request.contextPath}/resources/voucher.png" target="_blank">
+                        <button class="button">Imprimir Voucher</button>
+                    </h:outputLink>
+                </h:panelGrid>
+                <h:panelGrid styleClass="panel_voos" columns="3">
+                    <h:outputText value="Voo para Nova Ether"/>
+                    <h:outputText value="Data: dd/mm/YYYY"/>
+                    <h:outputText value="Número do Voucher: 45612378912-3"/>
+                    
+                    <h:outputText value="Assento B2"/>
+                    <h:outputText value="Hora: hh:mm"/>
+                    <h:outputLink value="#{request.contextPath}/resources/voucher.png" target="_blank">
+                        <button class="button">Imprimir Voucher</button>
+                    </h:outputLink>
+                </h:panelGrid>
+                <br/>
+                <h:button class="button" value="Voltar" outcome="menu_cliente.xhtml"/>
+            </div>
+        </center>
+    </ui:define>              
+</ui:composition>
+

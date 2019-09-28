@@ -30,6 +30,20 @@
     width: 70%
 }
 
+.menu{
+    border: 1px solid black;
+    padding: 5px;
+    width: 40%;
+    background-color: #f0f0f0;
+}
+
+.panel_voos{
+    border: 1px solid black;
+    padding: 5px;
+    width: 60%;
+    background-color: #f8f8f8;
+}
+
 .button{
     margin: 5px;
 }
