@@ -1,0 +1,35 @@
+<ui:composition template="template/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets" 
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <ui:define name="body">
+        <center>
+            <div class="form_cadastrar">
+                <center>
+                <h:form>
+                    <h:outputText value="Preencha os campos abaixo 
+                                  para criar seu cadastro: "/>
+                    <br/>
+                    <h:messages/>
+                    <br/>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel for="nome" value="Nome Completo: "/>
+                        <h:inputText id="nome" required="true" size="70">
+                            <f:validateLength minimum="10" maximum="70"/>
+                        </h:inputText>
+
+                        <h:outputLabel for="cpf" value="CPF: "/>
+                        <h:inputText id="cpf" required="true" size="70">
+                            <f:validator validatorId="com.tads.dac.validator.ValidaCpf" />
+                        </h:inputText>
+                    </h:panelGrid>
+                    <h:commandButton value="Cadastrar"/>
+                </h:form>
+                </center>
+            </div>
+        </center>
+    </ui:define>              
+</ui:composition>
+

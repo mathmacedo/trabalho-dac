@@ -5,18 +5,25 @@
     
     <ui:define name="body">
         <center>
-            <div class="form">
+            <div class="form_login">
                 <h:form>
                     <h:outputText value="Bem-Vindo! Faça login para continuar."/>
                     <br/>
+                    <span class="messages">
+                        <h:messages />
+                    </span>
+                    <br/>
                     <h:outputLabel for="name" value="Nome: " />
-                    <h:inputText id="name"/>
+                    <h:inputText id="name" required="true" />
                     <br/>
                     <h:outputLabel for="pword" value="Senha: " />
-                    <h:inputText id="pword" />
+                    <h:inputSecret id="pword" required="true" />
                     <br/>
-                    <h:commandButton value="Login"/>
+                    <h:commandButton value="Login" action="menu_cliente.xhtml"/>
                 </h:form>
+                <h:outputText value="Não possui cadastro? "/>
+                <h:link value="Clique aqui " outcome="cadastrar_cliente.xhtml"/>
+                <h:outputText value="para criar seu cadastro!" />
             </div>
         </center>
     </ui:define>              

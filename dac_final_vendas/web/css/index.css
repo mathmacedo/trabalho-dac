@@ -16,10 +16,16 @@
     height: 3.5rem;
 }
 
-.form{
+.form_login{
     text-align: center;
     border: 1px solid black;
     padding: 5px;
     width: 35%;
+}
 
+.form_cadastrar{
+    text-align: center;
+    border: 1px solid black;
+    padding: 5px;
+    width: 70%
 }
