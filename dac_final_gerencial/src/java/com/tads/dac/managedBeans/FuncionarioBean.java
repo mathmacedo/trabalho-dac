@@ -8,10 +8,10 @@ import javax.inject.Named;
 
 @Named(value = "funcionarioBean")
 @RequestScoped
-public class funcionarioBean {
+public class FuncionarioBean {
     private String nome;
     
-    public funcionarioBean() {}
+    public FuncionarioBean() {}
 
     public String getNome() { return nome; } 
     public void setNome(String nome) { this.nome = nome; }

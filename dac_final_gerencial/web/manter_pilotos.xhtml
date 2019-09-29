@@ -5,7 +5,7 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
     
     <ui:define name="body">
-        <script src="#{facesContext.externalContext.requestContextPath}/js/pesquisar_funcionarios.js"></script>
+        <script src="#{facesContext.externalContext.requestContextPath}/js/pesquisar_pilotos.js"></script>
         <div class='container'>
             <center>
                 <h:messages infoClass="info-message" errorClass="error-message"/>
@@ -27,16 +27,6 @@
                         
                         <h:outputLabel for="email" value="Email: "/>
                         <h:inputText id="Email" required="true" size="70"/>
-                        
-                        <h:outputLabel for="senha" value="Senha: "/>
-                        <h:inputSecret id="senha" required="true" size="70">
-                            <f:validateLength minimum="4" maximum="16"/>
-                        </h:inputSecret>
-                        
-                        <h:outputLabel for="conf_senha" value="Confirmar Senha: "/>
-                        <h:inputSecret id="conf_senha" required="true" size="70">
-                            <f:validateLength minimum="4" maximum="16"/>
-                        </h:inputSecret>
                         
                         <h:outputLabel for="pais" value="País: "/>
                         <h:inputText id="pais" required="true" size="70">
@@ -95,9 +85,9 @@
                     </h:panelGrid>
                     <br/>
                     <h:commandButton value="Cadastrar" styleClass='btn btn-success'
-                                     action="#{funcionarioBean.cadastrar}"/>
+                                     action="#{pilotoBean.cadastrar}"/>
                     <h:button styleClass="btn btn-warning" value="Voltar" 
-                              outcome="pesquisar_funcionarios.xhtml"/>
+                              outcome="pesquisar_pilotos.xhtml"/>
                 </h:form>
             </center>
         </div>

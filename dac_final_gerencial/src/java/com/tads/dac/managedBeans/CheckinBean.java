@@ -7,10 +7,10 @@ import javax.faces.context.FacesContext;
 
 @Named(value = "checkinBean")
 @RequestScoped
-public class checkinBean {
+public class CheckinBean {
     private String checkin;
     
-    public checkinBean() {}
+    public CheckinBean() {}
     
     public String getCheckin(){ return this.checkin; }
     public void setCheckin(String s){ this.checkin = s; }
