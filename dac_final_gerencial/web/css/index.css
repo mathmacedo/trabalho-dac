@@ -37,6 +37,19 @@
     background-color: #f0f0f0;
 }
 
+.info-message{
+    background-color: limegreen;
+    width: 20%;
+    margin: 5px;
+}
+
+
+.error-message{
+    background-color: red;
+    width: 20%;
+    margin: 5px;
+}
+
 .button{
     margin: 5px;
 }

@@ -1,11 +1,29 @@
 <ui:composition template="template/template.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:ui="http://java.sun.com/jsf/facelets" >
+                xmlns:ui="http://java.sun.com/jsf/facelets" 
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
     
     <ui:define name="body">
         <div class='container'>
-            
+            <center>
+                <h:outputText styleClass="titulo" value="Check-in de Passageiros"/>
+                <br/>
+                <h:messages infoClass="info-message" errorClass="error-message"/>
+                <br/>
+                <h:form >
+                    <h:outputLabel for="checkin" value="Número do voucher: "/>
+                    <h:inputText id="checkin" required="true">
+                        <f:validateRegex pattern="[0-9]{1,10}"/>
+                    </h:inputText>
+                    <br/>
+                    <h:commandButton styleClass="button" value="Efetuar Check-in"
+                                     action="#{checkinBean.efetuarCheckin}"/>
+                </h:form>
+                <h:button value='Voltar' outcome="menu_funcionario.xhtml"/> 
+                <br/>
+                <br/>
+            </center>
         </div>
     </ui:define>              
 </ui:composition>
