@@ -6,11 +6,15 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
-@Named(value = "clienteBean")
+@Named(value = "funcionarioBean")
 @RequestScoped
-public class ClienteBean {
+public class FuncionarioBean {
+    private String nome;
+    
+    public FuncionarioBean() {}
 
-    public ClienteBean() {}
+    public String getNome() { return nome; } 
+    public void setNome(String nome) { this.nome = nome; }
     
     public void cadastrar() throws IOException{
         FacesContext.getCurrentInstance().addMessage(null, new
@@ -20,6 +24,6 @@ public class ClienteBean {
             .getFlash().setKeepMessages(true);
         
         FacesContext.getCurrentInstance()
-                .getExternalContext().redirect("index.xhtml"); 
+                .getExternalContext().redirect("pesquisar_funcionarios.xhtml"); 
     }
 }

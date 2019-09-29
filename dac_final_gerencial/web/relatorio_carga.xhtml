@@ -1,0 +1,68 @@
+<ui:composition template="template/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <ui:define name="body">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+        <script src="#{facesContext.externalContext.requestContextPath}/js/datepickerstart.js"></script>
+        
+        <div class='container'>
+            <center>
+                <h:messages infoClass="info-message" errorClass="error-message"/>
+                <br/>
+                <h:outputText styleClass="titulo" value="Relatório de Carga"/><br/><br/>
+                <h:form>    
+                    <h:panelGrid columns="4">
+                        <h:outputLabel for="inicio" value="Data Inicial:"/>
+                        <h:inputText class="form-control" id="inicio"
+                                     a:placeholder="DD/MM/YYYY" autocomplete="off" />
+
+                        <h:outputLabel for="final" value="Data Final:"/>
+                        <h:inputText class="form-control" id="final"
+                                     a:placeholder="DD/MM/YYYY" autocomplete="off" />
+                    </h:panelGrid>
+                    <br/>
+                    <h:commandButton styleClass='button btn btn-success' 
+                                     value="Gerar Relatório"/>
+                </h:form>
+                <hr/>
+                <h:dataTable styleClass="table" var="t" value="">
+                    <h:column>
+                        <f:facet name="header">
+                            Data de Início
+                        </f:facet>
+                        dd/mm/yyyy
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Data de Final
+                        </f:facet>
+                        dd/mm/yyyy
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Quantidade de Boletos
+                        </f:facet>
+                        XXXXXXXXXX
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Valor dos Boletos
+                        </f:facet>
+                        R$ XXXX,XX
+                    </h:column>
+                </h:dataTable>
+                <br/>
+                <h:button class="btn btn-warning" value="Voltar" outcome="menu_gerente.xhtml"/>
+            </center>
+        </div>
+        <br/>
+    </ui:define>              
+</ui:composition>
+

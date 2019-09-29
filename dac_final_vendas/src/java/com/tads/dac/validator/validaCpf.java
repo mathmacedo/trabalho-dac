@@ -6,9 +6,9 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.FacesValidator;
 import javax.faces.validator.ValidatorException;
-
+    
 @FacesValidator("com.tads.dac.validator.ValidaCpf")
-public class validaCpf implements javax.faces.validator.Validator {
+public class ValidaCpf implements javax.faces.validator.Validator {
     @Override
     public void validate(FacesContext fc, UIComponent uic, Object o) throws ValidatorException {
         String CPF = o.toString();

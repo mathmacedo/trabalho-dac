@@ -5,39 +5,21 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
     
     <ui:define name="body">
-        <script src="#{facesContext.externalContext.requestContextPath}/js/pesquisar_funcionarios.js"></script>
+        <script src="#{facesContext.externalContext.requestContextPath}/js/pesquisar_cidades.js"></script>
         <div class='container'>
             <center>
                 <h:messages infoClass="info-message" errorClass="error-message"/>
                 
                 <h:form>
                     <h:outputText value="Preencha os campos abaixo 
-                                  cadastrar um funcionário."/>
+                                  para criar seu cadastro: "/>
                     <br/>
                     <h:panelGrid columns="2">
-                        <h:outputLabel for="nome" value="Nome Completo: "/>
+                        <h:outputLabel for="nome" value="Nome"/>
                         <h:inputText id="nome" required="true" size="70">
-                            <f:validateLength minimum="10" maximum="70"/>
+                            <f:validateLength minimum="3" maximum="70"/>
                         </h:inputText>
 
-                        <h:outputLabel for="cpf" value="CPF: "/>
-                        <h:inputText id="cpf" required="true" size="70">
-                            <f:validator validatorId="com.tads.dac.validator.ValidaCpf" />
-                        </h:inputText>
-                        
-                        <h:outputLabel for="email" value="Email: "/>
-                        <h:inputText id="Email" required="true" size="70"/>
-                        
-                        <h:outputLabel for="senha" value="Senha: "/>
-                        <h:inputSecret id="senha" required="true" size="70">
-                            <f:validateLength minimum="4" maximum="16"/>
-                        </h:inputSecret>
-                        
-                        <h:outputLabel for="conf_senha" value="Confirmar Senha: "/>
-                        <h:inputSecret id="conf_senha" required="true" size="70">
-                            <f:validateLength minimum="4" maximum="16"/>
-                        </h:inputSecret>
-                        
                         <h:outputLabel for="pais" value="País: "/>
                         <h:inputText id="pais" required="true" size="70">
                             <f:validateLength minimum="4" maximum="50"/>
@@ -67,37 +49,17 @@
                             <f:selectItem itemValue="Florianópolis" itemLabel="Florianópolis"/>
                         </h:selectOneMenu>
                         
-                        <h:outputLabel for="bairro" value="Bairro: "/>
-                        <h:inputText id="bairro" required="true" size="70">
-                            <f:validateLength minimum="2" maximum="70"/>
+                        <h:outputLabel for="sigla" value="Sigla do Aeroporto: "/>
+                        <h:inputText id="sigla" size="70">
+                            <f:validateLength maximum="3" minimum="3"/>
                         </h:inputText>
                         
-                        <h:outputLabel for="rua" value="Rua: "/>
-                        <h:inputText id="rua" required="true" size="70">
-                            <f:validateLength maximum="70"/>
-                        </h:inputText>
-                        
-                        <h:outputLabel for="numero" value="Número: "/>
-                        <h:inputText id="Senha" required="true" size="70">
-                            <f:validateLongRange minimum="0" maximum="99999"/>
-                        </h:inputText>
-                        
-                        <h:outputLabel for="complemento" value="Complemento: "/>
-                        <h:inputText id="complemento" size="70">
-                            <f:validateLength maximum="70"/>
-                        </h:inputText>
-                        
-                        <h:outputLabel for="telefone" value="Telefone: "/>
-                        <h:inputText id="telefone" required="true" size="70">
-                            <f:validateLength maximum="11"/>
-                            <f:validateRegex pattern="[0-9]{10,11}"/>
-                        </h:inputText>
                     </h:panelGrid>
                     <br/>
                     <h:commandButton value="Cadastrar" styleClass='btn btn-success'
-                                     action="#{funcionarioBean.cadastrar}"/>
+                                     action="#{cidadeBean.cadastrar}"/>
                     <h:button styleClass="btn btn-warning" value="Voltar" 
-                              outcome="pesquisar_funcionarios.xhtml"/>
+                              outcome="pesquisar_cidades.xhtml"/>
                 </h:form>
             </center>
         </div>

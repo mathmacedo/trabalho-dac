@@ -1,0 +1,78 @@
+<ui:composition template="template/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets" 
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    
+    <ui:define name="body">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+        <script src="#{facesContext.externalContext.requestContextPath}/js/datepickerstart.js"></script>
+        <script src="#{facesContext.externalContext.requestContextPath}/js/pesquisar_voos.js"></script>
+        
+        <div class='container'>
+            <center>
+                <h:messages infoClass="info-message" errorClass="error-message"/>
+                <h:form>    
+                    <h:panelGrid columns="4">
+                        <h:outputLabel for="inicio" value="Data Inicial:"/>
+                        <h:inputText class="form-control" id="inicio"
+                                     a:placeholder="DD/MM/YYYY" autocomplete="off" />
+
+                        <h:outputLabel for="final" value="Data Final:"/>
+                        <h:inputText class="form-control" id="final"
+                                     a:placeholder="DD/MM/YYYY" autocomplete="off" />
+
+                        <h:outputLabel for="origem" value="Cidade de Origem: "/>
+                        <h:inputText class="form-control" id="origem"/>
+
+                        <h:outputLabel for="destino" value="Cidade de Destino: "/>
+                        <h:inputText class="form-control" id="destino"/>
+                    </h:panelGrid>
+                    <br/>
+                    <h:commandButton styleClass='button btn btn-info' value="Pesquisar"/>
+                        <h:button styleClass='button btn btn-success' value='Novo'
+                                  outcome='manter_voos'/> 
+                </h:form>
+                <hr/>
+                <h:dataTable styleClass="table" var="t" value="">
+                    <h:column>
+                        <f:facet name="header">
+                            Cidade de Origem
+                        </f:facet>
+                        Unicórniolândia
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Cidade de Destino
+                        </f:facet>
+                        Alguma outra Cidade
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Data de Saída
+                        </f:facet>
+                        dd/mm/YYYY
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Opções
+                        </f:facet>
+                        <h:button styleClass="btn btn-info" value="Visualizar"
+                                  outcome='manter_voos.xhtml?action=new'/>
+                        <h:button styleClass="btn btn-warning" value="Editar"
+                                  outcome='manter_voos.xhtml?action=edit'/>
+                        <h:button styleClass="btn btn-danger" value="Excluir"
+                                  onclick="confirmarExclusao()"/>
+                    </h:column>
+                </h:dataTable>
+                <h:button styleClass="button" value="Voltar" outcome="menu_gerente.xhtml"/>
+            </center>
+        </div>
+        <br/>
+    </ui:define>              
+</ui:composition>
+

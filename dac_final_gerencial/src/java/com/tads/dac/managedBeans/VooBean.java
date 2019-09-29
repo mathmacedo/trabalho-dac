@@ -6,20 +6,20 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
-@Named(value = "clienteBean")
+@Named(value = "vooBean")
 @RequestScoped
-public class ClienteBean {
-
-    public ClienteBean() {}
+public class VooBean {
+    public VooBean() {}
     
     public void cadastrar() throws IOException{
         FacesContext.getCurrentInstance().addMessage(null, new
-            FacesMessage(FacesMessage.SEVERITY_INFO, "Cadastro Realizado!", null));
+            FacesMessage(FacesMessage.SEVERITY_INFO, 
+                    "Voo cadastrado com sucesso!", null));
         
         FacesContext.getCurrentInstance().getExternalContext()
             .getFlash().setKeepMessages(true);
         
         FacesContext.getCurrentInstance()
-                .getExternalContext().redirect("index.xhtml"); 
+                .getExternalContext().redirect("pesquisar_voos.xhtml"); 
     }
 }
