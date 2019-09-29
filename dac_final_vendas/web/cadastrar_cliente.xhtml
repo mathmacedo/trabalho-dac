@@ -25,6 +25,16 @@
                             <f:validator validatorId="com.tads.dac.validator.ValidaCpf" />
                         </h:inputText>
                         
+                        <h:outputLabel for="senha" value="Senha: "/>
+                        <h:inputSecret id="senha" required="true" size="70">
+                            <f:validateLength minimum="4" maximum="16"/>
+                        </h:inputSecret>
+                        
+                        <h:outputLabel for="conf_senha" value="Confirmar Senha: "/>
+                        <h:inputSecret id="conf_senha" required="true" size="70">
+                            <f:validateLength minimum="4" maximum="16"/>
+                        </h:inputSecret>
+                        
                         <h:outputLabel for="estado" value="Estado: "/>
                         <h:selectOneMenu id="estado" required="true">
                             <f:selectItem />

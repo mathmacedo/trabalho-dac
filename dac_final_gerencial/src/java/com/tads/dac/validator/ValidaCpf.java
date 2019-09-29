@@ -20,7 +20,7 @@ public class ValidaCpf implements javax.faces.validator.Validator {
             CPF.equals("88888888888") || CPF.equals("99999999999") ||
             (CPF.length() != 11)){
             
-            FacesMessage fm = new FacesMessage("CPF inválido!");
+            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "CPF inválido!", null);
             throw new ValidatorException(fm);
         }
           
@@ -53,12 +53,12 @@ public class ValidaCpf implements javax.faces.validator.Validator {
             else dig11 = (char)(r + 48);
             
             if ((dig10 != CPF.charAt(9)) || (dig11 != CPF.charAt(10))){
-                 FacesMessage fm = new FacesMessage("CPF inválido!");
+                 FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "CPF inválido!", null);
                  throw new ValidatorException(fm);
             }
             
         } catch (InputMismatchException erro) {
-            FacesMessage fm = new FacesMessage("Erro ao validar CPF!");
+            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "CPF inválido!", null);
             throw new ValidatorException(fm);
         }
     }

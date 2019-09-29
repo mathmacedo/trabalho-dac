@@ -28,6 +28,13 @@
                         <h:outputLabel for="email" value="Email: "/>
                         <h:inputText id="Email" required="true" size="70"/>
                         
+                        <h:outputLabel for="cargo" value="Cargo: "/>
+                        <h:selectOneMenu id="cargo" required="true">
+                            <f:selectItem/>
+                            <f:selectItem itemLabel="Gerente" itemValue="gerente"/>
+                            <f:selectItem itemLabel="Funcionário" itemValue="funcionario"/>
+                        </h:selectOneMenu>
+                        
                         <h:outputLabel for="senha" value="Senha: "/>
                         <h:inputSecret id="senha" required="true" size="70">
                             <f:validateLength minimum="4" maximum="16"/>
