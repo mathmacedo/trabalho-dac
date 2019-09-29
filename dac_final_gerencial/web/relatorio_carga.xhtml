@@ -13,49 +13,54 @@
         <script src="#{facesContext.externalContext.requestContextPath}/js/datepickerstart.js"></script>
         
         <div class='container'>
-            <h:form>    
-                <h:panelGrid columns="2">
-                    <h:outputLabel for="inicio" value="Data Inicial:"/>
-                    <h:inputText class="form-control" id="inicio"
-                                 a:placeholder="DD/MM/YYYY" autocomplete="off" />
-
-                    <h:outputLabel for="final" value="Data Final:"/>
-                    <h:inputText class="form-control" id="final"
-                                 a:placeholder="DD/MM/YYYY" autocomplete="off" />
-                </h:panelGrid>
+            <center>
+                <h:messages infoClass="info-message" errorClass="error-message"/>
                 <br/>
-                <h:commandButton styleClass='button btn btn-success' 
-                                 value="Gerar Relatório"/>
-            </h:form>
-            <hr/>
-            <h:dataTable styleClass="table" var="t" value="">
-                <h:column>
-                    <f:facet name="header">
-                        Data de Início
-                    </f:facet>
-                    dd/mm/yyyy
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        Data de Final
-                    </f:facet>
-                    dd/mm/yyyy
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        Quantidade de Boletos
-                    </f:facet>
-                    XXXXXXXXXX
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        Valor dos Boletos
-                    </f:facet>
-                    R$ XXXX,XX
-                </h:column>
-            </h:dataTable>
-            <br/>
-            <h:button class="btn btn-warning" value="Voltar" outcome="menu_gerente.xhtml"/>
+                <h:outputText styleClass="titulo" value="Relatório de Carga"/><br/><br/>
+                <h:form>    
+                    <h:panelGrid columns="4">
+                        <h:outputLabel for="inicio" value="Data Inicial:"/>
+                        <h:inputText class="form-control" id="inicio"
+                                     a:placeholder="DD/MM/YYYY" autocomplete="off" />
+
+                        <h:outputLabel for="final" value="Data Final:"/>
+                        <h:inputText class="form-control" id="final"
+                                     a:placeholder="DD/MM/YYYY" autocomplete="off" />
+                    </h:panelGrid>
+                    <br/>
+                    <h:commandButton styleClass='button btn btn-success' 
+                                     value="Gerar Relatório"/>
+                </h:form>
+                <hr/>
+                <h:dataTable styleClass="table" var="t" value="">
+                    <h:column>
+                        <f:facet name="header">
+                            Data de Início
+                        </f:facet>
+                        dd/mm/yyyy
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Data de Final
+                        </f:facet>
+                        dd/mm/yyyy
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Quantidade de Boletos
+                        </f:facet>
+                        XXXXXXXXXX
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Valor dos Boletos
+                        </f:facet>
+                        R$ XXXX,XX
+                    </h:column>
+                </h:dataTable>
+                <br/>
+                <h:button class="btn btn-warning" value="Voltar" outcome="menu_gerente.xhtml"/>
+            </center>
         </div>
         <br/>
     </ui:define>              
