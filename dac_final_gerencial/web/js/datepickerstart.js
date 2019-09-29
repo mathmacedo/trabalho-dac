@@ -11,6 +11,5 @@ $(document).ready(function(){
     format: 'dd/mm/yyyy',
     todayHighlight: true,
     autoclose: true
-  })
-  
+  });
 });
