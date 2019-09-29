@@ -1,0 +1,46 @@
+<ui:composition template="template/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets" 
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <ui:define name="body">
+        <script src="#{facesContext.externalContext.requestContextPath}/js/pesquisar_funcionarios.js"></script>
+        <div class='container'>
+            <center>
+                <h:messages infoClass="info-message" errorClass="error-message"/>
+                <h:panelGrid columns="4">
+                    <h:form>
+                        <h:outputLabel for="pesquisar" value="Pesquisar Funcionarios por Nome:"/>
+                        <h:inputText id="pesquisar" required="true" styleClass="form-control"/>
+                        <h:commandButton styleClass='button btn btn-info' value="Pesquisar"/>
+                        <h:button styleClass='button btn btn-success' value='Novo'
+                                  outcome='manter_funcionarios'/>    
+                    </h:form>
+                </h:panelGrid>
+                <h:dataTable styleClass="table" var="t" value="">
+                    <h:column>
+                        <f:facet name="header">
+                            Nome do Funcionário
+                        </f:facet>
+                        João da Silva
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Opções
+                        </f:facet>
+                        <h:button styleClass="btn btn-info" value="Visualizar"
+                                  outcome='manter_funcionarios.xhtml?action=new'/>
+                        <h:button styleClass="btn btn-warning" value="Editar"
+                                  outcome='manter_funcionarios.xhtml?action=edit'/>
+                        <h:button styleClass="btn btn-danger" value="Excluir"
+                                  onclick="confirmarExclusao()"/>
+                    </h:column>
+                </h:dataTable>
+                <h:button styleClass="button" value="Voltar" outcome="menu_gerente.xhtml"/>
+            </center>
+        </div>
+        <br/>
+    </ui:define>              
+</ui:composition>
+

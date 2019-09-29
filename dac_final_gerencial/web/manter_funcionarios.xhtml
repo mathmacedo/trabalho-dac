@@ -5,14 +5,14 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
     
     <ui:define name="body">
-        <center>
-            <div class="form_cadastrar">
-                <center>
+        <script src="#{facesContext.externalContext.requestContextPath}/js/pesquisar_funcionarios.js"></script>
+        <div class='container'>
+            <center>
+                <h:messages infoClass="info-message" errorClass="error-message"/>
+                
                 <h:form>
                     <h:outputText value="Preencha os campos abaixo 
                                   para criar seu cadastro: "/>
-                    <br/>
-                    <h:messages infoClass="info-message" errorClass="error-message"/>
                     <br/>
                     <h:panelGrid columns="2">
                         <h:outputLabel for="nome" value="Nome Completo: "/>
@@ -23,6 +23,24 @@
                         <h:outputLabel for="cpf" value="CPF: "/>
                         <h:inputText id="cpf" required="true" size="70">
                             <f:validator validatorId="com.tads.dac.validator.ValidaCpf" />
+                        </h:inputText>
+                        
+                        <h:outputLabel for="email" value="Email: "/>
+                        <h:inputText id="Email" required="true" size="70"/>
+                        
+                        <h:outputLabel for="senha" value="Senha: "/>
+                        <h:inputSecret id="senha" required="true" size="70">
+                            <f:validateLength minimum="4" maximum="16"/>
+                        </h:inputSecret>
+                        
+                        <h:outputLabel for="conf_senha" value="Confirmar Senha: "/>
+                        <h:inputSecret id="conf_senha" required="true" size="70">
+                            <f:validateLength minimum="4" maximum="16"/>
+                        </h:inputSecret>
+                        
+                        <h:outputLabel for="pais" value="País: "/>
+                        <h:inputText id="pais" required="true" size="70">
+                            <f:validateLength minimum="4" maximum="50"/>
                         </h:inputText>
                         
                         <h:outputLabel for="estado" value="Estado: "/>
@@ -76,13 +94,14 @@
                         </h:inputText>
                     </h:panelGrid>
                     <br/>
-                    <h:commandButton value="Cadastrar" 
-                                     action="#{clienteBean.cadastrar}"/> 
-                    <h:button class="button" value="Voltar" outcome="index"/>
+                    <h:commandButton value="Cadastrar" styleClass='btn btn-success'
+                                     action="#{funcionarioBean.cadastrar}"/>
+                    <h:button styleClass="btn btn-warning" value="Voltar" 
+                              outcome="pesquisar_funcionarios.xhtml"/>
                 </h:form>
-                </center>
-            </div>
-        </center>
+            </center>
+        </div>
+        <br/>
     </ui:define>              
 </ui:composition>
 
