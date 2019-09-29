@@ -1,0 +1,42 @@
+<ui:composition template="template/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets" 
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    
+    <ui:define name="body">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+        <script src="#{facesContext.externalContext.requestContextPath}/js/datepickerstart.js"></script>
+        
+        <center>
+            <div class="container">
+                <h:outputLabel styleClass="titulo" value="Voo para Algum Lugar"/>
+                <hr/>
+                <h:outputLabel value="Assentos Disponíveis"/>
+                <br/>
+                <h:messages infoClass="info-message" errorClass="error-message"/>
+                <br/>
+                <h:graphicImage library="template_aviao" name="template_aviao.png"/>
+                <br/><br/>
+                <!-- TODO! -->
+                <h:form>
+                    <h:selectManyCheckbox id="assentos" required="true">
+                        <f:selectItem itemLabel="F01" itemValue="F1"/>
+                        <f:selectItem itemLabel="F02" itemValue="F2"/>
+                        <f:selectItem itemLabel="F03" itemValue="F3"/>
+                        <f:selectItem itemLabel="F04" itemValue="F4"/>
+                        <f:selectItem itemLabel="F05" itemValue="F5"/>
+                    </h:selectManyCheckbox>
+                    <br/>
+                    <h:button class="button" value="Voltar" outcome="consultar_voos.xhtml"/>
+                    <h:commandButton class="button" value="Comprar Assentos" action="comprar_assentos.xhtml"/>
+                </h:form>
+            </div>
+        </center>
+    </ui:define>              
+</ui:composition>
+

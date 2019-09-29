@@ -1,0 +1,66 @@
+<ui:composition template="template/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets" 
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    
+    <ui:define name="body">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+        <script src="#{facesContext.externalContext.requestContextPath}/js/datepickerstart.js"></script>
+        
+        <center>
+            <div class="container">
+                <h:outputText class="titulo" value="Resumo da Compra"/>
+                <hr/>
+                
+                <h:dataTable value="" var="o"
+                        styleClass="tabela">
+    			<h:column>
+    				<f:facet name="header">
+                                    Número do Assento
+                                </f:facet>
+    				XXX<br/>YYY
+    			</h:column>
+    			<h:column>
+    				<f:facet name="header">
+                                    Data de Saída
+                                </f:facet>
+    				dd/mm/YYYY<br/>dd/mm/YYYY
+    			</h:column>
+    			<h:column>
+    				<f:facet name="header">
+                                    Horário de Saída
+                                </f:facet>
+    				hh:mm<br/>hh:mm
+    			</h:column>
+    			<h:column>
+    				<f:facet name="header">
+                                    Destino
+                                </f:facet>
+    				Unicorniolândia<br/>Alguma Cidade Topster
+    			</h:column>
+                        <h:column>
+    				<f:facet name="header">
+                                    Origem
+                                </f:facet>
+    				Arzallum<br/>Alguma Cidade Não-Topster
+    			</h:column>
+                        <h:column>
+    				<f:facet name="header">
+                                    Valor
+                                </f:facet>
+    				R$ xxxx,xx<br/>R$ xxx,xx
+    			</h:column>
+    		</h:dataTable>
+                <br/><br/>
+                <h:button class="button" value="Voltar" outcome="consultar_assentos.xhtml"/>
+                <h:button class='button' value='Confirmar Compra' outcome='consultar_reservas.xhtml'/>
+            </div>
+        </center>
+    </ui:define>              
+</ui:composition>
+

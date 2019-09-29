@@ -1,0 +1,74 @@
+<ui:composition template="template/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets" 
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    
+    <ui:define name="body">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+        <script src="#{facesContext.externalContext.requestContextPath}/js/datepickerstart.js"></script>
+        
+        <center>
+            <div class="container">
+                <h:outputText value="Escolha os períodos inicial e final do voo:"/>
+                <br/><br/>
+                <h:form><!-- TODO - add calendar icons -->
+                    <h:panelGrid columns="4">
+                        <h:outputLabel for="inicio" value="Data Inicial:"/>
+                        <h:inputText class="form-control" id="inicio" 
+                                     a:placeholder="DD/MM/YYYY" autocomplete="off" />
+                        
+                        <h:outputLabel for="final" value="Data Final:"/>
+                        <h:inputText class="form-control" id="final" 
+                                     a:placeholder="DD/MM/YYYY" autocomplete="off" />
+                    
+                        <h:outputLabel for="origem" value="Cidade de Origem: "/>
+                        <h:inputText class="form-control" id="origem"/>
+                        
+                        <h:outputLabel for="destino" value="Cidade de Destino: "/>
+                        <h:inputText class="form-control" id="destino"/>
+                    </h:panelGrid>
+                    <br/>
+                    <h:button class="button" value="Pesquisar"/>
+                </h:form>
+                <hr/>
+                <!-- TODO add table header? --> 
+                <h:panelGrid columns="5" width="80%">
+                    <h:outputText value="**ICONE DE AVIAO AQUI**"/>
+                    <h:outputText value="Unicorniolandia"/>
+                    <h:outputText value="Data de Saída: dd/mm/YYYY"/>
+                    <h:outputText value="R$ xxxx,xx"/>
+                    <h:button style="button" value="Consultar Assentos"
+                              outcome="consultar_assentos?id_voo=1"/>  
+                </h:panelGrid>
+                <hr/>
+                <h:panelGrid columns="5" width="80%">
+                    <h:outputText value="**ICONE DE AVIAO AQUI**"/>
+                    <h:outputText value="Nova Ether"/>
+                    <h:outputText value="Data de Saída: dd/mm/YYYY"/>
+                    <h:outputText value="R$ xxx,xx"/>
+                    <h:button style="button" value="Consultar Assentos"
+                              outcome="consultar_assentos?id_voo=2"/>  
+                </h:panelGrid>
+                
+                <hr/>
+                <h:panelGrid columns="5" width="80%">
+                    <h:outputText value="**ICONE DE AVIAO AQUI**"/>
+                    <h:outputText value="Pollux"/>
+                    <h:outputText value="Data de Saída: dd/mm/YYYY"/>
+                    <h:outputText value="R$ xxxxx,xx"/>
+                    <h:button style="button" value="Consultar Assentos"
+                              outcome="consultar_assentos?id_voo=3"/>  
+                </h:panelGrid>
+                <hr/>
+                <br/>
+                <h:button class="button" value="Voltar" outcome="menu_cliente.xhtml"/>
+            </div>
+        </center>
+    </ui:define>              
+</ui:composition>
+

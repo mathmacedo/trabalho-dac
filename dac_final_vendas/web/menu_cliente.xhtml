@@ -5,9 +5,20 @@
     
     <ui:define name="body">
         <center>
-            <div>
-                <h:form>
-                </h:form>
+            <div class="menu">
+                <ul>
+                    <li>
+                        <h:link value="Consultar Voos" outcome="consultar_voos.xhtml"/>
+                    </li>
+                    <li>
+                        <h:link value="Consultar Reservas" outcome="consultar_reservas.xhtml"/>
+                    </li>
+                    <li>
+                        <h:link value="Consultar Compras" outcome="consultar_compras.xhtml"/>
+                    </li>
+                </ul>
+                <br/><br/>
+                <h:button class="button" value="Logout" outcome="index.xhtml"/>
             </div>
         </center>
     </ui:define>              

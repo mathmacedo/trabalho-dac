@@ -1,0 +1,51 @@
+<ui:composition template="template/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets" 
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    
+    <ui:define name="body">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+        <script src="#{facesContext.externalContext.requestContextPath}/js/datepickerstart.js"></script>
+        
+        <center>
+            <div class="container">
+                <h:outputLabel styleClass="titulo" value="Voo para Algum Lugar"/>
+                <hr/>
+                <h:outputText styleClass='info-text' value='Informações sobre o Voo:'/><br/>
+                <h:outputText styleClass='info-text' value='Origem: Algum lugar'/><br/>
+                <h:outputText styleClass='info-text' value='Destino: Outror lugar'/><br/>
+                <h:outputText styleClass='info-text' value='Data/Hora: dd/mm/YYYY hh:mm'/><br/>
+                <br/>
+                <h:outputText value='Assentos'/>
+                <br/>
+                <h:graphicImage library="template_aviao" name="template_aviao.png"/>
+                <br/><br/>
+                <!-- TODO! -->
+                <h:form>
+                    <h:selectOneRadio id="assentos">
+                        <f:selectItem itemLabel="F01" itemValue="F1" itemDisabled="true"/>
+                        <f:selectItem itemLabel="F02" itemValue="F2"/>
+                        <f:selectItem itemLabel="F03" itemValue="F3"/>
+                        <f:selectItem itemLabel="F04" itemValue="F4"/>
+                        <f:selectItem itemLabel="F05" itemValue="F5"/>
+                    </h:selectOneRadio>
+                </h:form>
+                <div class='info-text'>
+                    <h:outputText styleClass='info-text' value='Informações do Assento selecionado:'/><br/>
+                    <h:outputText styleClass='info-text' value='Comprador: José Ninguém'/><br/>
+                    <h:outputText styleClass='info-text' value='CPF do Comprador: xxx.xxx.xxx-xx'/><br/>
+                    <h:outputText styleClass='info-text' value='Telefone: (xx) xxxxx-xxxx'/><br/>
+                    <h:outputText styleClass='info-text' value='Checkin realizado em dd/mm/YYYY hh:mm'/><br/>
+                </div>
+                <br/>
+                <h:button class="button" value="Voltar" outcome="consultar_voos.xhtml"/>
+            </div>
+        </center>
+    </ui:define>              
+</ui:composition>
+
