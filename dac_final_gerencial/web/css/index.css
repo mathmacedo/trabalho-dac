@@ -23,11 +23,11 @@
     width: 35%;
 }
 
-.form_cadastrar{
+.info-text{
     text-align: center;
-    border: 1px solid black;
-    padding: 5px;
-    width: 70%
+    color: cadetblue;
+    font-size: smaller;
+    text-decoration: inactivecaptiontext;
 }
 
 .menu{
@@ -35,19 +35,6 @@
     padding: 5px;
     width: 40%;
     background-color: #f0f0f0;
-}
-
-.panel_voos{
-    border: 1px solid black;
-    padding: 5px;
-    width: 60%;
-    background-color: #f8f8f8;
-}
-
-.tabela{
-    border: 1px solid black;
-    text-align: center;
-    width: 90%;
 }
 
 .button{

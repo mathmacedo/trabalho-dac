@@ -1,0 +1,25 @@
+<ui:composition template="template/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets" >
+    
+    <ui:define name="body">
+        <div class='container'>
+            <center>
+                <div class="menu">
+                    <ul>
+                        <li>
+                            <h:link value="Consultar Voos" outcome="consultar_voos.xhtml"/>
+                        </li>
+                        <li>
+                            <h:link value="Efetuar Check-in" outcome="efetuar_checkin.xhtml"/>
+                        </li>
+                    </ul>
+                    <br/><br/>
+                    <h:button class="button" value="Logout" outcome="index.xhtml"/>
+                </div>
+            </center>
+        </div>
+    </ui:define>              
+</ui:composition>
+
