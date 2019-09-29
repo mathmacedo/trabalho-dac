@@ -1,0 +1,42 @@
+<ui:composition template="template/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets" >
+    
+    <ui:define name="body">
+        <div class='container'>
+            <center>
+                <div class="menu">
+                    <ul>
+                        <li>
+                            <h:link value="Pesquisar Funcionários" outcome="pesquisar_funcionarios.xhtml"/>
+                        </li>
+                        <li>
+                            <h:link value="Pesquisar Cidades" outcome="pesquisar_cidadess.xhtml"/>
+                        </li>
+                        <li>
+                            <h:link value="Pesquisar Pilotos" outcome="pesquisar_pilotos.xhtml"/>
+                        </li>
+                        <li>
+                            <h:link value="Pesquisar Voos" outcome="pesquisar_voos.xhtml"/>
+                        </li>
+                        <li>
+                            <h:link value="Gerar Relatório de Carga" outcome="relatorio_carga.xhtml"/>
+                        </li>
+                        <li>
+                            <h:link value="Gerar Relatório de Voo" outcome="relatorio_voo.xhtml"/>
+                        </li>
+                        <li>
+                            <h:link value="Gerar relatorio Financeiro" outcome="relatorio_financeiro.xhtml"/>
+                        </li>
+                    </ul>
+                    <br/><br/>
+                    <h:button class="button" value="Logout" outcome="index.xhtml"/>
+                    <br/>
+                </div>
+            </center>
+        </div>
+        <br/>
+    </ui:define>              
+</ui:composition>
+
