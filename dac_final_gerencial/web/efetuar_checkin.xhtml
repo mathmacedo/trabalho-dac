@@ -7,20 +7,20 @@
     <ui:define name="body">
         <div class='container'>
             <center>
-                <h:outputText styleClass="titulo" value="Check-in de Passageiros"/>
+                <h:outputText styleClass="titulo" class="title" value="Check-in de Passageiros"/>
                 <br/>
                 <h:messages infoClass="info-message" errorClass="error-message"/>
                 <br/>
                 <h:form >
-                    <h:outputLabel for="checkin" value="Número do voucher: "/>
-                    <h:inputText id="checkin" required="true">
+                    <h:outputLabel for="checkin" styleClass="label-form" value="Número do voucher"/>
+                    <h:inputText id="checkin" styleClass="iptn-voucher" required="true">
                         <f:validateRegex pattern="[0-9]{1,10}"/>
                     </h:inputText>
                     <br/>
-                    <h:commandButton styleClass="button" value="Efetuar Check-in"
+                    <h:commandButton styleClass="button btn btn-success" value="Efetuar Check-in"
                                      action="#{checkinBean.efetuarCheckin}"/>
                 </h:form>
-                <h:button value='Voltar' outcome="menu_funcionario.xhtml"/> 
+                <h:button value='Voltar' styleClass="btn btn-secondary" outcome="menu_funcionario.xhtml"/> 
                 <br/>
                 <br/>
             </center>

@@ -92,3 +92,17 @@
     border-color: #296073;
     cursor: pointer;
 }
+
+//style for checkin de passageiros page
+
+.label-form {
+    color: #296073;
+    font-weight: 400;
+    margin-right: 1rem; 
+}
+
+.iptn-voucher {
+    border-radius: 5px;
+    background-color: #fff;
+    border: 1px solid #296073;
+}
