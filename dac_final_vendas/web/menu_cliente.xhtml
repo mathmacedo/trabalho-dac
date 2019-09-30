@@ -2,23 +2,25 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:ui="http://java.sun.com/jsf/facelets" >
+  
     
     <ui:define name="body">
+          <link type="text/css" href="menu_cliente.css"></link>
         <center>
-            <div class="menu">
+            <div class="menu" styleClass="tenta">
                 <ul>
                     <li>
-                        <h:link value="Consultar Voos" outcome="consultar_voos.xhtml"/>
+                        <h:link value="Consultar Voos" styleClass="d-flex p-4" outcome="consultar_voos.xhtml"/>
                     </li>
                     <li>
-                        <h:link value="Consultar Reservas" outcome="consultar_reservas.xhtml"/>
+                        <h:link value="Consultar Reservas" styleClass="d-flex p-4" outcome="consultar_reservas.xhtml"/>
                     </li>
                     <li>
-                        <h:link value="Consultar Compras" outcome="consultar_compras.xhtml"/>
+                        <h:link value="Consultar Compras" styleClass="d-flex p-4" outcome="consultar_compras.xhtml"/>
                     </li>
                 </ul>
                 <br/><br/>
-                <h:button class="button" value="Logout" outcome="index.xhtml"/>
+                <h:button class="button" styleClass="btn btn-outline-danger p-1 m-3" value="Logout" outcome="index.xhtml"/>
             </div>
         </center>
     </ui:define>              

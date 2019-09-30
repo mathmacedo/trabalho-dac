@@ -12,29 +12,29 @@
                 <h:panelGrid styleClass="panel_voos" columns="3">
                     <h:outputText value="Voo para Unicorniolândia"/>
                     <h:outputText value="Data: dd/mm/YYYY"/>
-                    <h:button class="button" value="Cancelar Reserva" 
+                    <h:button class="button" styleClass="btn btn-danger m-2" value="Cancelar Reserva" 
                               onclick="confirmarCancelamento()"/>
                     
                     <h:outputText value="Assento A1"/>
                     <h:outputText value="Hora: hh:mm"/>
                     <h:outputLink value="#{request.contextPath}/resources/BoletoBancario.png" target="_blank">
-                        <button class="button">Imprimir Boleto</button>
+                        <h:button class="button" styleClass="btn btn-primary m-2" value="Imprimir Boleto"/>
                     </h:outputLink>
                 </h:panelGrid>
                 <h:panelGrid styleClass="panel_voos" columns="3">
                     <h:outputText value="Voo para Nova Ether"/>
                     <h:outputText value="Data: dd/mm/YYYY"/>
-                    <h:button class="button" value="Cancelar Reserva" 
+                    <h:button class="button" styleClass="btn btn-danger m-2" value="Cancelar Reserva" 
                               onclick="confirmarCancelamento()"/>
                     
                     <h:outputText value="Assento B2"/>
                     <h:outputText value="Hora: hh:mm"/>
                     <h:outputLink value="#{request.contextPath}/resources/BoletoBancario.png" target="_blank">
-                        <button class="button">Imprimir Boleto</button>
+                        <h:button class="button" styleClass="btn btn-primary m-2" value="Imprimir Boleto"/>
                     </h:outputLink>
                 </h:panelGrid>
                 <br/>
-                <h:button class="button" value="Voltar" outcome="menu_cliente.xhtml"/>
+                <h:button class="button" styleClass="btn btn-secondary m-2" value="Voltar" outcome="menu_cliente.xhtml"/>
             </div>
         </center>
     </ui:define>              
