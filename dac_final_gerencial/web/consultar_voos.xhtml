@@ -33,7 +33,7 @@
                         <h:inputText class="form-control" id="destino"/>
                     </h:panelGrid>
                     <br/>
-                    <h:button class="button" value="Pesquisar"/>
+                    <h:button class="button" styleClass="btn btn-info" value="Pesquisar"/>
                 </h:form>
                 <hr/>
                 <!-- TODO add table header? --> 
@@ -42,7 +42,7 @@
                     <h:outputText value="Unicorniolandia"/>
                     <h:outputText value="Data de Saída: dd/mm/YYYY"/>
                     <h:outputText value="R$ xxxx,xx"/>
-                    <h:button style="button" value="Consultar Assentos"
+                    <h:button style="button" styleClass="btn btn-outline-info" value="Consultar Assentos"
                               outcome="consultar_assentos?id_voo=1"/>  
                 </h:panelGrid>
                 <hr/>
@@ -51,7 +51,7 @@
                     <h:outputText value="Nova Ether"/>
                     <h:outputText value="Data de Saída: dd/mm/YYYY"/>
                     <h:outputText value="R$ xxx,xx"/>
-                    <h:button style="button" value="Consultar Assentos"
+                    <h:button style="button" styleClass="btn btn-outline-info" value="Consultar Assentos"
                               outcome="consultar_assentos?id_voo=2"/>  
                 </h:panelGrid>
                 
@@ -61,12 +61,12 @@
                     <h:outputText value="Pollux"/>
                     <h:outputText value="Data de Saída: dd/mm/YYYY"/>
                     <h:outputText value="R$ xxxxx,xx"/>
-                    <h:button style="button" value="Consultar Assentos"
+                    <h:button style="button" styleClass="btn btn-outline-info" value="Consultar Assentos"
                               outcome="consultar_assentos?id_voo=3"/>  
                 </h:panelGrid>
                 <hr/>
                 <br/>
-                <h:button class="button" value="Voltar" outcome="menu_funcionario.xhtml"/>
+                <h:button class="button" styleClass="btn btn-secondary" value="Voltar" outcome="menu_funcionario.xhtml"/>
             </div>
         </center>
     </ui:define>              
