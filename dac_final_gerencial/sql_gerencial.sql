@@ -27,12 +27,8 @@ CREATE TABLE tb_endereco(
 	id_endereco SERIAL PRIMARY KEY,
 	rua_endereco VARCHAR (100) NOT NULL,
 	numero_endereco INTEGER NOT NULL,
-	complemento_endereco VARCHAR(50) NOT NULL,
+	complemento_endereco VARCHAR(50),
 	id_cidade INTEGER NOT NULL,
-	id_estado INTEGER NOT NULL,
-	CONSTRAINT fk_endereco_id_estado FOREIGN KEY (id_estado)
-	REFERENCES tb_estado(id_estado) MATCH SIMPLE
-	ON UPDATE NO ACTION ON DELETE NO ACTION,
 	CONSTRAINT fk_endereco_id_cidade FOREIGN KEY (id_cidade)
 	REFERENCES tb_cidade(id_cidade) MATCH SIMPLE
 	ON UPDATE NO ACTION ON DELETE NO ACTION
@@ -41,7 +37,7 @@ CREATE TABLE tb_endereco(
 CREATE TABLE tb_piloto(
 	id_piloto SERIAL PRIMARY KEY,
 	nome_piloto VARCHAR(70) NOT NULL,
-	cpf_piloto VARCHAR(11) NOT NULL,
+	cpf_piloto VARCHAR(11) NOT NULL UNIQUE,
 	email_piloto VARCHAR(100) NOT NULL,
 	telefone_piloto VARCHAR(11) NOT NULL,
 	id_endereco INTEGER NOT NULL,
@@ -54,21 +50,21 @@ CREATE TABLE tb_voo(
 	id_voo SERIAL PRIMARY KEY,
 	id_cidade_origem INTEGER NOT NULL,
 	id_cidade_destino INTEGER NOT NULL,
+	id_piloto INTEGER NOT NULL,
 	horario_partida TIME NOT NULL,
 	horario_chegada TIME NOT NULL,
 	data_saida DATE NOT NULL,
 	data_chegada DATE NOT NULL,
-	poltronas_total INTEGER NOT NULL,
-	poltronas_vagas INTEGER NOT NULL,
-	poltronas_reservadas INTEGER NOT NULL,
-	poltronas_compradas INTEGER NOT NULL,
 	preco_primeira_classe FLOAT NOT NULL,
-	preco_classe_econnomica FLOAT NOT NULL,
+	preco_classe_economica FLOAT NOT NULL,
 	CONSTRAINT fk_voo_id_cidade_origem FOREIGN KEY (id_cidade_origem)
 	REFERENCES tb_cidade_aeroporto(id_cidade_aeroporto) MATCH SIMPLE
 	ON UPDATE NO ACTION ON DELETE NO ACTION,
 	CONSTRAINT fk_voo_id_cidade_destino FOREIGN KEY (id_cidade_destino)
 	REFERENCES tb_cidade_aeroporto(id_cidade_aeroporto) MATCH SIMPLE
+	ON UPDATE NO ACTION ON DELETE NO ACTION,
+	CONSTRAINT fk_voo_id_piloto FOREIGN KEY (id_piloto)
+	REFERENCES tb_piloto(id_piloto) MATCH SIMPLE
 	ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 
