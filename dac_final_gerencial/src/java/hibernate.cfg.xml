@@ -47,6 +47,7 @@ Contributor(s):
     <property name="hibernate.connection.username">dac_final</property>
     <property name="hibernate.connection.password">dac_final</property>
     <mapping class="com.tads.dac.beans.Cidade"/>
+    <mapping class="com.tads.dac.beans.CidadeAeroporto"/>
     <mapping class="com.tads.dac.beans.Estado"/>
   </session-factory>
 </hibernate-configuration>

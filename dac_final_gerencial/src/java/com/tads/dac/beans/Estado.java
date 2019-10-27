@@ -22,8 +22,8 @@ public class Estado implements Serializable {
     public void setId(int id) {
         if (id > 0)
             this.id = id;
-        else throw
-            new RuntimeException("Erro! ID do estado deve ser maior do que 0!");
+        else throw new RuntimeException(
+            "Erro! ID do estado deve ser maior do que 0!");
     }
 
     @Column(length = 30, nullable = false, name = "nome_estado")
@@ -31,8 +31,8 @@ public class Estado implements Serializable {
     public void setNome(String nome) {
         if (nome != null)
             this.nome = nome;
-        else throw 
-            new RuntimeException("Erro: Nome do Estado não pode ser nulo!");
+        else throw new RuntimeException(
+            "Erro: Nome do Estado não pode ser nulo!");
     }
 
     @Column(length = 2, nullable = false, name = "sigla_estado")
@@ -40,7 +40,7 @@ public class Estado implements Serializable {
     public void setSigla(String sigla) {
         if(sigla != null)
             this.sigla = sigla; 
-        else throw 
-            new RuntimeException("Erro: Sigla do Estado não pode ser nula!");
+        else throw new RuntimeException(
+            "Erro: Sigla do Estado da não pode ser nula!");
     }
 }
