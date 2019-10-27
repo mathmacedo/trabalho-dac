@@ -51,5 +51,6 @@ Contributor(s):
     <mapping class="com.tads.dac.beans.Estado"/>
     <mapping class="com.tads.dac.beans.Endereco"/>
     <mapping class="com.tads.dac.beans.Piloto"/>
+    <mapping class="com.tads.dac.beans.Voo"/>
   </session-factory>
 </hibernate-configuration>
