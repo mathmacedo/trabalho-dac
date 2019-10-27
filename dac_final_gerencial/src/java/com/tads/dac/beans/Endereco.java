@@ -20,7 +20,6 @@ public class Endereco implements Serializable {
     private int numero;
     private String complemento;
     private Cidade cidade;
-    private Estado estado;
 
     @Id
     @Column(name = "id_endereco", nullable = false)
@@ -65,15 +64,5 @@ public class Endereco implements Serializable {
             this.cidade = cidade;
         else throw new RuntimeException(
             "Erro: Cidade do Endereço não pode ser nula!");
-    }
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_estado")
-    public Estado getEstado() { return estado; }
-    public void setEstado(Estado estado) {
-        if (estado != null)    
-            this.estado = estado;
-        else throw new RuntimeException(
-            "Erro: Estado do Endereço não pode ser nulo!");
     }
 }
