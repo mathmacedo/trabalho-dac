@@ -49,5 +49,6 @@ Contributor(s):
     <mapping class="com.tads.dac.beans.Cidade"/>
     <mapping class="com.tads.dac.beans.CidadeAeroporto"/>
     <mapping class="com.tads.dac.beans.Estado"/>
+    <mapping class="com.tads.dac.beans.Endereco"/>
   </session-factory>
 </hibernate-configuration>
