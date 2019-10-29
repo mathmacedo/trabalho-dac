@@ -1,7 +1,6 @@
 package com.tads.dac.beans;
 
 import java.io.Serializable;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -39,7 +38,7 @@ public class CidadeAeroporto implements Serializable {
             "Erro: Nome da Cidade com Aeroporto não pode ser nulo!");
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "id_estado")
     public Estado getEstado() { return estado; }
     public void setEstado(Estado estado) {

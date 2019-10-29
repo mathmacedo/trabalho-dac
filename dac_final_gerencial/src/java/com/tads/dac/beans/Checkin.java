@@ -3,7 +3,6 @@ package com.tads.dac.beans;
 import java.io.Serializable;
 import java.sql.Time;
 import java.util.Date;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -73,7 +72,7 @@ public class Checkin implements Serializable {
     public boolean isStatus() { return status; }
     public void setStatus(boolean status) { this.status = status; }
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "id_funcionario")
     public Funcionario getFuncionario() { return funcionario; }
     public void setFuncionario(Funcionario funcionario) {
@@ -83,7 +82,7 @@ public class Checkin implements Serializable {
             "Erro: Funcionário do Checkin não pode ser nulo!");
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "id_voo")
     public Voo getVoo() { return voo; }
     public void setVoo(Voo voo) {

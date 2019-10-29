@@ -4,7 +4,6 @@ import com.tads.dac.util.StringToMD5;
 import com.tads.dac.util.ValidaCpf;
 import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -79,7 +78,7 @@ public class Funcionario implements Serializable {
             "Erro: Tipo de Funcionário inválido!");
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "id_endereco")
     public Endereco getEndereco() { return endereco; }
     public void setEndereco(Endereco endereco) {

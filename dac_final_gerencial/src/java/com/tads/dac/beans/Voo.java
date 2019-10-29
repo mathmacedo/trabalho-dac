@@ -3,7 +3,6 @@ package com.tads.dac.beans;
 import java.io.Serializable;
 import java.sql.Time;
 import java.util.Date;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -40,7 +39,7 @@ public class Voo implements Serializable {
             "Erro: ID do voo deve ser maior do que 0!");
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "id_cidade_origem")
     public CidadeAeroporto getCidadeOrigem() { return cidadeOrigem; }
     public void setCidadeOrigem(CidadeAeroporto cidadeOrigem) {
@@ -50,7 +49,7 @@ public class Voo implements Serializable {
             "Erro: Cidade de Origem não pode ser nula!");
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "id_cidade_destino")
     public CidadeAeroporto getCidadeDestino() { return cidadeDestino; }
     public void setCidadeDestino(CidadeAeroporto cidadeDestino) {
@@ -60,7 +59,7 @@ public class Voo implements Serializable {
             "Erro: Cidade de Destino não pode ser nula!");
     }
     
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "id_piloto")
     public Piloto getPiloto(){ return this.piloto; }
     public void setPiloto(Piloto piloto){
