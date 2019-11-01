@@ -71,18 +71,18 @@ public class Voo implements Serializable {
     
     @Column(name = "horario_partida", nullable = false)
     public Time getHorarioPartida() { return horarioPartida; }
-    public void setHorarioPartida(String horarioPartida) {
+    public void setHorarioPartida(Time horarioPartida) {
         if (horarioPartida != null)
-            this.horarioPartida = Time.valueOf(horarioPartida);
+            this.horarioPartida = horarioPartida;
         else throw new RuntimeException(
             "Erro: Horário de Partida do Voo não pode ser nulo!");
     }
     
     @Column(name = "horario_chegada", nullable = false)
     public Time getHorarioChegada() { return horarioChegada; }
-    public void setHorarioChegada(String horarioChegada) {
+    public void setHorarioChegada(Time horarioChegada) {
         if (horarioChegada != null)
-            this.horarioChegada = Time.valueOf(horarioChegada);
+            this.horarioChegada = horarioChegada;
         else throw new RuntimeException(
             "Erro: Horário de Chegada do Voo não pode ser nulo!");
     }
