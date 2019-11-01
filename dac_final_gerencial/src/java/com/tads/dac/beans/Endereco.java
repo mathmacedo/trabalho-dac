@@ -1,7 +1,7 @@
 package com.tads.dac.beans;
 
 import java.io.Serializable;
-import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -56,7 +56,7 @@ public class Endereco implements Serializable {
         this.complemento = complemento;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_cidade")
     public Cidade getCidade() { return cidade; }
     public void setCidade(Cidade cidade) {
