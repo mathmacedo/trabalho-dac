@@ -2,6 +2,7 @@ package com.tads.dac.dao;
 
 import com.tads.dac.beans.Funcionario;
 import com.tads.dac.util.HibernateUtil;
+import com.tads.dac.util.StringToMD5;
 import java.io.Serializable;
 import java.util.List;
 import org.hibernate.Query;
@@ -104,6 +105,29 @@ public class FuncionarioDAO {
         catch(Exception ex){
             throw new RuntimeException(
                 "Erro ao deletar funcionário: " + ex.getMessage());
+        }
+    }
+    
+    public static Funcionario authenticate(String name, String password){
+        try{
+            Session s = HibernateUtil.getSessionFactory().openSession();
+            Transaction t = s.beginTransaction();
+            Query q = s.createQuery(
+                "from Funcionario where nome_funcionario = ?"
+                        + "AND senha_funcionario = ?");
+            q.setString(0, name);
+            q.setString(1, StringToMD5.toMD5(password));
+            
+            Funcionario f = (Funcionario) q.uniqueResult();
+            
+            s.close();
+            
+            return f;
+            
+        }
+        catch(Exception ex){
+            throw new RuntimeException(
+                "Erro ao autenticar: " + ex.getMessage());
         }
     }
 }
