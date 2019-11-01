@@ -9,7 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 public class FuncionarioDAO {
-    public int insertFuncionario(Funcionario funcionario){
+    public static int insertFuncionario(Funcionario funcionario){
         try{
             Session s = HibernateUtil.getSessionFactory().openSession();
             Transaction t = s.beginTransaction();
@@ -27,7 +27,7 @@ public class FuncionarioDAO {
         }
     }
     
-    public Funcionario getFuncionarioById(int id){
+    public static Funcionario getFuncionarioById(int id){
         try{
             Session s = HibernateUtil.getSessionFactory().openSession();
             Transaction t = s.beginTransaction();
@@ -48,7 +48,7 @@ public class FuncionarioDAO {
         }
     }
     
-    public List<Funcionario> listFuncionarios(){
+    public static List<Funcionario> listFuncionarios(){
         try{
             Session s = HibernateUtil.getSessionFactory().openSession();
             Transaction t = s.beginTransaction();
@@ -69,7 +69,7 @@ public class FuncionarioDAO {
         }
     }
     
-    public boolean updateFuncionario(Funcionario funcionario){
+    public static boolean updateFuncionario(Funcionario funcionario){
         try{
             Session s = HibernateUtil.getSessionFactory().openSession();
             Transaction t = s.beginTransaction();
@@ -87,7 +87,7 @@ public class FuncionarioDAO {
         }
     }
     
-    public boolean deleteFuncionario(int id){
+    public static boolean deleteFuncionario(int id){
         try{
             Session s = HibernateUtil.getSessionFactory().openSession();
             Transaction t = s.beginTransaction();

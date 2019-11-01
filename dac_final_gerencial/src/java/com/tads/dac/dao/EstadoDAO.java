@@ -9,7 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 public class EstadoDAO {
-    public int insertEstado(Estado estado){
+    public static int insertEstado(Estado estado){
         try{
             Session s = HibernateUtil.getSessionFactory().openSession();
             Transaction t = s.beginTransaction();
@@ -27,7 +27,7 @@ public class EstadoDAO {
         }
     }
     
-    public Estado getEstadoById(int id){
+    public static Estado getEstadoById(int id){
         try{
             Session s = HibernateUtil.getSessionFactory().openSession();
             Transaction t = s.beginTransaction();
@@ -48,7 +48,7 @@ public class EstadoDAO {
         }
     }
     
-    public List<Estado> listEstados(){
+    public static List<Estado> listEstados(){
         try{
             Session s = HibernateUtil.getSessionFactory().openSession();
             Transaction t = s.beginTransaction();
@@ -69,7 +69,7 @@ public class EstadoDAO {
         }
     }
     
-    public boolean updateEstado(Estado estado){
+    public static boolean updateEstado(Estado estado){
         try{
             Session s = HibernateUtil.getSessionFactory().openSession();
             Transaction t = s.beginTransaction();
@@ -87,7 +87,7 @@ public class EstadoDAO {
         }
     }
     
-    public boolean deleteEstado(int id){
+    public static boolean deleteEstado(int id){
         try{
             Session s = HibernateUtil.getSessionFactory().openSession();
             Transaction t = s.beginTransaction();

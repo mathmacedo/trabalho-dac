@@ -9,7 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 public class CidadeAeroportoDAO {
-    public int insertCidadeAeroporto(CidadeAeroporto cidade){
+    public static int insertCidadeAeroporto(CidadeAeroporto cidade){
         try{
             Session s = HibernateUtil.getSessionFactory().openSession();
             Transaction t = s.beginTransaction();
@@ -27,7 +27,7 @@ public class CidadeAeroportoDAO {
         }
     }
     
-    public CidadeAeroporto getCidadeAeroportoById(int id){
+    public static CidadeAeroporto getCidadeAeroportoById(int id){
         try{
             Session s = HibernateUtil.getSessionFactory().openSession();
             Transaction t = s.beginTransaction();
@@ -48,7 +48,7 @@ public class CidadeAeroportoDAO {
         }
     }
     
-    public List<CidadeAeroporto> listCidadeAeroportos(){
+    public static List<CidadeAeroporto> listCidadeAeroportos(){
         try{
             Session s = HibernateUtil.getSessionFactory().openSession();
             Transaction t = s.beginTransaction();
@@ -69,7 +69,7 @@ public class CidadeAeroportoDAO {
         }
     }
     
-    public boolean updateCidadeAeroporto(CidadeAeroporto cidade){
+    public static boolean updateCidadeAeroporto(CidadeAeroporto cidade){
         try{
             Session s = HibernateUtil.getSessionFactory().openSession();
             Transaction t = s.beginTransaction();
@@ -87,7 +87,7 @@ public class CidadeAeroportoDAO {
         }
     }
     
-    public boolean deleteCidadeAeroporto(int id){
+    public static boolean deleteCidadeAeroporto(int id){
         try{
             Session s = HibernateUtil.getSessionFactory().openSession();
             Transaction t = s.beginTransaction();

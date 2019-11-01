@@ -9,7 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 public class CidadeDAO {
-    public int insertCidade(Cidade cidade){
+    public static int insertCidade(Cidade cidade){
         try{
             Session s = HibernateUtil.getSessionFactory().openSession();
             Transaction t = s.beginTransaction();
@@ -27,7 +27,7 @@ public class CidadeDAO {
         }
     }
     
-    public Cidade getCidadeById(int id){
+    public static Cidade getCidadeById(int id){
         try{
             Session s = HibernateUtil.getSessionFactory().openSession();
             Transaction t = s.beginTransaction();
@@ -48,7 +48,7 @@ public class CidadeDAO {
         }
     }
     
-    public List<Cidade> listCidades(){
+    public static List<Cidade> listCidades(){
         try{
             Session s = HibernateUtil.getSessionFactory().openSession();
             Transaction t = s.beginTransaction();
@@ -69,7 +69,7 @@ public class CidadeDAO {
         }
     }
     
-    public boolean updateCidade(Cidade cidade){
+    public static boolean updateCidade(Cidade cidade){
         try{
             Session s = HibernateUtil.getSessionFactory().openSession();
             Transaction t = s.beginTransaction();
@@ -87,7 +87,7 @@ public class CidadeDAO {
         }
     }
     
-    public boolean deleteCidade(int id){
+    public static boolean deleteCidade(int id){
         try{
             Session s = HibernateUtil.getSessionFactory().openSession();
             Transaction t = s.beginTransaction();

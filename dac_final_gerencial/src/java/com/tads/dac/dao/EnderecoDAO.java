@@ -9,7 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 public class EnderecoDAO {
-    public int insertEndereco(Endereco endereco){
+    public static int insertEndereco(Endereco endereco){
         try{
             Session s = HibernateUtil.getSessionFactory().openSession();
             Transaction t = s.beginTransaction();
@@ -27,7 +27,7 @@ public class EnderecoDAO {
         }
     }
     
-    public Endereco getEnderecoById(int id){
+    public static Endereco getEnderecoById(int id){
         try{
             Session s = HibernateUtil.getSessionFactory().openSession();
             Transaction t = s.beginTransaction();
@@ -48,7 +48,7 @@ public class EnderecoDAO {
         }
     }
     
-    public List<Endereco> listEnderecos(){
+    public static List<Endereco> listEnderecos(){
         try{
             Session s = HibernateUtil.getSessionFactory().openSession();
             Transaction t = s.beginTransaction();
@@ -69,7 +69,7 @@ public class EnderecoDAO {
         }
     }
     
-    public boolean updateEndereco(Endereco endereco){
+    public static boolean updateEndereco(Endereco endereco){
         try{
             Session s = HibernateUtil.getSessionFactory().openSession();
             Transaction t = s.beginTransaction();
@@ -87,7 +87,7 @@ public class EnderecoDAO {
         }
     }
     
-    public boolean deleteEndereco(int id){
+    public static boolean deleteEndereco(int id){
         try{
             Session s = HibernateUtil.getSessionFactory().openSession();
             Transaction t = s.beginTransaction();
