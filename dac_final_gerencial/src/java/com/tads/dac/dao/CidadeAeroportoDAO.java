@@ -93,7 +93,7 @@ public class CidadeAeroportoDAO {
             Transaction t = s.beginTransaction();
             
             CidadeAeroporto c = (CidadeAeroporto) s.get(CidadeAeroporto.class, id);
-            s.update(c.getEstado());
+            
             s.delete(c);
             
             t.commit();

@@ -93,7 +93,7 @@ public class CidadeDAO {
             Transaction t = s.beginTransaction();
             
             Cidade c = (Cidade) s.get(Cidade.class, id);
-            s.update(c.getEstado());
+            
             s.delete(c);
             
             t.commit();

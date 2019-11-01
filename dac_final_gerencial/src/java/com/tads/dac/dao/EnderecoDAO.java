@@ -94,9 +94,6 @@ public class EnderecoDAO {
             
             Endereco e = (Endereco) s.get(Endereco.class, id);
             
-            s.update(e.getCidade());
-            s.update(e.getCidade().getEstado());
-            
             s.delete(e);
             
             t.commit();
