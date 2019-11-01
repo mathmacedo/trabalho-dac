@@ -37,7 +37,10 @@ public class EstadoDAO {
             t.commit();
             s.close();
             
-            return e;
+            if (e != null)
+                return e;
+            else throw new RuntimeException(
+                "Erro: Estado não foi encontrado!");
         }
         catch(Exception ex){
             throw new RuntimeException(
@@ -55,7 +58,10 @@ public class EstadoDAO {
             t.commit();
             s.close();
             
-            return lista;
+            if (lista != null)
+                return lista;
+            else throw new RuntimeException(
+                "Erro: Nenhum estado encontrado!");
         }
         catch(Exception ex){
             throw new RuntimeException(

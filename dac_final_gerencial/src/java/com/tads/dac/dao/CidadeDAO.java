@@ -37,7 +37,10 @@ public class CidadeDAO {
             t.commit();
             s.close();
             
-            return c;
+            if (c != null)
+                return c;
+            else throw new RuntimeException(
+                "Erro: Cidade não foi encontrada!");
         }
         catch(Exception ex){
             throw new RuntimeException(
@@ -55,7 +58,10 @@ public class CidadeDAO {
             t.commit();
             s.close();
             
-            return lista;
+            if (lista != null)
+                return lista;
+            else throw new RuntimeException(
+                "Erro: Nenhuma cidade encontrada!");
         }
         catch(Exception ex){
             throw new RuntimeException(
