@@ -55,6 +55,12 @@ public class SessionBean implements Serializable{
             return "index";
         }
     }
+    
+    public String logout(){
+        FacesContext.getCurrentInstance().getExternalContext()
+                .invalidateSession();
+        return "index";
+    }
 }
 
 

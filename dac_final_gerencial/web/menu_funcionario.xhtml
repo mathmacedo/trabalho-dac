@@ -16,7 +16,11 @@
                         </li>
                     </ul>
                     <br/><br/>
-                    <h:button class="button" value="Logout" outcome="index.xhtml"/>
+                    <h:form>
+                        <h:commandLink action="#{sessionBean.logout}">
+                            <h:button class="button" value="Logout"/>
+                        </h:commandLink>
+                    </h:form>
                 </div>
             </center>
         </div>
