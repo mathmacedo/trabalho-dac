@@ -108,15 +108,15 @@ public class FuncionarioDAO {
         }
     }
     
-    public static Funcionario authenticate(String name, String password){
+    public static Funcionario authenticate(String email, String password){
         try{
             Session s = HibernateUtil.getSessionFactory().openSession();
             Transaction t = s.beginTransaction();
             Query q = s.createQuery(
-                "from Funcionario where nome_funcionario = ?"
+                "from Funcionario where email_funcionario = ?"
                         + "AND senha_funcionario = ?");
-            q.setString(0, name);
-            q.setString(1, StringToMD5.toMD5(password));
+            q.setString(0, email);
+            q.setString(1, password);
             
             Funcionario f = (Funcionario) q.uniqueResult();
             
