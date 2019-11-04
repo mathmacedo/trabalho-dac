@@ -11,14 +11,14 @@ import javax.inject.Named;
 public class ClienteBean {
 
     public ClienteBean() {}
-    
+
     public void cadastrar() throws IOException{
         FacesContext.getCurrentInstance().addMessage(null, new
             FacesMessage(FacesMessage.SEVERITY_INFO, "Cadastro Realizado!", null));
-        
+
         FacesContext.getCurrentInstance().getExternalContext()
             .getFlash().setKeepMessages(true);
-        
+
         FacesContext.getCurrentInstance()
                 .getExternalContext().redirect("index.xhtml"); 
     }

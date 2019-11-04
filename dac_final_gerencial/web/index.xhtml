@@ -14,14 +14,17 @@
                     </span>
                     <br/>
                     <div styleClass="align-line">
-                        <h:outputLabel for="name" value="Nome: " />
-                        <h:inputText id="name" styleClass="input-style" required="true" />
+                        <h:outputLabel for="email" value="Email: " />
+                        <h:inputText id="email" styleClass="input-style" required="true" 
+                                     value="#{sessionBean.email}"/>
                     </div>
                     <br/>
                     <h:outputLabel for="pword" value="Senha: " />
-                    <h:inputSecret id="pword" styleClass="input-style" required="true" />
+                    <h:inputSecret id="pword" styleClass="input-style" required="true" 
+                                   value = "#{sessionBean.senha}"/>
                     <br/>
-                    <h:commandButton class="button" styleClass="btn-login btn" value="Login" action="menu_funcionario.xhtml"/>
+                    <h:commandButton class="button" styleClass="btn-login btn" 
+                                     value="Login" action="#{sessionBean.authenticate}"/>
                 </h:form>
             </div>
         </center>
