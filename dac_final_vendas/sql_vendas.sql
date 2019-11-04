@@ -30,6 +30,7 @@ CREATE TABLE tb_endereco(
 
 CREATE TABLE tb_cliente(
 	id_cliente SERIAL PRIMARY KEY,
+	email_cliente VARCHAR(100) NOT NULL,
 	nome_cliente VARCHAR (70) NOT NULL,
 	senha_cliente VARCHAR(64) NOT NULL,
 	cpf_cliente VARCHAR(11) NOT NULL UNIQUE,
@@ -52,7 +53,7 @@ CREATE TABLE tb_voo(
 	horario_partida TIME NOT NULL,
 	horario_chegada TIME NOT NULL,
 	data_saida DATE NOT NULL,
-	data_chegada DATE NOT NULL
+	data_chegada DATE NOT NULL,
 	poltronas_total INTEGER NOT NULL,
 	poltronas_vagas INTEGER NOT NULL,
 	poltronas_reservadas INTEGER NOT NULL,
