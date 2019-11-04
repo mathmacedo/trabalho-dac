@@ -5,8 +5,8 @@ import com.tads.dac.dao.CidadeDAO;
 import java.util.List;
 
 public class CidadeFacade {
-    public static int insertCidade(Cidade checkin){
-        return CidadeDAO.insertCidade(checkin);
+    public static int insertCidade(Cidade cidade){
+        return CidadeDAO.insertCidade(cidade);
     }
     
     public static Cidade getCidadeById(int id){
@@ -17,8 +17,8 @@ public class CidadeFacade {
         return CidadeDAO.listCidades();
     }
     
-    public static boolean updateCidade(Cidade checkin){
-        return CidadeDAO.updateCidade(checkin);
+    public static boolean updateCidade(Cidade cidade){
+        return CidadeDAO.updateCidade(cidade);
     }
     
     public static boolean deleteCidade(int id){
