@@ -2,7 +2,6 @@ package com.tads.dac.beans;
 
 import com.tads.dac.util.ValidaCpf;
 import java.io.Serializable;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -69,7 +68,7 @@ public class Piloto implements Serializable {
             "Erro: Telefone do Piloto não pode ser nulo!");
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "id_endereco")
     public Endereco getEndereco() { return endereco; }
     public void setEndereco(Endereco endereco) {
