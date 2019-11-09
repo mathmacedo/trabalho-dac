@@ -81,8 +81,20 @@ CREATE TABLE tb_funcionario(
 	ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 
+CREATE TABLE tb_assento(
+	id_assento SERIAL PRIMARY KEY,
+	nome_assento VARCHAR(3) NOT NULL,
+	status_assento VARCHAR(1) NOT NULL,
+	tipo_assento VARCHAR(1) NOT NULL,
+	valor_assento FLOAT NOT NULL,
+	id_voo INTEGER NOT NULL,
+	CONSTRAINT fk_assento_id_voo FOREIGN KEY (id_voo)
+	REFERENCES tb_voo(id_voo) MATCH SIMPLE
+	ON UPDATE NO ACTION ON DELETE NO ACTION
+);
+
 CREATE TABLE tb_checkin(
-	id_checkin SERIAL NOT NULL,
+	id_checkin SERIAL PRIMARY KEY,
 	data_checkin DATE NOT NULL,
 	hora_checkin TIME NOT NULL,
 	id_assento INTEGER NOT NULL,
@@ -95,26 +107,14 @@ CREATE TABLE tb_checkin(
 	ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 
-CREATE TABLE tb_assento(
-	id_assento SERIAL NOT NULL,
-	nome_assento VARCHAR(3) NOT NULL,
-	status_assento VARCHAR(1) NOT NULL,
-	tipo_assento VARCHAR(1) NOT NULL,
-	valor_assento FLOAT NOT NULL,
-	id_voo INTEGER NOT NULL,
-	CONSTRAINT fk_assento_id_voo FOREIGN KEY (id_voo)
-	REFERENCES tb_voo(id_voo) MATCH SIMPLE
-	ON UPDADTE NO ACTION ON DELETE NO ACTION
-);
-
 CREATE TABLE tb_boleto(
-	id_boleto SERIAL NOT NULL,
+	id_boleto SERIAL PRIMARY KEY,
 	valor_boleto FLOAT NOT NULL,
 	data_emissao_boleto TIMESTAMP NOT NULL
 );
 
 CREATE TABLE tb_reserva(
-	id_reserva SERIAL NOT NULL,
+	id_reserva SERIAL PRIMARY KEY,
 	status_reserva VARCHAR(1) NOT NULL,
 	data_hora_reserva TIMESTAMP NOT NULL,
 	id_cliente INTEGER NOT NULL,
@@ -123,4 +123,3 @@ CREATE TABLE tb_reserva(
 	REFERENCES tb_boleto(id_boleto) MATCH SIMPLE
 	ON UPDATE NO ACTION ON DELETE NO ACTION
 );
-	
