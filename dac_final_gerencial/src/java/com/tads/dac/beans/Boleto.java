@@ -15,7 +15,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "tb_boleto")
-class Boleto implements Serializable{
+public class Boleto implements Serializable{
     private int id;
     private double valor;
     private Calendar emissao;
