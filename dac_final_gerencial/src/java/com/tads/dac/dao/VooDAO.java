@@ -1,5 +1,6 @@
 package com.tads.dac.dao;
 
+import com.tads.dac.beans.Assento;
 import com.tads.dac.beans.Voo;
 import com.tads.dac.util.HibernateUtil;
 import java.io.Serializable;
@@ -15,6 +16,30 @@ public class VooDAO {
             Transaction t = s.beginTransaction();
 
             Serializable idVoo = s.save(voo);
+            
+            for (char c = 'A'; c < 'G'; c++){
+                for (int i = 0; i < 34; i++){
+                    if (c == 'C' && i < 5) continue;
+                    Assento a = new Assento();
+                    
+                    a.setVoo(voo);
+                    
+                    if (i < 10) a.setNome(c + "0" + Integer.toString(i));
+                    else a.setNome(c + Integer.toString(i));
+                    
+                    a.setStatus('L');
+                    
+                    if (i < 5){
+                        a.setStatus('P');
+                        a.setValor(voo.getPrecoPrimeiraClasse());
+                    }
+                    else {
+                        a.setStatus('E');
+                        a.setValor(voo.getPrecoClasseEconomica());
+                    }
+                }
+            }
+            
             t.commit();
 
             s.close();
