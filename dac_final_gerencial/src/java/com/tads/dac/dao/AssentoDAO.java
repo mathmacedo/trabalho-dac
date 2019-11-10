@@ -69,6 +69,29 @@ public class AssentoDAO {
         }
     }
     
+    public static List<Assento> getAssentosByVoo(int id){
+        try{
+            Session s = HibernateUtil.getSessionFactory().openSession();
+            Transaction t = s.beginTransaction();
+            Query q = s.createQuery("from Assento where id_voo = ?");
+            
+            q.setInteger(0, id);
+            
+            List<Assento> lista = q.list();
+            t.commit();
+            s.close();
+            
+            if (lista != null)
+                return lista;
+            else throw new RuntimeException(
+                "Erro: Nenhum assento encontrado!");
+        }
+        catch(Exception ex){
+            throw new RuntimeException(
+                "Erro ao listar assentos: " + ex.getMessage());
+        }
+    }
+    
     public static boolean updateAssento(Assento assento){
         try{
             Session s = HibernateUtil.getSessionFactory().openSession();
