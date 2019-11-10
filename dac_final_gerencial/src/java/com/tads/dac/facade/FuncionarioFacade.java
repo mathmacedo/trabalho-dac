@@ -5,8 +5,8 @@ import com.tads.dac.dao.FuncionarioDAO;
 import java.util.List;
 
 public class FuncionarioFacade {
-    public static int insertFuncionario(Funcionario checkin){
-        return FuncionarioDAO.insertFuncionario(checkin);
+    public static int insertFuncionario(Funcionario funcionario){
+        return FuncionarioDAO.insertFuncionario(funcionario);
     }
     
     public static Funcionario getFuncionarioById(int id){
@@ -17,8 +17,8 @@ public class FuncionarioFacade {
         return FuncionarioDAO.listFuncionarios();
     }
     
-    public static boolean updateFuncionario(Funcionario checkin){
-        return FuncionarioDAO.updateFuncionario(checkin);
+    public static boolean updateFuncionario(Funcionario funcionario){
+        return FuncionarioDAO.updateFuncionario(funcionario);
     }
     
     public static boolean deleteFuncionario(int id){

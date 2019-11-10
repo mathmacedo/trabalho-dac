@@ -5,8 +5,8 @@ import com.tads.dac.dao.VooDAO;
 import java.util.List;
 
 public class VooFacade {
-    public static int insertVoo(Voo checkin){
-        return VooDAO.insertVoo(checkin);
+    public static int insertVoo(Voo voo){
+        return VooDAO.insertVoo(voo);
     }
     
     public static Voo getVooById(int id){
@@ -17,8 +17,8 @@ public class VooFacade {
         return VooDAO.listVoos();
     }
     
-    public static boolean updateVoo(Voo checkin){
-        return VooDAO.updateVoo(checkin);
+    public static boolean updateVoo(Voo voo){
+        return VooDAO.updateVoo(voo);
     }
     
     public static boolean deleteVoo(int id){

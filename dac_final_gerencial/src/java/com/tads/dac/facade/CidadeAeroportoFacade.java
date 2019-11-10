@@ -5,8 +5,8 @@ import com.tads.dac.dao.CidadeAeroportoDAO;
 import java.util.List;
 
 public class CidadeAeroportoFacade {
-    public static int insertCidadeAeroporto(CidadeAeroporto checkin){
-        return CidadeAeroportoDAO.insertCidadeAeroporto(checkin);
+    public static int insertCidadeAeroporto(CidadeAeroporto cidadeAeroporto){
+        return CidadeAeroportoDAO.insertCidadeAeroporto(cidadeAeroporto);
     }
     
     public static CidadeAeroporto getCidadeAeroportoById(int id){
@@ -17,8 +17,8 @@ public class CidadeAeroportoFacade {
         return CidadeAeroportoDAO.listCidadeAeroportos();
     }
     
-    public static boolean updateCidadeAeroporto(CidadeAeroporto checkin){
-        return CidadeAeroportoDAO.updateCidadeAeroporto(checkin);
+    public static boolean updateCidadeAeroporto(CidadeAeroporto cidadeAeroporto){
+        return CidadeAeroportoDAO.updateCidadeAeroporto(cidadeAeroporto);
     }
     
     public static boolean deleteCidadeAeroporto(int id){

@@ -5,8 +5,8 @@ import com.tads.dac.dao.EnderecoDAO;
 import java.util.List;
 
 public class EnderecoFacade {
-    public static int insertEndereco(Endereco checkin){
-        return EnderecoDAO.insertEndereco(checkin);
+    public static int insertEndereco(Endereco endereco){
+        return EnderecoDAO.insertEndereco(endereco);
     }
     
     public static Endereco getEnderecoById(int id){
@@ -17,8 +17,8 @@ public class EnderecoFacade {
         return EnderecoDAO.listEnderecos();
     }
     
-    public static boolean updateEndereco(Endereco checkin){
-        return EnderecoDAO.updateEndereco(checkin);
+    public static boolean updateEndereco(Endereco endereco){
+        return EnderecoDAO.updateEndereco(endereco);
     }
     
     public static boolean deleteEndereco(int id){
