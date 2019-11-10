@@ -67,6 +67,8 @@ public class Funcionario implements Serializable {
     public void setSenha(String senha) throws NoSuchAlgorithmException {
         if (senha != null)
             this.senha = StringToMD5.toMD5(senha);
+        else throw new RuntimeException(
+            "Erro: Senha do funcionário não pode ser nula!");
     }
 
     @Column(name = "tipo_funcionario", length = 1, nullable = false)
