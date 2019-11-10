@@ -1,7 +1,6 @@
 package com.tads.dac.dao;
 
 import com.tads.dac.beans.Boleto;
-import com.tads.dac.beans.Reserva;
 import com.tads.dac.util.HibernateUtil;
 import java.io.Serializable;
 import java.util.List;
