@@ -57,5 +57,6 @@ Contributor(s):
     <mapping class="com.tads.dac.beans.Assento"/>
     <mapping class="com.tads.dac.beans.Boleto"/>
     <mapping class="com.tads.dac.beans.Reserva"/>
+    <mapping class="com.tads.dac.beans.Cliente"/>
   </session-factory>
 </hibernate-configuration>
