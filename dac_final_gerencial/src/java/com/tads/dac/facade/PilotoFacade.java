@@ -5,8 +5,8 @@ import com.tads.dac.dao.PilotoDAO;
 import java.util.List;
 
 public class PilotoFacade {
-    public static int insertPiloto(Piloto checkin){
-        return PilotoDAO.insertPiloto(checkin);
+    public static int insertPiloto(Piloto piloto){
+        return PilotoDAO.insertPiloto(piloto);
     }
     
     public static Piloto getPilotoById(int id){
@@ -17,8 +17,8 @@ public class PilotoFacade {
         return PilotoDAO.listPilotos();
     }
     
-    public static boolean updatePiloto(Piloto checkin){
-        return PilotoDAO.updatePiloto(checkin);
+    public static boolean updatePiloto(Piloto piloto){
+        return PilotoDAO.updatePiloto(piloto);
     }
     
     public static boolean deletePiloto(int id){

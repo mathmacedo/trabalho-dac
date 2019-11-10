@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -18,17 +19,11 @@ import javax.persistence.TemporalType;
 @Table(name = "tb_checkin")
 public class Checkin implements Serializable {
     private int id;
-    private String assento;
     private Date data;
     private Time hora;
-    private boolean status;
+    private Assento assento;
     private Funcionario funcionario;
-    private Voo voo;
     
-    public Checkin(){
-        this.status = false;
-    }
-
     @Id
     @Column(name = "id_checkin", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,10 +34,11 @@ public class Checkin implements Serializable {
         else throw new RuntimeException(
             "Erro: ID do Checkin deve ser maior do que 0!");
     }
-
-    @Column(name = "assento_checkin", length = 3, nullable = false)
-    public String getAssento() { return assento; }
-    public void setAssento(String assento) {
+    
+    @OneToOne
+    @JoinColumn(name = "id_assento", nullable = false)
+    public Assento getAssento() { return assento; }
+    public void setAssento(Assento assento) {
         if(assento != null) 
             this.assento = assento;
         else throw new RuntimeException(
@@ -68,10 +64,6 @@ public class Checkin implements Serializable {
             "Erro: Hora do Checkin não pode ser nula!");
    }
 
-    @Column(name = "status_checkin", nullable = false)
-    public boolean isStatus() { return status; }
-    public void setStatus(boolean status) { this.status = status; }
-
     @ManyToOne
     @JoinColumn(name = "id_funcionario")
     public Funcionario getFuncionario() { return funcionario; }
@@ -80,15 +72,5 @@ public class Checkin implements Serializable {
             this.funcionario = funcionario;
         else throw new RuntimeException(
             "Erro: Funcionário do Checkin não pode ser nulo!");
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "id_voo")
-    public Voo getVoo() { return voo; }
-    public void setVoo(Voo voo) {
-        if(voo != null)
-            this.voo = voo;
-        else throw new RuntimeException(
-            "Erro: Voo do checkin não pode ser nulo!");
     }
 }

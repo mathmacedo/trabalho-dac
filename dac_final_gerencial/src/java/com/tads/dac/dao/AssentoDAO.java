@@ -1,7 +1,6 @@
 package com.tads.dac.dao;
 
 import com.tads.dac.beans.Assento;
-import com.tads.dac.beans.Voo;
 import com.tads.dac.util.HibernateUtil;
 import java.io.Serializable;
 import java.util.List;
@@ -9,97 +8,96 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-public class VooDAO {
-    public static int insertVoo(Voo voo){
+public class AssentoDAO {
+    public static int insertAssento(Assento assento){
         try{
             Session s = HibernateUtil.getSessionFactory().openSession();
             Transaction t = s.beginTransaction();
 
-            Serializable idVoo = s.save(voo);
-            
-            for (char c = 'A'; c < 'G'; c++){
-                for (int i = 0; i < 34; i++){
-                    if (c == 'C' && i < 5) continue;
-                    Assento a = new Assento();
-                    
-                    a.setVoo(voo);
-                    
-                    if (i < 10) a.setNome(c + "0" + Integer.toString(i));
-                    else a.setNome(c + Integer.toString(i));
-                    
-                    a.setStatus('L');
-                    
-                    if (i < 5){
-                        a.setStatus('P');
-                        a.setValor(voo.getPrecoPrimeiraClasse());
-                    }
-                    else {
-                        a.setStatus('E');
-                        a.setValor(voo.getPrecoClasseEconomica());
-                    }
-                }
-            }
-            
+            Serializable idAssento = s.save(assento);
             t.commit();
 
             s.close();
 
-            return Integer.parseInt(idVoo.toString());
+            return Integer.parseInt(idAssento.toString());
         }
         catch(Exception ex){
             throw new RuntimeException(
-                "Erro ao inserir voo: " + ex.getMessage());
+                "Erro ao inserir assento: " + ex.getMessage());
         }
     }
     
-    public static Voo getVooById(int id){
+    public static Assento getAssentoById(int id){
         try{
             Session s = HibernateUtil.getSessionFactory().openSession();
             Transaction t = s.beginTransaction();
             
-            Voo v = (Voo) s.get(Voo.class, id);
+            Assento a = (Assento) s.get(Assento.class, id);
             
             t.commit();
             s.close();
             
-            if (v != null)
-                return v;
+            if (a != null)
+                return a;
             else throw new RuntimeException(
-                "Erro: Voo não foi encontrado!");
+                "Erro: Assento não foi encontrado!");
         }
         catch(Exception ex){
             throw new RuntimeException(
-                "Erro ao buscar voo: " + ex.getMessage());
+                "Erro ao buscar assento: " + ex.getMessage());
         }
     }
     
-    public static List<Voo> listVoos(){
+    public static List<Assento> listAssentos(){
         try{
             Session s = HibernateUtil.getSessionFactory().openSession();
             Transaction t = s.beginTransaction();
-            Query q = s.createQuery("from Voo");
+            Query q = s.createQuery("from Assento");
             
-            List<Voo> lista = q.list();
+            List<Assento> lista = q.list();
             t.commit();
             s.close();
             
             if (lista != null)
                 return lista;
             else throw new RuntimeException(
-                "Erro: Nenhum voo encontrado!");
+                "Erro: Nenhum assento encontrado!");
         }
         catch(Exception ex){
             throw new RuntimeException(
-                "Erro ao listar voos: " + ex.getMessage());
+                "Erro ao listar assentos: " + ex.getMessage());
         }
     }
     
-    public static boolean updateVoo(Voo voo){
+    public static List<Assento> getAssentosByVoo(int id){
+        try{
+            Session s = HibernateUtil.getSessionFactory().openSession();
+            Transaction t = s.beginTransaction();
+            Query q = s.createQuery("from Assento where id_voo = ?");
+            
+            q.setInteger(0, id);
+            
+            List<Assento> lista = q.list();
+            t.commit();
+            s.close();
+            
+            if (lista != null)
+                return lista;
+            else throw new RuntimeException(
+                "Erro: Nenhum assento encontrado!");
+        }
+        catch(Exception ex){
+            throw new RuntimeException(
+                "Erro ao listar assentos: " + ex.getMessage());
+        }
+    }
+    
+    public static boolean updateAssento(Assento assento){
         try{
             Session s = HibernateUtil.getSessionFactory().openSession();
             Transaction t = s.beginTransaction();
             
-            s.update(voo);
+            s.update(assento);
             
             t.commit();
             s.close();
@@ -108,18 +106,18 @@ public class VooDAO {
         }
         catch(Exception ex){
             throw new RuntimeException(
-                "Erro ao atualizar voo: " + ex.getMessage());
+                "Erro ao atualizar assento: " + ex.getMessage());
         }
     }
     
-    public static boolean deleteVoo(int id){
+    public static boolean deleteAssento(int id){
         try{
             Session s = HibernateUtil.getSessionFactory().openSession();
             Transaction t = s.beginTransaction();
             
-            Voo v = (Voo) s.get(Voo.class, id);
+            Assento a = (Assento) s.get(Assento.class, id);
             
-            s.delete(v);
+            s.delete(a);
             
             t.commit();
             s.close();
@@ -128,7 +126,8 @@ public class VooDAO {
         }
         catch(Exception ex){
             throw new RuntimeException(
-                "Erro ao deletar voo: " + ex.getMessage());
+                "Erro ao deletar assento: " + ex.getMessage());
         }
     }
 }
+    
