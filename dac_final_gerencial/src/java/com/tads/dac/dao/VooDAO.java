@@ -18,7 +18,7 @@ public class VooDAO {
             Serializable idVoo = s.save(voo);
             
             for (char c = 'A'; c < 'G'; c++){
-                for (int i = 0; i < 34; i++){
+                for (int i = 1; i < 34; i++){
                     if (c == 'C' && i < 5) continue;
                     Assento a = new Assento();
                     
@@ -30,13 +30,15 @@ public class VooDAO {
                     a.setStatus('L');
                     
                     if (i < 5){
-                        a.setStatus('P');
+                        a.setTipo('P');
                         a.setValor(voo.getPrecoPrimeiraClasse());
                     }
                     else {
-                        a.setStatus('E');
+                        a.setTipo('E');
                         a.setValor(voo.getPrecoClasseEconomica());
                     }
+                    
+                    s.save(a);
                 }
             }
             
