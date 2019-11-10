@@ -67,6 +67,31 @@ public class ReservaDAO {
         }
         catch(Exception ex){
             throw new RuntimeException(
+                "Erro ao buscar reservas: " + ex.getMessage());
+        }
+    }
+    
+    public static List<Reserva> getCompletedReservasByCliente(int id){
+        try{
+            Session s = HibernateUtil.getSessionFactory().openSession();
+            Transaction t = s.beginTransaction();
+            Query q = s.createQuery("from Reserva where id_cliente = ?"
+                + " AND status_reserva = ?");
+            
+            q.setInteger(0, id);
+            q.setCharacter(1, 'F');
+            
+            List<Reserva> lista = q.list();
+            
+            t.commit();
+            s.close();
+            
+            if (lista != null)
+                return lista;
+            else return null;
+        }
+        catch(Exception ex){
+            throw new RuntimeException(
                 "Erro ao buscar reserva: " + ex.getMessage());
         }
     }
