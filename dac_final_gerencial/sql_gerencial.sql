@@ -119,7 +119,11 @@ CREATE TABLE tb_reserva(
 	data_hora_reserva TIMESTAMP NOT NULL,
 	id_cliente INTEGER NOT NULL,
 	id_boleto INTEGER NOT NULL,
+	id_assento INTEGER NOT NULL,
 	CONSTRAINT fk_reserva_id_boleto FOREIGN KEY (id_boleto)
 	REFERENCES tb_boleto(id_boleto) MATCH SIMPLE
+	ON UPDATE NO ACTION ON DELETE NO ACTION,
+	CONSTRAINT fk_reserva_id_assento FOREIGN KEY (id_assento)
+	REFERENCES tb_assento(id_assento) MATCH SIMPLE
 	ON UPDATE NO ACTION ON DELETE NO ACTION
 );

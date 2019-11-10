@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -21,7 +22,7 @@ public class Reserva implements Serializable {
     private Calendar horaReserva;
     private Boleto boleto;
     private Cliente cliente; //waiting git pull
-    private Assento assentos;
+    private Assento assento;
     
     @Id
     @Column(name = "id_reserva", nullable = false)
@@ -36,7 +37,7 @@ public class Reserva implements Serializable {
 
     @Column(name = "status_reserva", length = 1, nullable = false)
     public char getStatus(){ return this.status; }
-    public void setPago(char status){
+    public void setStatus(char status){
         if(status == 'C' || status == 'P' || status == 'F')
             this.status = status;
     }
@@ -70,5 +71,15 @@ public class Reserva implements Serializable {
             this.boleto = boleto;
         else throw new RuntimeException(
             "Erro: Boleto da reserva não pode ser nulo!");
+    }
+    
+    @OneToOne
+    @JoinColumn(name = "id_assento")
+    public Assento getAssento(){ return this.assento; }
+    public void setAssento(Assento assento){
+        if (assento != null)
+            this.assento = assento;
+        else throw new RuntimeException(
+            "Erro: Assento da reserva não pode ser nulo!");
     }
 }
