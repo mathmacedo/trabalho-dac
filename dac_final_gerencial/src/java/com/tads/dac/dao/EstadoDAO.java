@@ -105,4 +105,28 @@ public class EstadoDAO {
                 "Erro ao deletar estado: " + ex.getMessage());
         }
     }
+
+    public static Object getEstadoBySigla(String sigla) {
+        try{
+            Session s = HibernateUtil.getSessionFactory().openSession();
+            Transaction t = s.beginTransaction();
+            Query q = s.createQuery("from Estado where sigla_estado = ?");
+            
+            q.setString(0, sigla);
+            
+            Estado e = (Estado) q.uniqueResult();
+            
+            t.commit();
+            s.close();
+            
+            if (e != null)
+                return e;
+            else throw new RuntimeException(
+                "Erro: Estado não encontrado!!");
+        }
+        catch(Exception ex){
+            throw new RuntimeException(
+                "Erro ao listar estados: " + ex.getMessage());
+        }
+    }
 }
