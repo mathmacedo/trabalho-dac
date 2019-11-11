@@ -18,12 +18,13 @@
                                   outcome='manter_funcionarios'/>    
                     </h:form>
                 </h:panelGrid>
-                <h:dataTable styleClass="table" var="t" value="">
+                <h:dataTable styleClass="table" var="f" 
+                             value="#{funcionarioBean.funcionarios}">
                     <h:column>
                         <f:facet name="header">
-                            Nome do Funcionário
+                            Nome do Funcionário 
                         </f:facet>
-                        João da Silva
+                        #{f.nome}
                     </h:column>
                     <h:column>
                         <f:facet name="header">
