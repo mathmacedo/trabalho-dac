@@ -13,6 +13,10 @@ public class CidadeFacade {
         return CidadeDAO.getCidadeById(id);
     }
     
+    public static List<Cidade> getCidadesByEstado(int idEstado){
+        return CidadeDAO.getCidadesByEstado(idEstado);
+    }
+    
     public static List<Cidade> listCidades(){
         return CidadeDAO.listCidades();
     }
