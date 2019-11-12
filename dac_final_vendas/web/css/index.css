@@ -1,11 +1,8 @@
 .footer{
-    text-align: center;
-    font-size: 16px;
-    margin-bottom: 0px;
-    bottom: 0px;
-    position: static;
-    width: 99%;
-    height: 2.5rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: linear-gradient(to right,#27ae60,#20bf6b);
 }
 
 .header{
