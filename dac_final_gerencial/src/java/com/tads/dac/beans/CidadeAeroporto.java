@@ -15,7 +15,7 @@ import javax.persistence.Table;
 public class CidadeAeroporto implements Serializable {
     private int id;
     private String nome;
-    private Estado estado;
+    private Cidade cidade;
     private String sigla;
 
     @Id
@@ -39,14 +39,14 @@ public class CidadeAeroporto implements Serializable {
     }
 
     @ManyToOne
-    @JoinColumn(name = "id_estado")
-    public Estado getEstado() { return estado; }
-    public void setEstado(Estado estado) {
-        if (estado != null)
-            this.estado = estado;
+    @JoinColumn(name = "id_cidade")
+    public Cidade getCidade() { return cidade; }
+    public void setCidade(Cidade cidade) {
+        if (cidade != null)
+            this.cidade = cidade;
         else throw 
             new RuntimeException(
-                "Erro: Estado da Cidade com Aeroporto não pode ser nulo!");
+                "Erro: Cidade da Cidade com Aeroporto não pode ser nulo!");
     }
     
     @Column(name = "sigla_cidade_aeroporto", nullable = false, length = 3)
