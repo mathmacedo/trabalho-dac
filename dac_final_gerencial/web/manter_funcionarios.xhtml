@@ -16,39 +16,52 @@
                     <br/>
                     <h:panelGrid columns="2">
                         <h:outputLabel for="nome" value="Nome Completo: "/>
-                        <h:inputText id="nome" required="true" size="70">
+                        <h:inputText id="nome" required="true" size="70"
+                                     value = "#{funcionarioBean.nome}"
+                                     disabled="${param['action'] == 'view'}">
                             <f:validateLength minimum="10" maximum="70"/>
                         </h:inputText>
 
                         <h:outputLabel for="cpf" value="CPF: "/>
-                        <h:inputText id="cpf" required="true" size="70">
+                        <h:inputText id="cpf" required="true" size="70"
+                                     value = "#{funcionarioBean.cpf}"
+                                     disabled="${param['action'] == 'view'}">
                             <f:validator validatorId="com.tads.dac.validator.ValidaCpf" />
                         </h:inputText>
                         
                         <h:outputLabel for="email" value="Email: "/>
-                        <h:inputText id="Email" required="true" size="70"/>
+                        <h:inputText id="Email" required="true" size="70"
+                                     value="#{funcionarioBean.email}"
+                                     disabled="${param['action'] == 'view'}"/>
                         
                         <h:outputLabel for="cargo" value="Cargo: "/>
-                        <h:selectOneMenu id="cargo" required="true">
+                        <h:selectOneMenu id="cargo" required="true"
+                                         value="#{funcionarioBean.cargo}"
+                                         disabled="${param['action'] == 'view'}">
                             <f:selectItem/>
-                            <f:selectItem itemLabel="Gerente" itemValue="gerente"/>
-                            <f:selectItem itemLabel="Funcionário" itemValue="funcionario"/>
+                            <f:selectItem itemLabel="Gerente" itemValue="G"/>
+                            <f:selectItem itemLabel="Funcionário" itemValue="F"/>
                         </h:selectOneMenu>
                         
                         <h:outputLabel for="senha" value="Senha: "/>
-                        <h:inputSecret id="senha" required="true" size="70">
+                        <h:inputSecret id="senha" required="true" size="70"
+                                       value="#{funcionarioBean.senha}"
+                                       disabled="${param['action'] == 'view'}">
                             <f:validateLength minimum="4" maximum="16"/>
                         </h:inputSecret>
                         
                         <h:outputLabel for="conf_senha" value="Confirmar Senha: "/>
-                        <h:inputSecret id="conf_senha" required="true" size="70">
+                        <h:inputSecret id="conf_senha" required="true" size="70"
+                                       value="#{funcionarioBean.confSenha}"
+                                       disabled="${param['action'] == 'view'}">
                             <f:validateLength minimum="4" maximum="16"/>
                         </h:inputSecret>
                         
                         <h:outputLabel for="estado" value="Estado: "/>
                         <h:selectOneMenu id="estado" required="true"
                                          value = "#{funcionarioBean.estado}"
-                                         converter = "estadoConverter">
+                                         converter = "estadoConverter"
+                                         disabled="${param['action'] == 'view'}">
                             <f:selectItems value="#{funcionarioBean.listaEstados}" 
                                            var = "e"
                                            itemValue = "#{e}"
@@ -61,35 +74,47 @@
                         
                         <h:outputLabel for="cidade" value="Cidade: "/>
                         <h:selectOneMenu id="cidade" required="false"
-                                         value="#{funcionarioBean.cidade}">
+                                         value="#{funcionarioBean.cidade}"
+                                         converter="cidadeConverter"
+                                         disabled="${param['action'] == 'view'}">
                             <f:selectItems value = "#{funcionarioBean.listaCidades}"
                                            var = "c"
-                                           itemValue = "#{c.id}"
+                                           itemValue = "#{c}"
                                            itemLabel = "#{c.nome}" />
                         </h:selectOneMenu>
                         
                         <h:outputLabel for="bairro" value="Bairro: "/>
-                        <h:inputText id="bairro" required="true" size="70">
+                        <h:inputText id="bairro" required="true" size="70"
+                                     value="#{funcionarioBean.bairro}"
+                                     disabled="${param['action'] == 'view'}">
                             <f:validateLength minimum="2" maximum="70"/>
                         </h:inputText>
                         
                         <h:outputLabel for="rua" value="Rua: "/>
-                        <h:inputText id="rua" required="true" size="70">
+                        <h:inputText id="rua" required="true" size="70"
+                                     value="#{funcionarioBean.rua}"
+                                     disabled="${param['action'] == 'view'}">
                             <f:validateLength maximum="70"/>
                         </h:inputText>
                         
                         <h:outputLabel for="numero" value="Número: "/>
-                        <h:inputText id="Senha" required="true" size="70">
+                        <h:inputText id="Senha" required="true" size="70"
+                                     value="#{funcionarioBean.numero}"
+                                     disabled="${param['action'] == 'view'}">
                             <f:validateLongRange minimum="0" maximum="99999"/>
                         </h:inputText>
                         
                         <h:outputLabel for="complemento" value="Complemento: "/>
-                        <h:inputText id="complemento" size="70">
+                        <h:inputText id="complemento" size="70"
+                                     value="#{funcionarioBean.complemento}"
+                                     disabled="${param['action'] == 'view'}">
                             <f:validateLength maximum="70"/>
                         </h:inputText>
                         
                         <h:outputLabel for="telefone" value="Telefone: "/>
-                        <h:inputText id="telefone" required="true" size="70">
+                        <h:inputText id="telefone" required="true" size="70"
+                                     value="#{funcionarioBean.telefone}"
+                                     disabled="${param['action'] == 'view'}">
                             <f:validateLength maximum="11"/>
                             <f:validateRegex pattern="[0-9]{10,11}"/>
                         </h:inputText>
