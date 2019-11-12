@@ -17,9 +17,9 @@ CREATE TABLE tb_cidade_aeroporto(
 	id_cidade_aeroporto SERIAL PRIMARY KEY,
 	nome_cidade_aeroporto VARCHAR(70) NOT NULL,
 	sigla_cidade_aeroporto VARCHAR(3) NOT NULL,
-	id_estado INTEGER NOT NULL,
-	CONSTRAINT fk_cidade_aeroporto_id_estado FOREIGN KEY (id_estado)
-	REFERENCES tb_estado(id_estado) MATCH SIMPLE
+	id_cidade INTEGER NOT NULL,
+	CONSTRAINT fk_cidade_aeroporto_id_cidade FOREIGN KEY (id_cidade)
+	REFERENCES tb_cidade(id_cidade) MATCH SIMPLE
 	ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 
