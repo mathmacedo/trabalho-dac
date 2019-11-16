@@ -27,6 +27,7 @@ CREATE TABLE tb_endereco(
 	id_endereco SERIAL PRIMARY KEY,
 	rua_endereco VARCHAR (100) NOT NULL,
 	numero_endereco INTEGER NOT NULL,
+	bairro_endereco VARCHAR(50) NOT NULL,
 	complemento_endereco VARCHAR(50),
 	id_cidade INTEGER NOT NULL,
 	CONSTRAINT fk_endereco_id_cidade FOREIGN KEY (id_cidade)
@@ -75,7 +76,8 @@ CREATE TABLE tb_funcionario(
 	email_funcionario VARCHAR(100) NOT NULL,
 	senha_funcionario VARCHAR(64) NOT NULL,
 	tipo_funcionario CHAR NOT NULL,
-	id_endereco INTEGER NOT NULL,
+	telefone_funcionario VARCHAR(11) NOT NULL,
+ 	id_endereco INTEGER NOT NULL,
 	CONSTRAINT fk_funcionario_id_endereco FOREIGN KEY (id_endereco)
 	REFERENCES tb_endereco(id_endereco) MATCH SIMPLE
 	ON UPDATE NO ACTION ON DELETE NO ACTION
