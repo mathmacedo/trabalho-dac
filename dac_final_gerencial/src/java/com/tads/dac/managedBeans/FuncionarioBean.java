@@ -9,6 +9,7 @@ import com.tads.dac.facade.EnderecoFacade;
 import com.tads.dac.facade.EstadoFacade;
 import com.tads.dac.facade.FuncionarioFacade;
 import java.io.IOException;
+import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -19,8 +20,7 @@ import javax.inject.Named;
 
 @Named(value = "funcionarioBean")
 @RequestScoped
-public class FuncionarioBean {
-    private Funcionario funcionario;    
+public class FuncionarioBean implements Serializable{
     private List<Funcionario> funcionarios;
     private List<Estado> listaEstados;
     private List<Cidade> listaCidades;
@@ -37,14 +37,18 @@ public class FuncionarioBean {
     private int numero;
     private String complemento;
     private String telefone;
+    private Funcionario funcionario;
+    private char function;
     
     @PostConstruct
     public void init(){
         this.funcionario = new Funcionario();
         this.funcionarios = FuncionarioFacade.listFuncionarios();
-        this.listaEstados = EstadoFacade.listEstados();
-        this.estado = listaEstados.get(0);
-        this.listaCidades = CidadeFacade.getCidadesByEstado(estado.getId());
+        
+        if (this.listaEstados == null)
+            this.listaEstados = EstadoFacade.listEstados();
+        
+        this.listaCidades = CidadeFacade.listCidades();
     }
 
     public Funcionario getFuncionario() {
@@ -54,7 +58,7 @@ public class FuncionarioBean {
     public void setFuncionario(Funcionario funcionario) {
         this.funcionario = funcionario;
     }
-
+    
     public List<Funcionario> getFuncionarios() {
         return funcionarios;
     }
@@ -186,6 +190,14 @@ public class FuncionarioBean {
     public void buscarCidades(){
         this.listaCidades = CidadeFacade.getCidadesByEstado(this.estado.getId());
     }
+
+    public char getFunction() {
+        return function;
+    }
+
+    public void setFunction(char function) {
+        this.function = function;
+    }
     
     public void cadastrar() throws IOException, NoSuchAlgorithmException{
         Funcionario f = new Funcionario();
@@ -250,5 +262,28 @@ public class FuncionarioBean {
             FacesContext.getCurrentInstance()
                     .getExternalContext().redirect("pesquisar_funcionarios.xhtml"); 
         }
+    }
+    
+    public String viewFuncionario(int id){
+        this.function = 'v';
+        
+        Funcionario func = FuncionarioFacade.getFuncionarioById(id);
+        
+        this.estado = func.getEndereco().getCidade().getEstado();
+        
+        this.listaCidades = CidadeFacade.getCidadesByEstado(this.estado.getId());
+        this.cidade = func.getEndereco().getCidade();
+        
+        this.cargo = func.getTipo();
+        //this.bairro = funcionario.getEndereco().getBairro();
+        this.complemento = func.getEndereco().getComplemento();
+        this.cpf = func.getCpf();
+        this.email = func.getEmail();
+        this.nome = func.getNome();
+        this.numero = func.getEndereco().getNumero();
+        this.rua = func.getEndereco().getRua();
+        //this.telefone = funcionario.getTelefone();
+     
+        return "manter_funcionarios.xhtml";
     }
 }
