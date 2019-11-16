@@ -34,9 +34,6 @@ public class EstadoDAO {
             
             Estado e = (Estado) s.get(Estado.class, id);
             
-            t.commit();
-            s.close();
-            
             if (e != null)
                 return e;
             else throw new RuntimeException(
@@ -55,8 +52,6 @@ public class EstadoDAO {
             Query q = s.createQuery("from Estado");
             
             List<Estado> lista = q.list();
-            t.commit();
-            s.close();
             
             if (lista != null)
                 return lista;
@@ -115,9 +110,6 @@ public class EstadoDAO {
             q.setString(0, sigla);
             
             Estado e = (Estado) q.uniqueResult();
-            
-            t.commit();
-            s.close();
             
             if (e != null)
                 return e;

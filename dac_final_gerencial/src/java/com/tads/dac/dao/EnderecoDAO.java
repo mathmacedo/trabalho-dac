@@ -34,9 +34,6 @@ public class EnderecoDAO {
             
             Endereco e = (Endereco) s.get(Endereco.class, id);
             
-            t.commit();
-            s.close();
-            
             if (e != null)
                 return e;
             else throw new RuntimeException(
@@ -55,8 +52,6 @@ public class EnderecoDAO {
             Query q = s.createQuery("from Endereco");
             
             List<Endereco> lista = q.list();
-            t.commit();
-            s.close();
             
             if (lista != null)
                 return lista;

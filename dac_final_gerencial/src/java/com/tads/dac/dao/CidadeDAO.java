@@ -34,9 +34,6 @@ public class CidadeDAO {
             
             Cidade c = (Cidade) s.get(Cidade.class, id);
             
-            t.commit();
-            s.close();
-            
             if (c != null)
                 return c;
             else throw new RuntimeException(
@@ -57,8 +54,6 @@ public class CidadeDAO {
             q.setInteger(0, idEstado);
             
             List<Cidade> lista = q.list();
-            t.commit();
-            s.close();
             
             if (lista != null)
                 return lista;
@@ -78,8 +73,6 @@ public class CidadeDAO {
             Query q = s.createQuery("from Cidade");
             
             List<Cidade> lista = q.list();
-            t.commit();
-            s.close();
             
             if (lista != null)
                 return lista;

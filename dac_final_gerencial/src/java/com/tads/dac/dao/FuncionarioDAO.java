@@ -34,10 +34,7 @@ public class FuncionarioDAO {
             Transaction t = s.beginTransaction();
             
             Funcionario f = (Funcionario) s.get(Funcionario.class, id);
-            
-            t.commit();
-            s.close();
-            
+                        
             if (f != null)
                 return f;
             else throw new RuntimeException(
@@ -56,8 +53,6 @@ public class FuncionarioDAO {
             Query q = s.createQuery("from Funcionario");
             
             List<Funcionario> lista = q.list();
-            t.commit();
-            s.close();
             
             if (lista != null)
                 return lista;
@@ -123,7 +118,6 @@ public class FuncionarioDAO {
             s.close();
             
             return f;
-            
         }
         catch(Exception ex){
             throw new RuntimeException(

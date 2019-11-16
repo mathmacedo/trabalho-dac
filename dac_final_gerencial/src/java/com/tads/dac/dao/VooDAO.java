@@ -61,9 +61,6 @@ public class VooDAO {
             
             Voo v = (Voo) s.get(Voo.class, id);
             
-            t.commit();
-            s.close();
-            
             if (v != null)
                 return v;
             else throw new RuntimeException(
@@ -82,8 +79,6 @@ public class VooDAO {
             Query q = s.createQuery("from Voo");
             
             List<Voo> lista = q.list();
-            t.commit();
-            s.close();
             
             if (lista != null)
                 return lista;
