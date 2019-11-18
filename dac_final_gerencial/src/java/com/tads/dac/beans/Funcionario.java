@@ -75,9 +75,9 @@ public class Funcionario implements Serializable {
     
     @Column(name = "senha_funcionario", length = 64, nullable = false)
     public String getSenha() { return senha; }
-    public void setSenha(String senha) throws NoSuchAlgorithmException {
+    public void setSenha(String senha) {
         if (senha != null)
-            this.senha = StringToMD5.toMD5(senha);
+            this.senha = senha;
         else throw new RuntimeException(
             "Erro: Senha do funcionário não pode ser nula!");
     }
