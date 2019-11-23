@@ -14,50 +14,58 @@
                     <h:outputText value="Preencha os campos abaixo 
                                   para criar seu cadastro: "/>
                     <br/>
+                    <h:inputHidden id="id" value="#{cidadeBean.id}"/>
+                    <h:inputHidden id="method" value="#{cidadeBean.method}"/>
+                    
                     <h:panelGrid columns="2">
                         <h:outputLabel for="nome" value="Nome"/>
-                        <h:inputText id="nome" required="true" size="70">
+                        <h:inputText id="nome" required="true" size="70"
+                                     value="#{cidadeBean.nome}"
+                                     disabled="#{cidadeBean.method == 'v'}">
                             <f:validateLength minimum="3" maximum="70"/>
-                        </h:inputText>
-
-                        <h:outputLabel for="pais" value="País: "/>
-                        <h:inputText id="pais" required="true" size="70">
-                            <f:validateLength minimum="4" maximum="50"/>
                         </h:inputText>
                         
                         <h:outputLabel for="estado" value="Estado: "/>
-                        <h:selectOneMenu id="estado" required="true">
-                            <f:selectItem />
-                            <f:selectItem itemValue="PR" itemLabel="Paraná"/>
-                            <f:selectItem itemValue="SC" itemLabel="Santa Catarina"/>
-                            <f:selectItem itemValue="RS" itemLabel="Rio Grande do Sul"/>
-                            <f:selectItem itemValue="SP" itemLabel="São Paulo"/>
-                            <f:selectItem itemValue="RJ" itemLabel="Rio de Janeiro"/>
-                            <f:selectItem itemValue="MG" itemLabel="Minas Gerais"/>
-                            <f:selectItem itemValue="ES" itemLabel="Espírito Santo"/>
+                        <h:selectOneMenu id="estado" required="true"
+                                         value = "#{cidadeBean.estado}"
+                                         converter = "estadoConverter"
+                                         disabled="#{cidadeBean.method == 'v'}">
+                            <f:selectItems value="#{cidadeBean.listaEstados}"
+                                           var = "e"
+                                           itemValue = "#{e}"
+                                           itemLabel = "#{e.nome}"/>  
+                            <f:ajax event="change"
+                                    render="cidade"
+                                    execute="estado"
+                                    listener="#{cidadeBean.buscarCidades}" />
                         </h:selectOneMenu>
                         
                         <h:outputLabel for="cidade" value="Cidade: "/>
-                        <h:selectOneMenu id="cidade" required="true">
-                            <f:selectItem />
-                            <f:selectItem itemValue="São Paulo" itemLabel="São Paulo"/>
-                            <f:selectItem itemValue="Curitiba" itemLabel="Curitiba"/>
-                            <f:selectItem itemValue="Rio de Janeiro" itemLabel="Rio de Janeiro"/>
-                            <f:selectItem itemValue="Belo Horizonte" itemLabel="Belo Horizonte"/>
-                            <f:selectItem itemValue="Vitória" itemLabel="Vitória"/>
-                            <f:selectItem itemValue="Porto Alegre" itemLabel="Porto Alegre"/>
-                            <f:selectItem itemValue="Florianópolis" itemLabel="Florianópolis"/>
+                        <h:selectOneMenu id="cidade" required="false"
+                                         value="#{cidadeBean.cidade}"
+                                         converter="cidadeConverter"
+                                         disabled="#{cidadeBean.method == 'v'}">
+                            <f:selectItems value = "#{cidadeBean.listaCidades}"
+                                           var = "c"
+                                           itemValue = "#{c}"
+                                           itemLabel = "#{c.nome}" />
                         </h:selectOneMenu>
                         
                         <h:outputLabel for="sigla" value="Sigla do Aeroporto: "/>
-                        <h:inputText id="sigla" size="70">
+                        <h:inputText id="sigla" size="70"
+                                     value="#{cidadeBean.sigla}"
+                                     disabled="#{cidadeBean.method == 'v'}">
                             <f:validateLength maximum="3" minimum="3"/>
                         </h:inputText>
                         
                     </h:panelGrid>
                     <br/>
                     <h:commandButton value="Cadastrar" styleClass='btn btn-success'
-                                     action="#{cidadeBean.cadastrar}"/>
+                                     action="#{cidadeBean.cadastrar}"
+                                     rendered="#{cidadeBean.method == 'n'}"/>
+                    <h:commandButton value="Atualizar" styleClass="btn btn-success"
+                                     action="#{cidadeBean.atualizar}"
+                                     rendered="#{cidadeBean.method == 'u'}"/>
                     <h:button styleClass="btn btn-warning" value="Voltar" 
                               outcome="pesquisar_cidades.xhtml"/>
                 </h:form>

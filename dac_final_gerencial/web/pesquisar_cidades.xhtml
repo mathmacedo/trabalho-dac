@@ -14,33 +14,39 @@
                         <h:outputLabel for="pesquisar" value="Pesquisar Cidades por Nome:"/>
                         <h:inputText id="pesquisar" required="true" styleClass="form-control"/>
                         <h:commandButton styleClass='button btn btn-info' value="Pesquisar"/>
-                        <h:button styleClass='button btn btn-success' value='Novo'
-                                  outcome='manter_cidades'/>    
+                        <h:commandButton styleClass='button btn btn-success' 
+                                         value='Novo' immediate="true"
+                                         action="#{cidadeBean.openView(null, 'n')}"/>    
                     </h:form>
                 </h:panelGrid>
-                <h:dataTable styleClass="table" var="t" value="">
+                <h:dataTable styleClass="table" var="c" 
+                             value="#{cidadeBean.listaAeroportos}">
                     <h:column>
                         <f:facet name="header">
                             Nome da Cidade
                         </f:facet>
-                        Curitiba
+                        #{c.nome}
                     </h:column>
                     <h:column>
                         <f:facet name="header">
                             Sigla do Aeroporto
                         </f:facet>
-                        CWB
+                        #{c.sigla}
                     </h:column>
                     <h:column>
                         <f:facet name="header">
                             Opções
                         </f:facet>
-                        <h:button styleClass="btn btn-info" value="Visualizar"
-                                  outcome='manter_cidades.xhtml?action=new'/>
-                        <h:button styleClass="btn btn-warning" value="Editar"
-                                  outcome='manter_cidades.xhtml?action=edit'/>
-                        <h:button styleClass="btn btn-danger" value="Excluir"
-                                  onclick="confirmarExclusao()"/>
+                        <h:form>
+                            <h:commandButton styleClass="btn btn-info" 
+                                             value="Visualizar"
+                                             action="#{cidadeBean.openView(c, 'v')}"/>
+                            <h:commandButton styleClass="btn btn-warning" value="Editar"
+                                             action="#{cidadeBean.openView(c, 'u')}"/>
+                            <h:commandButton styleClass="btn btn-danger" value="Excluir"
+                                             onclick='return confirmarExclusao("#{c.nome}")'
+                                             action="#{cidadeBean.remover(c.id)}"/>
+                        </h:form>
                     </h:column>
                 </h:dataTable>
                 <h:button styleClass="button" value="Voltar" outcome="menu_gerente.xhtml"/>
