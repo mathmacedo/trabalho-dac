@@ -241,8 +241,6 @@ public class FuncionarioBean implements Serializable{
         if (idFuncionario > 0) {
             setFuncionarios(FuncionarioFacade.listFuncionarios());
             
-            clearData();
-            
             FacesContext.getCurrentInstance().addMessage(null, new
                 FacesMessage(FacesMessage.SEVERITY_INFO, "Cadastro Realizado!", null));
 
@@ -297,8 +295,6 @@ public class FuncionarioBean implements Serializable{
         if (EnderecoFacade.updateEndereco(e)){
             if (FuncionarioFacade.updateFuncionario(f)){
                 setFuncionarios(FuncionarioFacade.listFuncionarios());
-                
-                clearData();
                 
                 FacesContext.getCurrentInstance().addMessage(null, new
                 FacesMessage(FacesMessage.SEVERITY_INFO, "Funcionário atualizado com sucesso!", null));
