@@ -14,27 +14,32 @@
                         <h:outputLabel for="pesquisar" value="Pesquisar Pilotos por Nome:"/>
                         <h:inputText id="pesquisar" required="true" styleClass="form-control"/>
                         <h:commandButton styleClass='button btn btn-info' value="Pesquisar"/>
-                        <h:button styleClass='button btn btn-success' value='Novo'
-                                  outcome='manter_pilotos'/>    
+                        <h:commandButton styleClass='button btn btn-success' 
+                                         value='Novo' immediate="true"
+                                         action="#{pilotoBean.openView(null, 'n')}"/>    
                     </h:form>
                 </h:panelGrid>
-                <h:dataTable styleClass="table" var="t" value="">
+                <h:dataTable styleClass="table" var="p" 
+                             value="#{pilotoBean.listaPilotos}">
                     <h:column>
                         <f:facet name="header">
                             Nome do Piloto
                         </f:facet>
-                        José Orelha
+                        #{p.nome}
                     </h:column>
                     <h:column>
                         <f:facet name="header">
                             Opções
                         </f:facet>
-                        <h:button styleClass="btn btn-info" value="Visualizar"
-                                  outcome='manter_pilotos.xhtml?action=new'/>
-                        <h:button styleClass="btn btn-warning" value="Editar"
-                                  outcome='manter_pilotos.xhtml?action=edit'/>
-                        <h:button styleClass="btn btn-danger" value="Excluir"
-                                  onclick="confirmarExclusao()"/>
+                        <h:form>
+                            <h:commandButton styleClass="btn btn-info" value="Visualizar"
+                                             action="#{pilotoBean.openView(p, 'v')}"/>
+                            <h:commandButton styleClass="btn btn-warning" value="Editar"
+                                             action="#{pilotoBean.openView(p, 'u')}"/>
+                            <h:commandButton styleClass="btn btn-danger" value="Excluir"
+                                      onclick='return confirmarExclusao("#{p.nome}")'
+                                      action="#{pilotoBean.remover(p.id)}"/>
+                        </h:form>
                     </h:column>
                 </h:dataTable>
                 <h:button styleClass="button" value="Voltar" outcome="menu_gerente.xhtml"/>
