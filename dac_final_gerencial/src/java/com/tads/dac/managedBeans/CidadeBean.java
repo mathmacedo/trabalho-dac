@@ -193,8 +193,6 @@ public class CidadeBean implements Serializable {
     public String openView(CidadeAeroporto aero, char method){
         clearData();
         
-        if (this.estado == null) setEstado(getListaEstados().get(0));
-        
         this.method = method;
         
         if (method != 'n'){
@@ -204,6 +202,11 @@ public class CidadeBean implements Serializable {
             this.nome = aero.getNome();
             this.sigla = aero.getSigla();
         }
+        
+        if (this.estado == null) setEstado(this.listaEstados.get(0));
+        
+        if(method != 'v')
+            setListaCidades(CidadeFacade.getCidadesByEstado(estado.getId()));
         
         return "manter_cidades";
     }

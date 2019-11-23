@@ -45,7 +45,7 @@ public class FuncionarioBean implements Serializable{
         this.funcionarios = FuncionarioFacade.listFuncionarios();
         this.listaEstados = EstadoFacade.listEstados();
         this.listaCidades = CidadeFacade.listCidades();
-        }
+   }
     
     public List<Funcionario> getFuncionarios() {
         return funcionarios;
