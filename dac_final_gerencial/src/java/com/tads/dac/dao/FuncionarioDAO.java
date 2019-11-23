@@ -91,6 +91,7 @@ public class FuncionarioDAO {
             Funcionario f = (Funcionario) s.get(Funcionario.class, id);
             
             s.delete(f);
+            s.delete(f.getEndereco());
             
             t.commit();
             s.close();

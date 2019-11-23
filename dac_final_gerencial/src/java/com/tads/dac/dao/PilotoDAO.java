@@ -87,6 +87,7 @@ public class PilotoDAO {
             Piloto p = (Piloto) s.get(Piloto.class, id);
             
             s.delete(p);
+            s.delete(p.getEndereco());
             
             t.commit();
             s.close();
