@@ -2,9 +2,10 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:ui="http://java.sun.com/jsf/facelets" 
-                xmlns:f="http://xmlns.jcp.org/jsf/core">
+                xmlns:f="http://java.sun.com/jsf/core">
     
     <ui:define name="body">
+                       
         <script src="#{facesContext.externalContext.requestContextPath}/js/pesquisar_funcionarios.js"></script>
         <div class='container'>
             <center>
@@ -14,10 +15,12 @@
                         <h:outputLabel for="pesquisar" value="Pesquisar Funcionarios por Nome:"/>
                         <h:inputText id="pesquisar" required="true" styleClass="form-control"/>
                         <h:commandButton styleClass='button btn btn-info' value="Pesquisar"/>
-                        <h:button styleClass='button btn btn-success' value='Novo'
-                                  outcome='manter_funcionarios?action=new'/>    
+                        <h:commandButton styleClass='button btn btn-success' value='Novo'
+                                         action="#{funcionarioBean.openView(null, 'n')}"
+                                         immediate='true'/>
                     </h:form>
                 </h:panelGrid>
+            <h:form>
                 <h:dataTable styleClass="table" var="f" 
                              value="#{funcionarioBean.funcionarios}">
                     <h:column>
@@ -30,20 +33,20 @@
                         <f:facet name="header">
                             Opções
                         </f:facet>
-                        <h:form>
                             <h:commandButton styleClass="btn btn-info" value="Visualizar"
-                                  action='#{funcionarioBean.viewFuncionario(f.id)}'/>
-                            <h:button styleClass="btn btn-warning" value="Editar"
-                                      outcome='manter_funcionarios.xhtml?action=edit'/>
-                            <h:button styleClass="btn btn-danger" value="Excluir"
-                                      onclick="confirmarExclusao()"/>
-                        </h:form>
+                                             action="#{funcionarioBean.openView(f, 'v')}"/>
+                            <h:commandButton styleClass="btn btn-warning" value="Editar"
+                                             action="#{funcionarioBean.openView(f, 'u')}"/>
+                            <h:commandButton styleClass="btn btn-danger" value="Excluir"
+                                      onclick='return confirmarExclusao("#{f.nome}")'
+                                      action="#{funcionarioBean.remover(f.id)}"/>
                     </h:column>
                 </h:dataTable>
                 <h:button styleClass="button" value="Voltar" outcome="menu_gerente.xhtml"/>
+             </h:form>
             </center>
         </div>
         <br/>
+                        
     </ui:define>              
 </ui:composition>
-

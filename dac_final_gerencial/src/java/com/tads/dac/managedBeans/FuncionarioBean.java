@@ -8,24 +8,25 @@ import com.tads.dac.facade.CidadeFacade;
 import com.tads.dac.facade.EnderecoFacade;
 import com.tads.dac.facade.EstadoFacade;
 import com.tads.dac.facade.FuncionarioFacade;
-import java.io.IOException;
+import com.tads.dac.util.StringToMD5;
 import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
 @Named(value = "funcionarioBean")
-@RequestScoped
+@SessionScoped
 public class FuncionarioBean implements Serializable{
     private List<Funcionario> funcionarios;
     private List<Estado> listaEstados;
     private List<Cidade> listaCidades;
     private Cidade cidade;
     private Estado estado;
+    private int id;
     private String nome;
     private String cpf;
     private String email;
@@ -37,27 +38,14 @@ public class FuncionarioBean implements Serializable{
     private int numero;
     private String complemento;
     private String telefone;
-    private Funcionario funcionario;
-    private char function;
+    private char method;
     
     @PostConstruct
     public void init(){
-        this.funcionario = new Funcionario();
         this.funcionarios = FuncionarioFacade.listFuncionarios();
-        
-        if (this.listaEstados == null)
-            this.listaEstados = EstadoFacade.listEstados();
-        
+        this.listaEstados = EstadoFacade.listEstados();
         this.listaCidades = CidadeFacade.listCidades();
-    }
-
-    public Funcionario getFuncionario() {
-        return funcionario;
-    }
-
-    public void setFuncionario(Funcionario funcionario) {
-        this.funcionario = funcionario;
-    }
+        }
     
     public List<Funcionario> getFuncionarios() {
         return funcionarios;
@@ -99,6 +87,14 @@ public class FuncionarioBean implements Serializable{
         this.estado = estado;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public String getNome() {
         return nome;
     }
@@ -143,7 +139,7 @@ public class FuncionarioBean implements Serializable{
         return this.confSenha; 
     }
     
-    public void setConfSenha(String senha){
+    public void setConfSenha(String senha) throws NoSuchAlgorithmException{
         this.confSenha = senha;
     }
     
@@ -191,20 +187,20 @@ public class FuncionarioBean implements Serializable{
         this.listaCidades = CidadeFacade.getCidadesByEstado(this.estado.getId());
     }
 
-    public char getFunction() {
-        return function;
+    public char getMethod() {
+        return method;
     }
 
-    public void setFunction(char function) {
-        this.function = function;
+    public void setMethod(char method) {
+        this.method = method;
     }
     
-    public void cadastrar() throws IOException, NoSuchAlgorithmException{
+    public String cadastrar() throws NoSuchAlgorithmException{
         Funcionario f = new Funcionario();
         Endereco e = new Endereco();
         
         if (senha.equals(confSenha))
-            f.setSenha(senha);
+            f.setSenha(StringToMD5.toMD5(senha));
         else {
             FacesContext.getCurrentInstance().addMessage(null, new
             FacesMessage(FacesMessage.SEVERITY_ERROR, "Senhas não coincidem!", null));
@@ -212,14 +208,14 @@ public class FuncionarioBean implements Serializable{
             FacesContext.getCurrentInstance().getExternalContext()
                 .getFlash().setKeepMessages(true);
 
-            FacesContext.getCurrentInstance()
-                    .getExternalContext().redirect("pesquisar_funcionarios.xhtml"); 
+            return "manter_funcionarios";
         }
         
         e.setCidade(cidade);
         e.setComplemento(complemento);
         e.setNumero(numero);
         e.setRua(rua);
+        e.setBairro(bairro);
         
         int idEndereco = EnderecoFacade.insertEndereco(e);
         if (idEndereco != 0) e.setId(idEndereco);
@@ -230,8 +226,7 @@ public class FuncionarioBean implements Serializable{
             FacesContext.getCurrentInstance().getExternalContext()
                 .getFlash().setKeepMessages(true);
 
-            FacesContext.getCurrentInstance()
-                    .getExternalContext().redirect("pesquisar_funcionarios.xhtml"); 
+            return "manter_funcionarios";
         }
         
         f.setEndereco(e);
@@ -239,17 +234,22 @@ public class FuncionarioBean implements Serializable{
         f.setEmail(email);
         f.setNome(nome);
         f.setTipo(cargo);
+        f.setTelefone(telefone);
         
         int idFuncionario = FuncionarioFacade.insertFuncionario(f);
-        if (idFuncionario != 0) {
+        
+        if (idFuncionario > 0) {
+            setFuncionarios(FuncionarioFacade.listFuncionarios());
+            
+            clearData();
+            
             FacesContext.getCurrentInstance().addMessage(null, new
                 FacesMessage(FacesMessage.SEVERITY_INFO, "Cadastro Realizado!", null));
 
             FacesContext.getCurrentInstance().getExternalContext()
                 .getFlash().setKeepMessages(true);
 
-            FacesContext.getCurrentInstance()
-                    .getExternalContext().redirect("pesquisar_funcionarios.xhtml"); 
+            return "pesquisar_funcionarios";
         }
         
         else {
@@ -259,31 +259,134 @@ public class FuncionarioBean implements Serializable{
             FacesContext.getCurrentInstance().getExternalContext()
                 .getFlash().setKeepMessages(true);
 
-            FacesContext.getCurrentInstance()
-                    .getExternalContext().redirect("pesquisar_funcionarios.xhtml"); 
+            return "manter_funcionarios";
         }
     }
     
-    public String viewFuncionario(int id){
-        this.function = 'v';
+    public String atualizar() throws NoSuchAlgorithmException {
+        Funcionario f = FuncionarioFacade.getFuncionarioById(this.id);
+        Endereco e = f.getEndereco();
         
-        Funcionario func = FuncionarioFacade.getFuncionarioById(id);
+        if (senha != null){
+            if (senha.equals(confSenha))
+                f.setSenha(StringToMD5.toMD5(senha));
+            else {
+                FacesContext.getCurrentInstance().addMessage(null, new
+                FacesMessage(FacesMessage.SEVERITY_ERROR, "Senhas não coincidem!", null));
+
+                FacesContext.getCurrentInstance().getExternalContext()
+                    .getFlash().setKeepMessages(true);
+
+                return "manter_funcionarios";
+            }
+        }
         
-        this.estado = func.getEndereco().getCidade().getEstado();
+        e.setBairro(bairro);
+        e.setCidade(cidade);
+        e.setComplemento(complemento);
+        e.setNumero(numero);
+        e.setRua(rua);
         
-        this.listaCidades = CidadeFacade.getCidadesByEstado(this.estado.getId());
-        this.cidade = func.getEndereco().getCidade();
+        f.setCpf(cpf);
+        f.setEmail(email);
+        f.setEndereco(e);
+        f.setNome(nome);
+        f.setTelefone(telefone);
+        f.setTipo(cargo);
         
-        this.cargo = func.getTipo();
-        //this.bairro = funcionario.getEndereco().getBairro();
-        this.complemento = func.getEndereco().getComplemento();
-        this.cpf = func.getCpf();
-        this.email = func.getEmail();
-        this.nome = func.getNome();
-        this.numero = func.getEndereco().getNumero();
-        this.rua = func.getEndereco().getRua();
-        //this.telefone = funcionario.getTelefone();
-     
-        return "manter_funcionarios.xhtml";
+        if (EnderecoFacade.updateEndereco(e)){
+            if (FuncionarioFacade.updateFuncionario(f)){
+                setFuncionarios(FuncionarioFacade.listFuncionarios());
+                
+                clearData();
+                
+                FacesContext.getCurrentInstance().addMessage(null, new
+                FacesMessage(FacesMessage.SEVERITY_INFO, "Funcionário atualizado com sucesso!", null));
+
+                FacesContext.getCurrentInstance().getExternalContext()
+                    .getFlash().setKeepMessages(true);
+
+                return "pesquisar_funcionarios";
+            }
+            else{
+                FacesContext.getCurrentInstance().addMessage(null, new
+                FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro ao atualizar funcionário!", null));
+            }
+        }
+        else{
+            FacesContext.getCurrentInstance().addMessage(null, new
+                FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro ao atualizar endereço!", null));
+        }
+        FacesContext.getCurrentInstance().getExternalContext()
+                .getFlash().setKeepMessages(true);
+        
+        return "manter_funcionarios";
     }
-}
+    
+    public void remover(int id){
+        if (FuncionarioFacade.deleteFuncionario(id)){
+            FacesContext.getCurrentInstance().addMessage(null, new
+                FacesMessage(FacesMessage.SEVERITY_INFO, "Funcionário excluído com sucesso!", null));
+            
+            setFuncionarios(FuncionarioFacade.listFuncionarios());
+        }
+        else {
+            FacesContext.getCurrentInstance().addMessage(null, new
+                FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro ao excluir funcionário!", null));
+        }
+        FacesContext.getCurrentInstance().getExternalContext()
+                .getFlash().setKeepMessages(true);
+    }
+    
+    public String openView(Funcionario func, char method){
+        clearData();
+        
+        this.method = method;
+        
+        if (this.estado == null) setEstado(this.listaEstados.get(0));
+        
+        if(method != 'v')
+            setListaCidades(CidadeFacade.getCidadesByEstado(estado.getId()));
+        
+        if (method != 'n'){
+            this.id = func.getId();
+
+            this.estado = func.getEndereco().getCidade().getEstado();
+
+            this.listaCidades = CidadeFacade.getCidadesByEstado(this.estado.getId());
+            this.cidade = func.getEndereco().getCidade();
+
+            this.cargo = func.getTipo();
+            this.bairro = func.getEndereco().getBairro();
+            this.complemento = func.getEndereco().getComplemento();
+            this.cpf = func.getCpf();
+            this.email = func.getEmail();
+            this.nome = func.getNome();
+            this.numero = func.getEndereco().getNumero();
+            this.rua = func.getEndereco().getRua();
+            this.telefone = func.getTelefone();
+        }
+        return "manter_funcionarios";
+    }
+
+    private void clearData() {
+        this.bairro = null;
+        this.cargo = 0;
+        this.cidade = null;
+        this.complemento = null;
+        this.confSenha = null;
+        this.cpf = null;
+        this.email= null;
+        this.estado = null;
+        this.id = 0;
+        this.method = 0;
+        this.nome = null;
+        this.numero = 0;
+        this.rua = null;
+        this.senha = null;
+        this.telefone = null;
+        
+        setListaEstados(EstadoFacade.listEstados());
+        setListaCidades(CidadeFacade.listCidades());
+    }
+}   
