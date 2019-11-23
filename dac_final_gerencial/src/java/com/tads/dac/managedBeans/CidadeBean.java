@@ -193,6 +193,8 @@ public class CidadeBean implements Serializable {
     public String openView(CidadeAeroporto aero, char method){
         clearData();
         
+        if (this.estado == null) setEstado(getListaEstados().get(0));
+        
         this.method = method;
         
         if (method != 'n'){

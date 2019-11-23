@@ -5,6 +5,8 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
     
     <ui:define name="body">
+        <f:ajax execute="estado" render="cidade" 
+                listener="#{cidadeBean.buscarCidades()}" event="load"/>
         <script src="#{facesContext.externalContext.requestContextPath}/js/pesquisar_cidades.js"></script>
         <div class='container'>
             <center>
