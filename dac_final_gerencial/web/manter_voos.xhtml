@@ -22,69 +22,77 @@
                     <br/><br/>
                     <h:panelGrid columns="2">
                         <h:outputLabel for="origem" value="Cidade de origem: "/>
-                        <h:selectOneMenu id="origem" required="true">
-                            <f:selectItem />
-                            <f:selectItem itemValue="São Paulo" itemLabel="São Paulo"/>
-                            <f:selectItem itemValue="Curitiba" itemLabel="Curitiba"/>
-                            <f:selectItem itemValue="Rio de Janeiro" itemLabel="Rio de Janeiro"/>
-                            <f:selectItem itemValue="Belo Horizonte" itemLabel="Belo Horizonte"/>
-                            <f:selectItem itemValue="Vitória" itemLabel="Vitória"/>
-                            <f:selectItem itemValue="Porto Alegre" itemLabel="Porto Alegre"/>
-                            <f:selectItem itemValue="Florianópolis" itemLabel="Florianópolis"/>
+                        <h:selectOneMenu id="origem" required="true"
+                                         value="#{vooBean.origem}"
+                                         converter="aeroportoConverter"
+                                         disabled="#{vooBean.method == 'v'}">
+                            <f:selectItems var="cidade" value='#{vooBean.listaAeroportos}'
+                                           itemLabel="#{cidade.nome}"
+                                           itemValue="#{cidade}"/>
                         </h:selectOneMenu>
                         
                         <h:outputLabel for="destino" value="Cidade de destino: "/>
-                        <h:selectOneMenu id="destino" required="true">
-                            <f:selectItem />
-                            <f:selectItem itemValue="São Paulo" itemLabel="São Paulo"/>
-                            <f:selectItem itemValue="Curitiba" itemLabel="Curitiba"/>
-                            <f:selectItem itemValue="Rio de Janeiro" itemLabel="Rio de Janeiro"/>
-                            <f:selectItem itemValue="Belo Horizonte" itemLabel="Belo Horizonte"/>
-                            <f:selectItem itemValue="Vitória" itemLabel="Vitória"/>
-                            <f:selectItem itemValue="Porto Alegre" itemLabel="Porto Alegre"/>
-                            <f:selectItem itemValue="Florianópolis" itemLabel="Florianópolis"/>
+                        <h:selectOneMenu id="destino" required="true"
+                                         value="#{vooBean.destino}"
+                                         converter="aeroportoConverter"
+                                         disabled="#{vooBean.method == 'v'}">
+                            <f:selectItems var="cidade" value='#{vooBean.listaAeroportos}'
+                                           itemLabel="#{cidade.nome}"
+                                           itemValue="#{cidade}"/>
                         </h:selectOneMenu>
                         
                         <h:outputLabel for="piloto" value="Piloto: "/>
-                        <h:selectOneMenu id="piloto" required="true">
-                            <f:selectItem />
-                            <f:selectItem itemValue="João Ninguém" itemLabel="João Ninguém"/>
-                            <f:selectItem itemValue="José Alguém" itemLabel="José Alguém"/>
+                        <h:selectOneMenu id="piloto" required="true"
+                                         value="#{vooBean.piloto}"
+                                         converter="pilotoConverter"
+                                         disabled="#{vooBean.method == 'v'}">
+                            <f:selectItems var="piloto" value="#{vooBean.listaPilotos}"
+                                           itemValue="#{piloto}"
+                                           itemLabel="#{piloto.nome}"/>
                         </h:selectOneMenu>
                         
                         <h:outputLabel for="preco_primeira_classe" 
                                        value="Preço da primeira classe: "/>
-                        <h:inputText id="preco_primeira_classe" required="true" size="70">
+                        <h:inputText id="preco_primeira_classe" required="true" size="70"
+                                     value="#{vooBean.precoPrimeiraClasse}"
+                                     disabled="#{vooBean.method == 'v'}">
                             <f:validateDoubleRange minimum="0.1" maximum="9999.99"/>
                         </h:inputText>
                         
                         <h:outputLabel for="preco_economica" 
                                        value="Preço da classe econômica: "/>
-                        <h:inputText id="preco_economica" required="true" size="70">
+                        <h:inputText id="preco_economica" required="true" size="70"
+                                     value="#{vooBean.precoEconomica}"
+                                     disabled="#{vooBean.method == 'v'}">
                             <f:validateDoubleRange minimum="0.1" maximum="9999.99"/>
                         </h:inputText>
                     </h:panelGrid>
+                    <br/>
                     <h:panelGrid columns="4">
                         <h:outputLabel for="inicio" value="Data de saída: "/>
                         <h:inputText class="form-control" id="inicio"
-                                     a:placeholder="DD/MM/YYYY" autocomplete="off" />
-                        
-                        <h:outputLabel for="saida" value="Horário de saída: "/>
-                        <h:inputText class="form-control" id="saida" 
-                                     a:placeholder="hh:mm" autocomplete="off" />
+                                     a:placeholder="DD/MM/YYYY hh:mm" autocomplete="off"
+                                     value="#{vooBean.saida}"
+                                     disabled="#{vooBean.method == 'v'}">
+                            <f:convertDateTime type="both" pattern="dd/MM/yyyy HH:mm"/>
+                        </h:inputText> 
                         
                         <h:outputLabel for="final" value="Data de chegada: "/>
                         <h:inputText class="form-control" id="final"
-                                     a:placeholder="DD/MM/YYYY" autocomplete="off" />
-                        
-                        <h:outputLabel for="chegada" value="Horário de chegada: "/>
-                        <h:inputText class="form-control" id="chegada"
-                                     a:placeholder="hh:mm" autocomplete="off" />
-                        
+                                     a:placeholder="DD/MM/YYYY hh:mm" autocomplete="off" 
+                                     value="#{vooBean.chegada}"
+                                     disabled="#{vooBean.method == 'v'}">
+                            <f:convertDateTime type="both" pattern="dd/MM/yyyy HH:mm"/>
+                        </h:inputText>
+                                               
                     </h:panelGrid>
                     <br/>
                     <h:commandButton value="Cadastrar" styleClass='btn btn-success'
-                                     action="#{vooBean.cadastrar}"/>
+                                     action="#{vooBean.cadastrar}"
+                                     rendered="#{vooBean.method == 'n'}"/>
+                    <h:commandButton value="Atualizar" styleClass='btn btn-success'
+                                     action="#{vooBean.atualizar}"
+                                     rendered="#{vooBean.method == 'u'}"/>
                     <h:button styleClass="btn btn-warning" value="Voltar" 
                               outcome="pesquisar_voos.xhtml"/>
                 </h:form>
