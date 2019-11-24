@@ -1,6 +1,7 @@
 package com.tads.dac.beans;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -56,5 +57,42 @@ public class CidadeAeroporto implements Serializable {
             this.sigla = sigla;
         else throw new RuntimeException(
             "Erro: Sigla da Cidade com Aeroporto não pode ser nula!");
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final CidadeAeroporto other = (CidadeAeroporto) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        if (!Objects.equals(this.sigla, other.sigla)) {
+            return false;
+        }
+        if (!Objects.equals(this.cidade, other.cidade)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 89 * hash + this.id;
+        hash = 89 * hash + Objects.hashCode(this.nome);
+        hash = 89 * hash + Objects.hashCode(this.cidade);
+        hash = 89 * hash + Objects.hashCode(this.sigla);
+        return hash;
     }
 }
