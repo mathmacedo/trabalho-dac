@@ -2,6 +2,7 @@ package com.tads.dac.dao;
 
 import com.tads.dac.beans.Assento;
 import com.tads.dac.beans.Voo;
+import com.tads.dac.facade.AssentoFacade;
 import com.tads.dac.util.HibernateUtil;
 import java.io.Serializable;
 import java.util.List;
@@ -115,6 +116,12 @@ public class VooDAO {
             Transaction t = s.beginTransaction();
             
             Voo v = (Voo) s.get(Voo.class, id);
+            
+            List<Assento> lista = AssentoFacade.getAssentosByVoo(v.getId());
+            
+            for(Assento a : lista){
+                s.delete(a);
+            }
             
             s.delete(v);
             
