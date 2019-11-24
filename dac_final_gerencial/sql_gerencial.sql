@@ -52,10 +52,8 @@ CREATE TABLE tb_voo(
 	id_cidade_origem INTEGER NOT NULL,
 	id_cidade_destino INTEGER NOT NULL,
 	id_piloto INTEGER NOT NULL,
-	horario_partida TIME NOT NULL,
-	horario_chegada TIME NOT NULL,
-	data_saida DATE NOT NULL,
-	data_chegada DATE NOT NULL,
+	data_hora_saida TIMESTAMP NOT NULL,
+	data_hora_chegada TIMESTAMP NOT NULL,
 	preco_primeira_classe FLOAT NOT NULL,
 	preco_classe_economica FLOAT NOT NULL,
 	CONSTRAINT fk_voo_id_cidade_origem FOREIGN KEY (id_cidade_origem)
