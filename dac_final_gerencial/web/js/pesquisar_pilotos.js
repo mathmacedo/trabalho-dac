@@ -1,6 +1,5 @@
-function confirmarExclusao(){
-    if(confirm("Tem certeza que deseja excluir esse Piloto?"))
-        alert("Piloto excluído!");
+function confirmarExclusao(piloto){
+    return confirm("Tem certeza que deseja excluir o Piloto " + piloto + "?");
 }
 
 

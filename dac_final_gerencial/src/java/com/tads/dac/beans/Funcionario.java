@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,6 +21,7 @@ public class Funcionario implements Serializable {
     private String nome;
     private String cpf;
     private String email;
+    private String telefone;
     private String senha;
     private char tipo;
     private Endereco endereco;
@@ -62,11 +64,22 @@ public class Funcionario implements Serializable {
             "Erro: Email do Funcionário não pode ser nulo!");
     }
 
+    @Column(name = "telefone_funcionario", length = 11, nullable = false)
+    public String getTelefone() { return telefone; }
+    public void setTelefone(String telefone) {
+        if(telefone != null)
+            this.telefone = telefone;
+        else throw new RuntimeException(
+            "Erro: Telefone do Funcionário é inválido!");
+    }
+    
     @Column(name = "senha_funcionario", length = 64, nullable = false)
     public String getSenha() { return senha; }
-    public void setSenha(String senha) throws NoSuchAlgorithmException {
+    public void setSenha(String senha) {
         if (senha != null)
-            this.senha = StringToMD5.toMD5(senha);
+            this.senha = senha;
+        else throw new RuntimeException(
+            "Erro: Senha do funcionário não pode ser nula!");
     }
 
     @Column(name = "tipo_funcionario", length = 1, nullable = false)
@@ -78,7 +91,7 @@ public class Funcionario implements Serializable {
             "Erro: Tipo de Funcionário inválido!");
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_endereco")
     public Endereco getEndereco() { return endereco; }
     public void setEndereco(Endereco endereco) {

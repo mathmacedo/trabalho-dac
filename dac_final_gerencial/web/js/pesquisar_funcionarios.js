@@ -1,6 +1,5 @@
-function confirmarExclusao(){
-    if(confirm("Tem certeza que deseja excluir esse funcionario?"))
-        alert("Funcionário excluído!");
+function confirmarExclusao(funcionario){
+    return confirm("Tem certeza que deseja excluir o funcionario " + funcionario + "?");
 }
 
 

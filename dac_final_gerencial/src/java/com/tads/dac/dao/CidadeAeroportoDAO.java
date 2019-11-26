@@ -34,9 +34,6 @@ public class CidadeAeroportoDAO {
             
             CidadeAeroporto c = (CidadeAeroporto) s.get(CidadeAeroporto.class, id);
             
-            t.commit();
-            s.close();
-            
             if (c != null)
                 return c;
             else throw new RuntimeException(
@@ -55,8 +52,6 @@ public class CidadeAeroportoDAO {
             Query q = s.createQuery("from CidadeAeroporto");
             
             List<CidadeAeroporto> lista = q.list();
-            t.commit();
-            s.close();
             
             if (lista != null)
                 return lista;

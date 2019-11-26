@@ -1,6 +1,7 @@
 package com.tads.dac.beans;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -47,4 +48,39 @@ public class Cidade implements Serializable {
         else throw new RuntimeException(
             "Erro: Estado não pode ser nulo!");
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 89 * hash + this.id;
+        hash = 89 * hash + Objects.hashCode(this.nome);
+        hash = 89 * hash + Objects.hashCode(this.estado);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Cidade other = (Cidade) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        if (!Objects.equals(this.estado, other.estado)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 }

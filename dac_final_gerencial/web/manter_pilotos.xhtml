@@ -4,7 +4,7 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets" 
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
     
-    <ui:define name="body">
+        <ui:define name="body">
         <script src="#{facesContext.externalContext.requestContextPath}/js/pesquisar_pilotos.js"></script>
         <div class='container'>
             <center>
@@ -14,78 +14,99 @@
                     <h:outputText value="Preencha os campos abaixo 
                                   cadastrar um funcionário."/>
                     <br/>
+                    
+                    <h:inputHidden id="id" value="#{pilotoBean.id}"/>
+                    <h:inputHidden id="method" value="#{pilotoBean.method}"/>
+                    
                     <h:panelGrid columns="2">
                         <h:outputLabel for="nome" value="Nome Completo: "/>
-                        <h:inputText id="nome" required="true" size="70">
+                        <h:inputText id="nome" required="true" size="70"
+                                     value='#{pilotoBean.nome}'
+                                     disabled="#{pilotoBean.method == 'v'}">
                             <f:validateLength minimum="10" maximum="70"/>
                         </h:inputText>
 
                         <h:outputLabel for="cpf" value="CPF: "/>
-                        <h:inputText id="cpf" required="true" size="70">
+                        <h:inputText id="cpf" required="true" size="70"
+                                     value='#{pilotoBean.cpf}'
+                                     disabled="#{pilotoBean.method == 'v'}">
                             <f:validator validatorId="com.tads.dac.validator.ValidaCpf" />
                         </h:inputText>
                         
                         <h:outputLabel for="email" value="Email: "/>
-                        <h:inputText id="Email" required="true" size="70"/>
-                        
-                        <h:outputLabel for="pais" value="País: "/>
-                        <h:inputText id="pais" required="true" size="70">
-                            <f:validateLength minimum="4" maximum="50"/>
-                        </h:inputText>
+                        <h:inputText id="email" required="true" size="70"
+                                     value='#{pilotoBean.email}'
+                                     disabled="#{pilotoBean.method == 'v'}"/>
                         
                         <h:outputLabel for="estado" value="Estado: "/>
-                        <h:selectOneMenu id="estado" required="true">
-                            <f:selectItem />
-                            <f:selectItem itemValue="PR" itemLabel="Paraná"/>
-                            <f:selectItem itemValue="SC" itemLabel="Santa Catarina"/>
-                            <f:selectItem itemValue="RS" itemLabel="Rio Grande do Sul"/>
-                            <f:selectItem itemValue="SP" itemLabel="São Paulo"/>
-                            <f:selectItem itemValue="RJ" itemLabel="Rio de Janeiro"/>
-                            <f:selectItem itemValue="MG" itemLabel="Minas Gerais"/>
-                            <f:selectItem itemValue="ES" itemLabel="Espírito Santo"/>
+                        <h:selectOneMenu id="estado" required="true"
+                                         value = "#{pilotoBean.estado}"
+                                         converter = "estadoConverter"
+                                         disabled="#{pilotoBean.method == 'v'}">
+                            <f:selectItems value="#{pilotoBean.listaEstados}"
+                                           var = "e"
+                                           itemValue = "#{e}"
+                                           itemLabel = "#{e.nome}"/>  
+                            <f:ajax event="change"
+                                    render="cidade"
+                                    execute="estado"
+                                    listener="#{pilotoBean.buscarCidades}" />
                         </h:selectOneMenu>
                         
                         <h:outputLabel for="cidade" value="Cidade: "/>
-                        <h:selectOneMenu id="cidade" required="true">
-                            <f:selectItem />
-                            <f:selectItem itemValue="São Paulo" itemLabel="São Paulo"/>
-                            <f:selectItem itemValue="Curitiba" itemLabel="Curitiba"/>
-                            <f:selectItem itemValue="Rio de Janeiro" itemLabel="Rio de Janeiro"/>
-                            <f:selectItem itemValue="Belo Horizonte" itemLabel="Belo Horizonte"/>
-                            <f:selectItem itemValue="Vitória" itemLabel="Vitória"/>
-                            <f:selectItem itemValue="Porto Alegre" itemLabel="Porto Alegre"/>
-                            <f:selectItem itemValue="Florianópolis" itemLabel="Florianópolis"/>
+                        <h:selectOneMenu id="cidade" required="false"
+                                         value="#{pilotoBean.cidade}"
+                                         converter="cidadeConverter"
+                                         disabled="#{pilotoBean.method == 'v'}">
+                            <f:selectItems value = "#{pilotoBean.listaCidades}"
+                                           var = "c"
+                                           itemValue = "#{c}"
+                                           itemLabel = "#{c.nome}" />
                         </h:selectOneMenu>
                         
                         <h:outputLabel for="bairro" value="Bairro: "/>
-                        <h:inputText id="bairro" required="true" size="70">
+                        <h:inputText id="bairro" required="true" size="70"
+                                     value='#{pilotoBean.bairro}'
+                                     disabled="#{pilotoBean.method == 'v'}">
                             <f:validateLength minimum="2" maximum="70"/>
                         </h:inputText>
                         
                         <h:outputLabel for="rua" value="Rua: "/>
-                        <h:inputText id="rua" required="true" size="70">
+                        <h:inputText id="rua" required="true" size="70"
+                                     value='#{pilotoBean.rua}'
+                                     disabled="#{pilotoBean.method == 'v'}">
                             <f:validateLength maximum="70"/>
                         </h:inputText>
                         
                         <h:outputLabel for="numero" value="Número: "/>
-                        <h:inputText id="Senha" required="true" size="70">
+                        <h:inputText id="numero" required="true"
+                                     value='#{pilotoBean.numero}'
+                                     disabled="#{pilotoBean.method == 'v'}">
                             <f:validateLongRange minimum="0" maximum="99999"/>
                         </h:inputText>
                         
                         <h:outputLabel for="complemento" value="Complemento: "/>
-                        <h:inputText id="complemento" size="70">
+                        <h:inputText id="complemento" size="70"
+                                     value='#{pilotoBean.complemento}'
+                                     disabled="#{pilotoBean.method == 'v'}">
                             <f:validateLength maximum="70"/>
                         </h:inputText>
                         
                         <h:outputLabel for="telefone" value="Telefone: "/>
-                        <h:inputText id="telefone" required="true" size="70">
+                        <h:inputText id="telefone" required="true" size="70"
+                                     value='#{pilotoBean.telefone}'
+                                     disabled="#{pilotoBean.method == 'v'}">
                             <f:validateLength maximum="11"/>
                             <f:validateRegex pattern="[0-9]{10,11}"/>
                         </h:inputText>
                     </h:panelGrid>
                     <br/>
                     <h:commandButton value="Cadastrar" styleClass='btn btn-success'
-                                     action="#{pilotoBean.cadastrar}"/>
+                                     action="#{pilotoBean.cadastrar}"
+                                     rendered="#{pilotoBean.method == 'n'}"/>
+                    <h:commandButton value="Atualizar" styleClass='btn btn-success'
+                                     action="#{pilotoBean.atualizar}"
+                                     rendered="#{pilotoBean.method == 'u'}"/>
                     <h:button styleClass="btn btn-warning" value="Voltar" 
                               outcome="pesquisar_pilotos.xhtml"/>
                 </h:form>

@@ -34,39 +34,43 @@
                     </h:panelGrid>
                     <br/>
                     <h:commandButton styleClass='button btn btn-info' value="Pesquisar"/>
-                        <h:button styleClass='button btn btn-success' value='Novo'
-                                  outcome='manter_voos'/> 
+                    <h:commandButton styleClass='button btn btn-success' value='Novo'
+                                     action="#{vooBean.openView(null, 'n')}"/> 
                 </h:form>
                 <hr/>
-                <h:dataTable styleClass="table" var="t" value="">
+                <h:dataTable styleClass="table" var="v" 
+                             value="#{vooBean.listaVoos}">
                     <h:column>
                         <f:facet name="header">
                             Cidade de Origem
                         </f:facet>
-                        Unicórniolândia
+                        #{v.cidadeOrigem.cidade.nome}/#{v.cidadeOrigem.cidade.estado.sigla} 
                     </h:column>
                     <h:column>
                         <f:facet name="header">
                             Cidade de Destino
                         </f:facet>
-                        Alguma outra Cidade
+                        #{v.cidadeDestino.cidade.nome}/#{v.cidadeDestino.cidade.estado.sigla}
                     </h:column>
                     <h:column>
                         <f:facet name="header">
                             Data de Saída
                         </f:facet>
-                        dd/mm/YYYY
+                        #{v.dataHoraSaida.toLocaleString()}
                     </h:column>
                     <h:column>
                         <f:facet name="header">
                             Opções
                         </f:facet>
-                        <h:button styleClass="btn btn-info" value="Visualizar"
-                                  outcome='manter_voos.xhtml?action=new'/>
-                        <h:button styleClass="btn btn-warning" value="Editar"
-                                  outcome='manter_voos.xhtml?action=edit'/>
-                        <h:button styleClass="btn btn-danger" value="Excluir"
-                                  onclick="confirmarExclusao()"/>
+                        <h:form>
+                            <h:commandButton styleClass="btn btn-info" value="Visualizar"
+                                      action="#{vooBean.openView(v, 'v')}"/>
+                            <h:commandButton styleClass="btn btn-warning" value="Editar"
+                                      action="#{vooBean.openView(v, 'u')}"/>
+                            <h:commandButton styleClass="btn btn-danger" value="Excluir"
+                                onclick='return confirmarExclusao("#{v.cidadeOrigem.cidade.nome}", "#{v.cidadeDestino.cidade.nome}")'
+                                action="#{vooBean.remover(v.id)}"/>
+                        </h:form>
                     </h:column>
                 </h:dataTable>
                 <h:button styleClass="button" value="Voltar" outcome="menu_gerente.xhtml"/>

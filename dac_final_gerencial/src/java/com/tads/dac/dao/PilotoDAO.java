@@ -34,9 +34,6 @@ public class PilotoDAO {
             
             Piloto p = (Piloto) s.get(Piloto.class, id);
             
-            t.commit();
-            s.close();
-            
             if (p != null)
                 return p;
             else throw new RuntimeException(
@@ -55,8 +52,6 @@ public class PilotoDAO {
             Query q = s.createQuery("from Piloto");
             
             List<Piloto> lista = q.list();
-            t.commit();
-            s.close();
             
             return lista;
         }
@@ -92,6 +87,7 @@ public class PilotoDAO {
             Piloto p = (Piloto) s.get(Piloto.class, id);
             
             s.delete(p);
+            s.delete(p.getEndereco());
             
             t.commit();
             s.close();

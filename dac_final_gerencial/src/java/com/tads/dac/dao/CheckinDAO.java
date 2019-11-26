@@ -34,9 +34,6 @@ public class CheckinDAO {
             
             Checkin c = (Checkin) s.get(Checkin.class, id);
             
-            t.commit();
-            s.close();
-            
             if (c != null)
                 return c;
             else throw new RuntimeException(
@@ -55,8 +52,6 @@ public class CheckinDAO {
             Query q = s.createQuery("from Checkin");
             
             List<Checkin> lista = q.list();
-            t.commit();
-            s.close();
             
             if (lista != null)
                 return lista;

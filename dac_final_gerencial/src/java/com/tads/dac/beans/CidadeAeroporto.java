@@ -1,6 +1,7 @@
 package com.tads.dac.beans;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +16,7 @@ import javax.persistence.Table;
 public class CidadeAeroporto implements Serializable {
     private int id;
     private String nome;
-    private Estado estado;
+    private Cidade cidade;
     private String sigla;
 
     @Id
@@ -39,14 +40,14 @@ public class CidadeAeroporto implements Serializable {
     }
 
     @ManyToOne
-    @JoinColumn(name = "id_estado")
-    public Estado getEstado() { return estado; }
-    public void setEstado(Estado estado) {
-        if (estado != null)
-            this.estado = estado;
+    @JoinColumn(name = "id_cidade")
+    public Cidade getCidade() { return cidade; }
+    public void setCidade(Cidade cidade) {
+        if (cidade != null)
+            this.cidade = cidade;
         else throw 
             new RuntimeException(
-                "Erro: Estado da Cidade com Aeroporto não pode ser nulo!");
+                "Erro: Cidade da Cidade com Aeroporto não pode ser nulo!");
     }
     
     @Column(name = "sigla_cidade_aeroporto", nullable = false, length = 3)
@@ -56,5 +57,42 @@ public class CidadeAeroporto implements Serializable {
             this.sigla = sigla;
         else throw new RuntimeException(
             "Erro: Sigla da Cidade com Aeroporto não pode ser nula!");
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final CidadeAeroporto other = (CidadeAeroporto) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        if (!Objects.equals(this.sigla, other.sigla)) {
+            return false;
+        }
+        if (!Objects.equals(this.cidade, other.cidade)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 89 * hash + this.id;
+        hash = 89 * hash + Objects.hashCode(this.nome);
+        hash = 89 * hash + Objects.hashCode(this.cidade);
+        hash = 89 * hash + Objects.hashCode(this.sigla);
+        return hash;
     }
 }

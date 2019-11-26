@@ -34,9 +34,6 @@ public class EstadoDAO {
             
             Estado e = (Estado) s.get(Estado.class, id);
             
-            t.commit();
-            s.close();
-            
             if (e != null)
                 return e;
             else throw new RuntimeException(
@@ -55,8 +52,6 @@ public class EstadoDAO {
             Query q = s.createQuery("from Estado");
             
             List<Estado> lista = q.list();
-            t.commit();
-            s.close();
             
             if (lista != null)
                 return lista;
@@ -103,6 +98,27 @@ public class EstadoDAO {
         catch(Exception ex){
             throw new RuntimeException(
                 "Erro ao deletar estado: " + ex.getMessage());
+        }
+    }
+
+    public static Object getEstadoBySigla(String sigla) {
+        try{
+            Session s = HibernateUtil.getSessionFactory().openSession();
+            Transaction t = s.beginTransaction();
+            Query q = s.createQuery("from Estado where sigla_estado = ?");
+            
+            q.setString(0, sigla);
+            
+            Estado e = (Estado) q.uniqueResult();
+            
+            if (e != null)
+                return e;
+            else throw new RuntimeException(
+                "Erro: Estado não encontrado!!");
+        }
+        catch(Exception ex){
+            throw new RuntimeException(
+                "Erro ao listar estados: " + ex.getMessage());
         }
     }
 }

@@ -34,9 +34,6 @@ public class BoletoDAO {
             
             Boleto b = (Boleto) s.get(Boleto.class, id);
             
-            t.commit();
-            s.close();
-            
             if (b != null)
                 return b;
             else throw new RuntimeException(
@@ -55,9 +52,7 @@ public class BoletoDAO {
             Query q = s.createQuery("from Boleto");
             
             List<Boleto> lista = q.list();
-            t.commit();
-            s.close();
-            
+                        
             if (lista != null)
                 return lista;
             else throw new RuntimeException(

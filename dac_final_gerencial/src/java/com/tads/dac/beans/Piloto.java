@@ -2,6 +2,7 @@ package com.tads.dac.beans;
 
 import com.tads.dac.util.ValidaCpf;
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -76,5 +77,50 @@ public class Piloto implements Serializable {
             this.endereco = endereco;
         else throw new RuntimeException(
             "Erro: Endereço do Piloto não pode ser nulo!");
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 89 * hash + this.id;
+        hash = 89 * hash + Objects.hashCode(this.nome);
+        hash = 89 * hash + Objects.hashCode(this.cpf);
+        hash = 89 * hash + Objects.hashCode(this.email);
+        hash = 89 * hash + Objects.hashCode(this.telefone);
+        hash = 89 * hash + Objects.hashCode(this.endereco);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Piloto other = (Piloto) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        if (!Objects.equals(this.cpf, other.cpf)) {
+            return false;
+        }
+        if (!Objects.equals(this.email, other.email)) {
+            return false;
+        }
+        if (!Objects.equals(this.telefone, other.telefone)) {
+            return false;
+        }
+        if (this.endereco.getId() != other.endereco.getId()) {
+            return false;
+        }
+        return true;
     }
 }

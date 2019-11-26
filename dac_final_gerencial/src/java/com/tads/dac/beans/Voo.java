@@ -1,7 +1,6 @@
 package com.tads.dac.beans;
 
 import java.io.Serializable;
-import java.sql.Time;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,10 +20,8 @@ public class Voo implements Serializable {
     private CidadeAeroporto cidadeOrigem;
     private CidadeAeroporto cidadeDestino;
     private Piloto piloto;
-    private Time horarioPartida;
-    private Time horarioChegada;
-    private Date dataSaida;
-    private Date dataChegada;
+    private Date dataHoraSaida;
+    private Date dataHoraChegada;
     private double precoPrimeiraClasse;
     private double precoClasseEconomica;
 
@@ -68,41 +65,23 @@ public class Voo implements Serializable {
         else throw new RuntimeException(
             "Erro: Piloto do Voo não pode ser nulo!");
     }
-    
-    @Column(name = "horario_partida", nullable = false)
-    public Time getHorarioPartida() { return horarioPartida; }
-    public void setHorarioPartida(Time horarioPartida) {
-        if (horarioPartida != null)
-            this.horarioPartida = horarioPartida;
-        else throw new RuntimeException(
-            "Erro: Horário de Partida do Voo não pode ser nulo!");
-    }
-    
-    @Column(name = "horario_chegada", nullable = false)
-    public Time getHorarioChegada() { return horarioChegada; }
-    public void setHorarioChegada(Time horarioChegada) {
-        if (horarioChegada != null)
-            this.horarioChegada = horarioChegada;
-        else throw new RuntimeException(
-            "Erro: Horário de Chegada do Voo não pode ser nulo!");
-    }
 
-    @Temporal(TemporalType.DATE)
-    @Column(name = "data_saida", nullable = false)
-    public Date getDataSaida() { return dataSaida; }
-    public void setDataSaida(Date dataSaida) {
-        if(dataSaida != null)
-            this.dataSaida = dataSaida;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "data_hora_saida", nullable = false)
+    public Date getDataHoraSaida() { return dataHoraSaida; }
+    public void setDataHoraSaida(Date dataHoraSaida) {
+        if(dataHoraSaida != null)
+            this.dataHoraSaida = dataHoraSaida;
         else throw new RuntimeException(
             "Erro: Data de Saída do Voo não pode ser nula!");
     }
 
-    @Temporal(TemporalType.DATE)
-    @Column(name = "data_chegada", nullable = false)
-    public Date getDataChegada() { return dataChegada; }
-    public void setDataChegada(Date dataChegada) {
-        if (dataChegada != null)
-            this.dataChegada = dataChegada;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "data_hora_chegada", nullable = false)
+    public Date getDataHoraChegada() { return dataHoraChegada; }
+    public void setDataHoraChegada(Date dataHoraChegada) {
+        if (dataHoraChegada != null)
+            this.dataHoraChegada = dataHoraChegada;
         else throw new RuntimeException(
             "Erro: Data de Chegada do Voo não pode ser nula!");
     }

@@ -34,9 +34,6 @@ public class ReservaDAO {
             
             Reserva r = (Reserva) s.get(Reserva.class, id);
             
-            t.commit();
-            s.close();
-            
             if (r != null)
                 return r;
             else throw new RuntimeException(
@@ -57,9 +54,6 @@ public class ReservaDAO {
             q.setInteger(0, id);
             
             List<Reserva> lista = q.list();
-            
-            t.commit();
-            s.close();
             
             if (lista != null)
                 return lista;
@@ -83,9 +77,6 @@ public class ReservaDAO {
             
             List<Reserva> lista = q.list();
             
-            t.commit();
-            s.close();
-            
             if (lista != null)
                 return lista;
             else return null;
@@ -103,8 +94,6 @@ public class ReservaDAO {
             Query q = s.createQuery("from Reserva");
             
             List<Reserva> lista = q.list();
-            t.commit();
-            s.close();
             
             if (lista != null)
                 return lista;

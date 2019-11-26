@@ -2,6 +2,7 @@ package com.tads.dac.dao;
 
 import com.tads.dac.beans.Assento;
 import com.tads.dac.beans.Voo;
+import com.tads.dac.facade.AssentoFacade;
 import com.tads.dac.util.HibernateUtil;
 import java.io.Serializable;
 import java.util.List;
@@ -18,7 +19,7 @@ public class VooDAO {
             Serializable idVoo = s.save(voo);
             
             for (char c = 'A'; c < 'G'; c++){
-                for (int i = 0; i < 34; i++){
+                for (int i = 1; i < 34; i++){
                     if (c == 'C' && i < 5) continue;
                     Assento a = new Assento();
                     
@@ -30,13 +31,15 @@ public class VooDAO {
                     a.setStatus('L');
                     
                     if (i < 5){
-                        a.setStatus('P');
+                        a.setTipo('P');
                         a.setValor(voo.getPrecoPrimeiraClasse());
                     }
                     else {
-                        a.setStatus('E');
+                        a.setTipo('E');
                         a.setValor(voo.getPrecoClasseEconomica());
                     }
+                    
+                    s.save(a);
                 }
             }
             
@@ -59,9 +62,6 @@ public class VooDAO {
             
             Voo v = (Voo) s.get(Voo.class, id);
             
-            t.commit();
-            s.close();
-            
             if (v != null)
                 return v;
             else throw new RuntimeException(
@@ -80,8 +80,6 @@ public class VooDAO {
             Query q = s.createQuery("from Voo");
             
             List<Voo> lista = q.list();
-            t.commit();
-            s.close();
             
             if (lista != null)
                 return lista;
@@ -118,6 +116,12 @@ public class VooDAO {
             Transaction t = s.beginTransaction();
             
             Voo v = (Voo) s.get(Voo.class, id);
+            
+            List<Assento> lista = AssentoFacade.getAssentosByVoo(v.getId());
+            
+            for(Assento a : lista){
+                s.delete(a);
+            }
             
             s.delete(v);
             

@@ -17,9 +17,9 @@ CREATE TABLE tb_cidade_aeroporto(
 	id_cidade_aeroporto SERIAL PRIMARY KEY,
 	nome_cidade_aeroporto VARCHAR(70) NOT NULL,
 	sigla_cidade_aeroporto VARCHAR(3) NOT NULL,
-	id_estado INTEGER NOT NULL,
-	CONSTRAINT fk_cidade_aeroporto_id_estado FOREIGN KEY (id_estado)
-	REFERENCES tb_estado(id_estado) MATCH SIMPLE
+	id_cidade INTEGER NOT NULL,
+	CONSTRAINT fk_cidade_aeroporto_id_cidade FOREIGN KEY (id_cidade)
+	REFERENCES tb_cidade(id_cidade) MATCH SIMPLE
 	ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 
@@ -27,6 +27,7 @@ CREATE TABLE tb_endereco(
 	id_endereco SERIAL PRIMARY KEY,
 	rua_endereco VARCHAR (100) NOT NULL,
 	numero_endereco INTEGER NOT NULL,
+	bairro_endereco VARCHAR(50) NOT NULL,
 	complemento_endereco VARCHAR(50),
 	id_cidade INTEGER NOT NULL,
 	CONSTRAINT fk_endereco_id_cidade FOREIGN KEY (id_cidade)
@@ -51,10 +52,8 @@ CREATE TABLE tb_voo(
 	id_cidade_origem INTEGER NOT NULL,
 	id_cidade_destino INTEGER NOT NULL,
 	id_piloto INTEGER NOT NULL,
-	horario_partida TIME NOT NULL,
-	horario_chegada TIME NOT NULL,
-	data_saida DATE NOT NULL,
-	data_chegada DATE NOT NULL,
+	data_hora_saida TIMESTAMP NOT NULL,
+	data_hora_chegada TIMESTAMP NOT NULL,
 	preco_primeira_classe FLOAT NOT NULL,
 	preco_classe_economica FLOAT NOT NULL,
 	CONSTRAINT fk_voo_id_cidade_origem FOREIGN KEY (id_cidade_origem)
@@ -75,7 +74,8 @@ CREATE TABLE tb_funcionario(
 	email_funcionario VARCHAR(100) NOT NULL,
 	senha_funcionario VARCHAR(64) NOT NULL,
 	tipo_funcionario CHAR NOT NULL,
-	id_endereco INTEGER NOT NULL,
+	telefone_funcionario VARCHAR(11) NOT NULL,
+ 	id_endereco INTEGER NOT NULL,
 	CONSTRAINT fk_funcionario_id_endereco FOREIGN KEY (id_endereco)
 	REFERENCES tb_endereco(id_endereco) MATCH SIMPLE
 	ON UPDATE NO ACTION ON DELETE NO ACTION

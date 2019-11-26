@@ -34,9 +34,6 @@ public class AssentoDAO {
             
             Assento a = (Assento) s.get(Assento.class, id);
             
-            t.commit();
-            s.close();
-            
             if (a != null)
                 return a;
             else throw new RuntimeException(
@@ -55,8 +52,6 @@ public class AssentoDAO {
             Query q = s.createQuery("from Assento");
             
             List<Assento> lista = q.list();
-            t.commit();
-            s.close();
             
             if (lista != null)
                 return lista;
@@ -78,8 +73,6 @@ public class AssentoDAO {
             q.setInteger(0, id);
             
             List<Assento> lista = q.list();
-            t.commit();
-            s.close();
             
             if (lista != null)
                 return lista;
