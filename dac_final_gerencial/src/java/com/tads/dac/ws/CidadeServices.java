@@ -19,11 +19,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 
 
-/**
- * REST Web Service
- *
- * @author tacid
- */
 @Path("/cidade")
 public class CidadeServices {
 
