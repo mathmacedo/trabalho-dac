@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ws;
+package com.tads.dac.ws;
 
 import com.tads.dac.facade.EstadoFacade;
 import com.tads.dac.beans.Estado;
