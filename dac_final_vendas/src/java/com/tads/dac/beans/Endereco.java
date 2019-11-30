@@ -16,6 +16,7 @@ import javax.persistence.Table;
 
 public class Endereco implements Serializable {
     private int id;
+    private String bairro;
     private String rua;
     private int numero;
     private String complemento;
@@ -32,6 +33,15 @@ public class Endereco implements Serializable {
             "Erro: Id do Endereço deve ser maior do que 0!");
     }
 
+    @Column(name = "bairro_endereco", length = 50, nullable = false)
+    public String getBairro() { return bairro; }
+    public void setBairro(String bairro) {
+        if (bairro != null)
+            this.bairro = bairro;
+        else throw new RuntimeException(
+            "Erro: Bairro do endereço não pode estar vazio!");
+    }
+    
     @Column(name = "rua_endereco", length = 100, nullable = false)
     public String getRua() { return rua; }
     public void setRua(String rua) {
