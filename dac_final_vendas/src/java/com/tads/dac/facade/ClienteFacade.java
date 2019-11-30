@@ -24,4 +24,8 @@ public class ClienteFacade {
     public static boolean deleteCliente(int id){
         return ClienteDAO.deleteCliente(id);
     }
+    
+    public static Cliente authenticate(String email, String password){
+        return ClienteDAO.authenticate(email, password);
+    }
 }
