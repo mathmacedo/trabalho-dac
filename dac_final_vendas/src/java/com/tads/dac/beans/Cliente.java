@@ -5,7 +5,6 @@
  */
 package com.tads.dac.beans;
 
-import com.tads.dac.util.StringToMD5;
 import com.tads.dac.util.ValidaCpf;
 import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
@@ -25,76 +24,77 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tb_cliente")
 public class Cliente implements Serializable {
-    private int id_cliente;
-    private String nome_cliente;
-    private String senha_cliente;
-    private String cpf_cliente;
-    private String telefone_cliente;
+    private int id;
+    private String nome;
+    private String senha;
+    private String cpf;
+    private String telefone;
     private Endereco endereco;
-    private String email_cliente;
+    private String email;
 
     @Id
-    @Column(name = "id_cliente", nullable = false)
+    @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int getId_cliente() {
-        return id_cliente;
+    public int getId() {
+        return id;
     }
 
-    public void setId_cliente(int id_cliente) {
-        if(id_cliente > 0) {
-            this.id_cliente = id_cliente;            
+    public void setId(int id) {
+        if(id > 0) {
+            this.id = id;            
         } else {
-            throw new RuntimeException("Erro: Nome do Funcionário não pode ser nulo!");
+            throw new RuntimeException(
+                    "Erro: Id do Cliente não pode ser nulo!");
         }
     }
 
-    @Column(name = "nome_cliente", length = 70, nullable = false)
-    public String getNome_cliente() {
-        return nome_cliente;
+    @Column(name = "nome", length = 70, nullable = false)
+    public String getNome() {
+        return nome;
     }
 
-    public void setNome_cliente(String nome_cliente) {
-        if(nome_cliente != null) {
-            this.nome_cliente = nome_cliente;
+    public void setNome(String nome) {
+        if(nome != null) {
+            this.nome = nome;
         } else {
             throw new RuntimeException("Nome do cliente não pode ser nulo!");
         }
     }
 
-    @Column(name = "senha_cliente", length = 64, nullable = false)
-    public String getSenha_cliente() {
-        return senha_cliente;
+    @Column(name = "senha", length = 64, nullable = false)
+    public String getSenha() {
+        return senha;
     }
 
-    public void setSenha_cliente(String senha_cliente) throws NoSuchAlgorithmException {
-        if(senha_cliente != null) {
-            this.senha_cliente = StringToMD5.toMD5(senha_cliente);
+    public void setSenha(String senha){
+        if(senha != null) {
+            this.senha = senha;
         } else {
             throw new RuntimeException("Senha do cliente não pode ser nula!");
         }
     }
 
-    @Column(name = "cpf_cliente", length = 11, nullable = false)
-    public String getCpf_cliente() {
-        return cpf_cliente;
+    @Column(name = "cpf", length = 11, nullable = false)
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setCpf_cliente(String cpf_cliente) {
-        if(ValidaCpf.validate(cpf_cliente)) {
-            this.cpf_cliente = cpf_cliente;
+    public void setCpf(String cpf) {
+        if(ValidaCpf.validate(cpf)) {
+            this.cpf = cpf;
         } else {
             throw new RuntimeException("CPF não validado!");
         }
     }
 
-    @Column(name = "telefone_cliente", length = 11, nullable = false)
-    public String getTelefone_cliente() {
-        return telefone_cliente;
+    @Column(name = "telefone", length = 11, nullable = false)
+    public String getTelefone() {
+        return telefone;
     }
 
-    public void setTelefone_cliente(String telefone_cliente) {
-        if(telefone_cliente != null) {
-            this.telefone_cliente = telefone_cliente;
+    public void setTelefone(String telefone) {
+        if(telefone != null) {
+            this.telefone = telefone;
         } else {
             throw new RuntimeException("Telefone do cliente está inválido !");
         }
@@ -114,14 +114,14 @@ public class Cliente implements Serializable {
         }
     }
 
-    @Column(name = "email_cliente", length = 100, nullable = false)
-    public String getEmail_cliente() {
-        return nome_cliente;
+    @Column(name = "email", length = 100, nullable = false)
+    public String getEmail() {
+        return nome;
     }
 
-    public void setEmail_cliente(String email_cliente) {
-        if(email_cliente != null) {
-            this.email_cliente = email_cliente;
+    public void setEmail(String email) {
+        if(email != null) {
+            this.email = email;
         } else {
             throw new RuntimeException("Email do cliente não pode ser nulo!");
         }

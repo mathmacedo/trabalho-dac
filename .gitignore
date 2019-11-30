@@ -57,3 +57,9 @@ nbdist/
 .nb-gradle/
 
 # End of https://www.gitignore.io/api/java,linux,netbeans,java-web
+
+# Don't add the next files to the repository
+.idea/
+dac_final_gerencial/src/java/Teste.java
+dac_final_vendas/src/java/TesteWebservices.java
+

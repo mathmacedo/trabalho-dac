@@ -16,71 +16,81 @@
                     <br/>
                     <h:panelGrid columns="2">
                         <h:outputLabel for="nome" value="Nome Completo: "/>
-                        <h:inputText id="nome" required="true" size="70">
+                        <h:inputText id="nome" required="true" size="70"
+                                     value="#{clienteBean.nome}">
                             <f:validateLength minimum="10" maximum="70"/>
                         </h:inputText>
 
                         <h:outputLabel for="cpf" value="CPF: "/>
-                        <h:inputText id="cpf" required="true" size="70">
+                        <h:inputText id="cpf" required="true" size="70"
+                                     value="#{clienteBean.cpf}">
                             <f:validator validatorId="com.tads.dac.validator.ValidaCpf" />
                         </h:inputText>
                         
+                        <h:outputLabel for ="email" value="Email: "/>
+                        <h:inputText id="email" required="true" size="70"
+                                     value="#{clienteBean.email}">
+                            <f:validateLength maximum="100"/>
+                        </h:inputText>
+                        
                         <h:outputLabel for="senha" value="Senha: "/>
-                        <h:inputSecret id="senha" required="true" size="70">
+                        <h:inputSecret id="senha" required="true" size="70"
+                                       value="#{clienteBean.senha}">
                             <f:validateLength minimum="4" maximum="16"/>
                         </h:inputSecret>
                         
                         <h:outputLabel for="conf_senha" value="Confirmar Senha: "/>
-                        <h:inputSecret id="conf_senha" required="true" size="70">
+                        <h:inputSecret id="conf_senha" required="true" size="70"
+                                       value="#{clienteBean.confSenha}">
                             <f:validateLength minimum="4" maximum="16"/>
                         </h:inputSecret>
                         
                         <h:outputLabel for="estado" value="Estado: "/>
-                        <h:selectOneMenu id="estado" required="true">
-                            <f:selectItem />
-                            <f:selectItem itemValue="PR" itemLabel="Paraná"/>
-                            <f:selectItem itemValue="SC" itemLabel="Santa Catarina"/>
-                            <f:selectItem itemValue="RS" itemLabel="Rio Grande do Sul"/>
-                            <f:selectItem itemValue="SP" itemLabel="São Paulo"/>
-                            <f:selectItem itemValue="RJ" itemLabel="Rio de Janeiro"/>
-                            <f:selectItem itemValue="MG" itemLabel="Minas Gerais"/>
-                            <f:selectItem itemValue="ES" itemLabel="Espírito Santo"/>
+                        <h:selectOneMenu id="estado" required="true"
+                                         value="#{clienteBean.estado}"
+                                         converter="estadoConverter">
+                            <f:selectItems var="e" 
+                                           value="#{clienteBean.listaEstados}"
+                                           itemValue="#{e}"
+                                           itemLabel="#{e.nome}"/>
                         </h:selectOneMenu>
                         
                         <h:outputLabel for="cidade" value="Cidade: "/>
-                        <h:selectOneMenu id="cidade" required="true">
-                            <f:selectItem />
-                            <f:selectItem itemValue="São Paulo" itemLabel="São Paulo"/>
-                            <f:selectItem itemValue="Curitiba" itemLabel="Curitiba"/>
-                            <f:selectItem itemValue="Rio de Janeiro" itemLabel="Rio de Janeiro"/>
-                            <f:selectItem itemValue="Belo Horizonte" itemLabel="Belo Horizonte"/>
-                            <f:selectItem itemValue="Vitória" itemLabel="Vitória"/>
-                            <f:selectItem itemValue="Porto Alegre" itemLabel="Porto Alegre"/>
-                            <f:selectItem itemValue="Florianópolis" itemLabel="Florianópolis"/>
+                        <h:selectOneMenu id="cidade" required="true"
+                                         value="#{clienteBean.listaCidades}"
+                                         converter="cidadeConverter">
+                            <f:selectItems var="c" itemValue="#{c}"
+                                           itemLabel="#{c.nome}"
+                                           value="#{clienteBean.listaCidades}"/>
                         </h:selectOneMenu>
                         
                         <h:outputLabel for="bairro" value="Bairro: "/>
-                        <h:inputText id="bairro" required="true" size="70">
+                        <h:inputText id="bairro" required="true" size="70"
+                                     value="#{clienteBean.bairro}">
                             <f:validateLength minimum="2" maximum="70"/>
                         </h:inputText>
                         
                         <h:outputLabel for="rua" value="Rua: "/>
-                        <h:inputText id="rua" required="true" size="70">
+                        <h:inputText id="rua" required="true" size="70"
+                                     value="#{clienteBean.rua}">
                             <f:validateLength maximum="70"/>
                         </h:inputText>
                         
                         <h:outputLabel for="numero" value="Número: "/>
-                        <h:inputText id="Senha" required="true" size="70">
+                        <h:inputText id="Senha" required="true" size="70"
+                                     value="#{clienteBean.numero}">
                             <f:validateLongRange minimum="0" maximum="99999"/>
                         </h:inputText>
                         
                         <h:outputLabel for="complemento" value="Complemento: "/>
-                        <h:inputText id="complemento" size="70">
+                        <h:inputText id="complemento" size="70"
+                                     value="#{clienteBean.complemento}">
                             <f:validateLength maximum="70"/>
                         </h:inputText>
                         
                         <h:outputLabel for="telefone" value="Telefone: "/>
-                        <h:inputText id="telefone" required="true" size="70">
+                        <h:inputText id="telefone" required="true" size="70"
+                                     value="#{clienteBean.telefone}">
                             <f:validateLength maximum="11"/>
                             <f:validateRegex pattern="[0-9]{10,11}"/>
                         </h:inputText>
