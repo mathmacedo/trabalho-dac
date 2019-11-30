@@ -60,7 +60,6 @@ nbdist/
 
 # Don't add the next files to the repository
 .idea/
-dac_final_gerencial/nbproject/project.properties
 dac_final_gerencial/src/java/Teste.java
 dac_final_vendas/src/java/TesteWebservices.java
 
