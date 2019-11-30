@@ -29,23 +29,23 @@ public class EnderecoService {
     }
 
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
+    @Consumes(MediaType.APPLICATION_JSON + ";charset=utf-8")
     public List<Endereco> getEnderecoList() {
         return EnderecoFacade.listEnderecos();
     }
 
     @POST
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
+    @Consumes(MediaType.APPLICATION_JSON + ";charset=utf-8")
     @Path("inserir")
     public int insertEndereco(Endereco e) {
         return EnderecoFacade.insertEndereco(e);
     }
     
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
+    @Consumes(MediaType.APPLICATION_JSON + ";charset=utf-8")
     @Path("{id}")
     public Endereco getEnderecoById(@PathParam("id") int id) {
         return EnderecoFacade.getEnderecoById(id);
