@@ -33,7 +33,7 @@ public class Cliente implements Serializable {
     private String email;
 
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id_cliente", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
@@ -48,7 +48,7 @@ public class Cliente implements Serializable {
         }
     }
 
-    @Column(name = "nome", length = 70, nullable = false)
+    @Column(name = "nome_cliente", length = 70, nullable = false)
     public String getNome() {
         return nome;
     }
@@ -61,7 +61,7 @@ public class Cliente implements Serializable {
         }
     }
 
-    @Column(name = "senha", length = 64, nullable = false)
+    @Column(name = "senha_cliente", length = 64, nullable = false)
     public String getSenha() {
         return senha;
     }
@@ -74,7 +74,7 @@ public class Cliente implements Serializable {
         }
     }
 
-    @Column(name = "cpf", length = 11, nullable = false)
+    @Column(name = "cpf_cliente", length = 11, nullable = false)
     public String getCpf() {
         return cpf;
     }
@@ -87,7 +87,7 @@ public class Cliente implements Serializable {
         }
     }
 
-    @Column(name = "telefone", length = 11, nullable = false)
+    @Column(name = "telefone_cliente", length = 11, nullable = false)
     public String getTelefone() {
         return telefone;
     }
@@ -114,9 +114,9 @@ public class Cliente implements Serializable {
         }
     }
 
-    @Column(name = "email", length = 100, nullable = false)
+    @Column(name = "email_cliente", length = 100, nullable = false)
     public String getEmail() {
-        return nome;
+        return email;
     }
 
     public void setEmail(String email) {
