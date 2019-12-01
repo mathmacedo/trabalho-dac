@@ -29,6 +29,7 @@ public class LoginListener implements PhaseListener{
 
             FacesContext.getCurrentInstance().getExternalContext()
                     .getFlash().setKeepMessages(true);
+            
             handler.handleNavigation(context, null, "index?faces-redirect=true");
             
             context.renderResponse();
