@@ -15,6 +15,7 @@ import javax.faces.context.FacesContext;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 
 @Named(value = "clienteBean")
@@ -42,9 +43,9 @@ public class ClienteBean implements Serializable {
 
     @PostConstruct
     public void init(){
-        //this.getEstados();
-        //this.estado = listaEstados.get(0);
-        //this.getCidades();
+        this.getEstados();
+        this.estado = listaEstados.get(0);
+        this.getCidades();
     }
 
     public List<Cidade> getListaCidades() {
@@ -169,19 +170,21 @@ public class ClienteBean implements Serializable {
     
     public void getCidades(){
         Client c = ClientBuilder.newClient();
+        GenericType<List<Cidade>> genericType = new GenericType<List<Cidade>>(){};
         this.listaCidades = c
                 .target("http://localhost:8080/dac_final_gerencial/webresources/cidade/" 
                         + Integer.toString(this.estado.getId()))
-                .request(MediaType.APPLICATION_JSON)
-                .get(List.class);
+                .request(MediaType.APPLICATION_JSON+";charset=utf-8")
+                .get(genericType);
     }   
     
     public void getEstados(){
         Client c = ClientBuilder.newClient();
+        GenericType<List<Estado>> genericType = new GenericType<List<Estado>>(){};
         this.listaEstados = c
                 .target("http://localhost:8080/dac_final_gerencial/webresources/estado")
-                .request(MediaType.APPLICATION_JSON)
-                .get(List.class);
+                .request(MediaType.APPLICATION_JSON+";charset=utf-8")
+                .get(genericType);
     }
     
     public String cadastrar(){
@@ -206,12 +209,14 @@ public class ClienteBean implements Serializable {
         e.setRua(rua);
         
         Client client = ClientBuilder.newClient();
-        int idEndereco = client
+        String idEndereco = client
             .target("http://localhost:8080/dac_final_gerencial/webresources/endereco")
-            .request(MediaType.APPLICATION_JSON)
-            .post(Entity.json(e), Integer.class);
+            .request(MediaType.APPLICATION_JSON+";charset=utf-8")
+            .post(Entity.entity(e, MediaType.APPLICATION_JSON+";charset=utf-8"), String.class);
         
-        if (idEndereco > 0){
+        if (Integer.parseInt(idEndereco) > 0){
+            e.setId(Integer.parseInt(idEndereco));
+            System.out.println("PASSANDO NO COCO---------------------");
             c.setCpf(cpf);
             c.setEmail(email);
             c.setEndereco(e);
@@ -220,6 +225,7 @@ public class ClienteBean implements Serializable {
             c.setTelefone(telefone);
             
             if (ClienteFacade.insertCliente(c) > 0){
+                clearData();
                 FacesContext.getCurrentInstance().addMessage(null, new
                     FacesMessage(FacesMessage.SEVERITY_INFO,
                         "Cadastro realizado com sucesso!", null));
@@ -250,5 +256,21 @@ public class ClienteBean implements Serializable {
 
             return "cadastrar_cliente";
         }
+    }
+    
+    public void clearData(){
+        this.bairro = null;
+        this.cidade = null;
+        this.complemento = null;
+        this.confSenha = null;
+        this.cpf = null;
+        this.email = null;
+        this.estado = null;
+        this.id = 0;
+        this.nome = null;
+        this.numero = 0;
+        this.rua = null;
+        this.senha = null;
+        this.telefone = null;
     }
 }
