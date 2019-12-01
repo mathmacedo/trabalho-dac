@@ -25,7 +25,7 @@ public class EstadoFacade {
         return EstadoDAO.deleteEstado(id);
     }
 
-    public static Object getEstadoBySigla(String sigla) {
+    public static Estado getEstadoBySigla(String sigla) {
         return EstadoDAO.getEstadoBySigla(sigla);
     }
 }
