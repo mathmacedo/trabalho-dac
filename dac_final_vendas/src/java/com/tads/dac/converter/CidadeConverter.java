@@ -16,8 +16,8 @@ public class CidadeConverter implements Converter {
             String value){
         Client c = ClientBuilder.newClient();
         return c
-                .target("http://localhost:8080/dac_final_gerencial/webresources/cidade/" + value)
-                .request(MediaType.APPLICATION_JSON)
+                .target("http://localhost:8080/dac_final_gerencial/webresources/cidade/id/" + value)
+                .request(MediaType.APPLICATION_JSON+";charset=utf-8")
                 .get(Cidade.class);
         //return CidadeFacade.getCidadeById(Integer.parseInt(value));
     }

@@ -53,11 +53,15 @@
                                            value="#{clienteBean.listaEstados}"
                                            itemValue="#{e}"
                                            itemLabel="#{e.nome}"/>
+                            <f:ajax event="change"
+                                    render="cidade"
+                                    execute="estado"
+                                    listener="#{clienteBean.getCidades}" />
                         </h:selectOneMenu>
                         
                         <h:outputLabel for="cidade" value="Cidade: "/>
                         <h:selectOneMenu id="cidade" required="true"
-                                         value="#{clienteBean.listaCidades}"
+                                         value="#{clienteBean.cidade}"
                                          converter="cidadeConverter">
                             <f:selectItems var="c" itemValue="#{c}"
                                            itemLabel="#{c.nome}"
@@ -77,7 +81,7 @@
                         </h:inputText>
                         
                         <h:outputLabel for="numero" value="Número: "/>
-                        <h:inputText id="Senha" required="true" size="70"
+                        <h:inputText id="numero" required="true" size="70"
                                      value="#{clienteBean.numero}">
                             <f:validateLongRange minimum="0" maximum="99999"/>
                         </h:inputText>

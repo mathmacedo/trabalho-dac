@@ -17,7 +17,7 @@ public class EstadoConverter implements Converter {
         Client c = ClientBuilder.newClient();
         return c
                 .target("http://localhost:8080/dac_final_gerencial/webresources/estado/" + value)
-                .request(MediaType.APPLICATION_JSON)
+                .request(MediaType.APPLICATION_JSON+";charset=utf-8")
                 .get(Estado.class);
         //return EstadoFacade.getEstadoBySigla(value);
     }

@@ -101,7 +101,7 @@ public class EstadoDAO {
         }
     }
 
-    public static Object getEstadoBySigla(String sigla) {
+    public static Estado getEstadoBySigla(String sigla) {
         try{
             Session s = HibernateUtil.getSessionFactory().openSession();
             Transaction t = s.beginTransaction();

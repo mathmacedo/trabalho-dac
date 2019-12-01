@@ -29,17 +29,25 @@ public class CidadeServices {
     }
 
     @GET
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON + ";charset=utf-8")
+    @Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
     public List<Cidade> getCidade() {
         return CidadeFacade.listCidades();
     }
     
     @GET
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON + ";charset=utf-8")
+    @Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
     @Path("{id}")
-    public List<Cidade> getCidadeById(@PathParam("id") int id) {
+    public List<Cidade> getCidadeByEstado(@PathParam("id") int id) {
        return CidadeFacade.getCidadesByEstado(id);
+    }
+    
+    @GET
+    @Consumes(MediaType.APPLICATION_JSON + ";charset=utf-8")
+    @Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
+    @Path("/id/{id}")
+    public Cidade getCidadeById(@PathParam("id") int id) {
+       return CidadeFacade.getCidadeById(id);
     }
 }
