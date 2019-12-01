@@ -7,14 +7,11 @@ package com.tads.dac.beans;
 
 import com.tads.dac.util.ValidaCpf;
 import java.io.Serializable;
-import java.security.NoSuchAlgorithmException;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -29,7 +26,7 @@ public class Cliente implements Serializable {
     private String senha;
     private String cpf;
     private String telefone;
-    private Endereco endereco;
+    private int endereco;
     private String email;
 
     @Id
@@ -100,14 +97,13 @@ public class Cliente implements Serializable {
         }
     }
 
-    @ManyToOne
-    @JoinColumn(name = "id_endereco")
-    public Endereco getEndereco() {
+    @Column(name = "id_endereco")
+    public int getEndereco() {
         return endereco;
     }
 
-    public void setEndereco(Endereco endereco) {
-        if(endereco != null) {
+    public void setEndereco(int endereco) {
+        if(endereco > 0) {
             this.endereco = endereco;
         } else {
             throw new RuntimeException("Endereço inválido!");

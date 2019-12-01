@@ -18,7 +18,10 @@
                         <h:link value="Consultar Compras" styleClass="d-flex p-4" outcome="consultar_compras.xhtml"/>
                     </li>
                 </ul>
-                <h:button class="button btn btn-danger" value="Logout" outcome="index.xhtml"/>
+                <h:form>
+                    <h:commandButton class="button btn btn-danger" value="Logout" 
+                                 action="#{sessionBean.logout()}"/>
+                </h:form>
             </div>
         </center>
     </ui:define>              

@@ -122,7 +122,6 @@ public class ClienteDAO {
             s.close();
             
             return c;
-            
         }
         catch(Exception ex){
             throw new RuntimeException(

@@ -5,7 +5,9 @@ import com.tads.dac.beans.Cliente;
 import com.tads.dac.beans.Endereco;
 import com.tads.dac.beans.Estado;
 import com.tads.dac.facade.ClienteFacade;
+import com.tads.dac.util.StringToMD5;
 import java.io.Serializable;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
@@ -187,7 +189,7 @@ public class ClienteBean implements Serializable {
                 .get(genericType);
     }
     
-    public String cadastrar(){
+    public String cadastrar() throws NoSuchAlgorithmException{
         if (!senha.equals(confSenha)){
             FacesContext.getCurrentInstance().addMessage(null, new
                 FacesMessage(FacesMessage.SEVERITY_ERROR,
@@ -216,12 +218,12 @@ public class ClienteBean implements Serializable {
         
         if (Integer.parseInt(idEndereco) > 0){
             e.setId(Integer.parseInt(idEndereco));
-            System.out.println("PASSANDO NO COCO---------------------");
+
             c.setCpf(cpf);
             c.setEmail(email);
-            c.setEndereco(e);
+            c.setEndereco(e.getId());
             c.setNome(nome);
-            c.setSenha(senha);
+            c.setSenha(StringToMD5.toMD5(senha));
             c.setTelefone(telefone);
             
             if (ClienteFacade.insertCliente(c) > 0){

@@ -13,12 +13,16 @@
                     <h:messages infoClass="info-message" errorClass="error-message" class="alert alert-primary"/>
                     <div style="margin: 10px 0">
                         <h:outputLabel for="name" value="Email: " />
-                        <h:inputText id="name" required="true" class="form-control" />
+                        <h:inputText id="name" required="true" class="form-control" 
+                                     value="#{sessionBean.email}"/>
                     </div>
                     <h:outputLabel for="pword" value="Senha: " />
-                    <h:inputSecret id="pword" required="true" class="form-control"/>
+                    <h:inputSecret id="pword" required="true" class="form-control"
+                                   value="#{sessionBean.senha}"/>
                     <div style="display: flex; justify-content: center">
-                        <h:commandButton class="btn btn-primary" value="Login" action="menu_cliente.xhtml" style="margin: 10px 0"/>
+                        <h:commandButton class="btn btn-primary" value="Login"
+                                         action="#{sessionBean.authenticate}"
+                                         style="margin: 10px 0"/>
                     </div>
                 </div>
             </h:form>

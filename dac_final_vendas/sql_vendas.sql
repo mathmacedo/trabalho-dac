@@ -5,8 +5,5 @@ CREATE TABLE tb_cliente(
 	senha_cliente VARCHAR(64) NOT NULL,
 	cpf_cliente VARCHAR(11) NOT NULL UNIQUE,
 	telefone_cliente VARCHAR(11) NOT NULL,
-	id_endereco INTEGER NOT NULL,
-	CONSTRAINT fk_cliente_id_endereco FOREIGN KEY (id_endereco)
-	REFERENCES tb_endereco(id_endereco) MATCH SIMPLE
-	ON UPDATE NO ACTION ON DELETE NO ACTION
+	id_endereco INTEGER NOT NULL
 );
