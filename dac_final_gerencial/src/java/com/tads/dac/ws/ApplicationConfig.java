@@ -30,9 +30,10 @@ public class ApplicationConfig extends Application {
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(com.tads.dac.ws.CidadeServices.class);
-        resources.add(com.tads.dac.ws.ListVoos.class);
         resources.add(com.tads.dac.ws.EnderecoService.class);
         resources.add(com.tads.dac.ws.EstadoServices.class);
+        resources.add(com.tads.dac.ws.ListVoos.class);
+        resources.add(ws.EnderecoService.class);
     }
     
 }
