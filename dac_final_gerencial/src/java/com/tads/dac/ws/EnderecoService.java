@@ -38,9 +38,8 @@ public class EnderecoService {
     @POST
     @Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
     @Consumes(MediaType.APPLICATION_JSON + ";charset=utf-8")
-    @Path("inserir")
-    public int insertEndereco(Endereco e) {
-        return EnderecoFacade.insertEndereco(e);
+    public String insertEndereco(Endereco e) {
+        return Integer.toString(EnderecoFacade.insertEndereco(e));
     }
     
     @GET
