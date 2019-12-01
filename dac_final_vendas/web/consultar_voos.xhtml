@@ -8,6 +8,7 @@
     <ui:define name="body">
         <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
         <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
         <script src="#{facesContext.externalContext.requestContextPath}/js/datepickerstart.js"></script>
@@ -37,33 +38,35 @@
                 </h:form>
                 <hr/>
                 <!-- TODO add table header? --> 
-                <h:panelGrid columns="5" width="80%">
-                    <h:outputText value="**ICONE DE AVIAO AQUI**"/>
-                    <h:outputText value="Unicorniolandia"/>
-                    <h:outputText value="Data de Saída: dd/mm/YYYY"/>
-                    <h:outputText value="R$ xxxx,xx"/>
-                    <h:button style="button" styleClass="btn btn-info p-1 m-2" value="Consultar Assentos"
-                              outcome="consultar_assentos?id_voo=1"/>  
-                </h:panelGrid>
-                <hr/>
-                <h:panelGrid columns="5" width="80%">
-                    <h:outputText value="**ICONE DE AVIAO AQUI**"/>
-                    <h:outputText value="Nova Ether"/>
-                    <h:outputText value="Data de Saída: dd/mm/YYYY"/>
-                    <h:outputText value="R$ xxx,xx"/>
-                    <h:button style="button" styleClass="btn btn-info p-1 m-2" value="Consultar Assentos"
-                              outcome="consultar_assentos?id_voo=2"/>  
-                </h:panelGrid>
-                
-                <hr/>
-                <h:panelGrid columns="5" width="80%">
-                    <h:outputText value="**ICONE DE AVIAO AQUI**"/>
-                    <h:outputText value="Pollux"/>
-                    <h:outputText value="Data de Saída: dd/mm/YYYY"/>
-                    <h:outputText value="R$ xxxxx,xx"/>
-                    <h:button style="button" styleClass="btn btn-info p-1 m-2" value="Consultar Assentos"
-                              outcome="consultar_assentos?id_voo=3"/>  
-                </h:panelGrid>
+                 <h:dataTable styleClass="table" var="v" 
+                             value="#{vooBean.lista}">
+                    <h:column>
+                        <span class="glyphicon glyphicon glyphicon-plane" 
+                                      aria-hidden="true"></span>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Origem > Destino
+                        </f:facet>
+                        #{v.cidadeOrigem.cidade.nome}/#{v.cidadeOrigem.cidade.estado.sigla} 
+                        >
+                        #{v.cidadeDestino.cidade.nome}/#{v.cidadeDestino.cidade.estado.sigla}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Data de Saída
+                        </f:facet>
+                        #{v.dataHoraSaida.toLocaleString()}
+                    </h:column>
+                    <h:column>
+                        <h:form>
+                            <h:commandButton style="button"
+                                      styleClass="btn btn-outline-info" 
+                                      value="Consultar Assentos"
+                                      action="consultar_assentos?id_voo=3"/>
+                        </h:form>
+                    </h:column>
+                </h:dataTable>
                 <hr/>
                 <br/>
                 <h:button class="button" styleClass="btn btn-secondary m-2" value="Voltar" outcome="menu_cliente.xhtml"/>
