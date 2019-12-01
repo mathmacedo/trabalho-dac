@@ -46,5 +46,9 @@ Contributor(s):
     <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/dac_final_vendas</property>
     <property name="hibernate.connection.username">dac_final</property>
     <property name="hibernate.connection.password">dac_final</property>
+    <mapping class="com.tads.dac.beans.Cliente"/>
+    <mapping class="com.tads.dac.beans.Cidade"/>
+    <mapping class="com.tads.dac.beans.Estado"/>
+    <mapping class="com.tads.dac.beans.Endereco"/>
   </session-factory>
 </hibernate-configuration>
