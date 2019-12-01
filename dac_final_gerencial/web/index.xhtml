@@ -4,30 +4,29 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets" >
     
     <ui:define name="body">
-        <center>
-            <div class="form_login">
-                <h:form>
-                    <h:outputText styleClass="title" value="Área Gerencial. Faça login para continuar."/>
-                    <br/>
-                    <span class="messages">
-                        <h:messages infoClass="info-message" errorClass="error-message"/>
-                    </span>
-                    <br/>
-                    <div styleClass="align-line">
+        <div style="margin: 0 auto; width: 50%">
+            <h:form>
+                <div class="form-group">
+                    <div style="text-align: center">
+                        <h:outputText styleClass="title" 
+                                      value="Área Gerencial. Faça login para continuar."/>
+                    </div>
+                    <h:messages class="alert alert-primary"/>
+                    <div style="margin: 10px 0">
                         <h:outputLabel for="email" value="Email: " />
                         <h:inputText id="email" styleClass="input-style" required="true" 
                                      value="#{sessionBean.email}"/>
                     </div>
-                    <br/>
                     <h:outputLabel for="pword" value="Senha: " />
                     <h:inputSecret id="pword" styleClass="input-style" required="true" 
                                    value = "#{sessionBean.senha}"/>
-                    <br/>
-                    <h:commandButton class="button" styleClass="btn-login btn" 
+                    <div style="display: flex; justify-content: center">
+                        <h:commandButton class="button" styleClass="btn-login btn" 
                                      value="Login" action="#{sessionBean.authenticate}"/>
-                </h:form>
-            </div>
-        </center>
+                    </div>
+                </div>
+            </h:form>
+        </div>
     </ui:define>              
 </ui:composition>
 
