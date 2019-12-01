@@ -57,3 +57,6 @@ nbdist/
 .nb-gradle/
 
 # End of https://www.gitignore.io/api/java,linux,netbeans,java-web
+
+# Don't add the next files to the repository
+

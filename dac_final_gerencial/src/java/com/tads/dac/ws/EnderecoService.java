@@ -5,41 +5,49 @@
  */
 package com.tads.dac.ws;
 
-import com.tads.dac.beans.Cidade;
-import com.tads.dac.facade.CidadeFacade;
+import com.tads.dac.beans.Endereco;
+import com.tads.dac.facade.EnderecoFacade;
 import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 
-
-@Path("/cidade")
-public class CidadeServices {
+@Path("/endereco")
+public class EnderecoService {
 
     @Context
     private UriInfo context;
 
-    public CidadeServices() {
+    public EnderecoService() {
     }
 
     @GET
-    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Cidade> getCidade() {
-        return CidadeFacade.listCidades();
+    @Consumes(MediaType.APPLICATION_JSON)
+    public List<Endereco> getEnderecoList() {
+        return EnderecoFacade.listEnderecos();
+    }
+
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("inserir")
+    public int insertEndereco(Endereco e) {
+        return EnderecoFacade.insertEndereco(e);
     }
     
     @GET
-    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     @Path("{id}")
-    public List<Cidade> getCidadeById(@PathParam("id") int id) {
-       return CidadeFacade.getCidadesByEstado(id);
+    public Endereco getEnderecoById(@PathParam("id") int id) {
+        return EnderecoFacade.getEnderecoById(id);
     }
 }
