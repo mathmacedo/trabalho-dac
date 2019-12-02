@@ -9,5 +9,4 @@
             com.tads.dac.listener.LoginGerencialListener
         </phase-listener>
     </lifecycle>
-
 </faces-config>
