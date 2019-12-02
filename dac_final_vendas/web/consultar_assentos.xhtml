@@ -24,12 +24,13 @@
                 <br/><br/>
                 <!-- TODO! -->
                 <h:form>
-                    <h:selectManyCheckbox id="assentos" required="true">
-                        <f:selectItem itemLabel="F01" itemValue="F1"/>
-                        <f:selectItem itemLabel="F02" itemValue="F2"/>
-                        <f:selectItem itemLabel="F03" itemValue="F3"/>
-                        <f:selectItem itemLabel="F04" itemValue="F4"/>
-                        <f:selectItem itemLabel="F05" itemValue="F5"/>
+                    <h:selectManyCheckbox id="assentos" required="true" 
+                                          value="#{assentoBean.selecionados}">
+                        <f:selectItems value="#{assentoBean.listaAssentos}"
+                                       var="a"
+                                       itemDisabled="#{a.status != 'L'}"
+                                       itemValue="#{a}"
+                                       itemLabel="#{a.nome}"/>
                     </h:selectManyCheckbox>
                     <br/>
                     <h:button class="button" value="Voltar" outcome="consultar_voos.xhtml"/>

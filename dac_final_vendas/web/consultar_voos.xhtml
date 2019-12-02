@@ -63,7 +63,7 @@
                             <h:commandButton style="button"
                                       styleClass="btn btn-outline-info" 
                                       value="Consultar Assentos"
-                                      action="consultar_assentos?id_voo=3"/>
+                                      action="#{assentoBean.getAssentos(v.id)}"/>
                         </h:form>
                     </h:column>
                 </h:dataTable>

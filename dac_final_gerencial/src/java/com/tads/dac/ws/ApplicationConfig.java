@@ -29,6 +29,7 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
+        resources.add(com.tads.dac.ws.AssentoServices.class);
         resources.add(com.tads.dac.ws.CidadeServices.class);
         resources.add(com.tads.dac.ws.EnderecoService.class);
         resources.add(com.tads.dac.ws.EstadoServices.class);
